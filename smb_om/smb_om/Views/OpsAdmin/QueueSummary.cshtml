@@ -1,0 +1,116 @@
+﻿@model smb_om.Model.QueueSummary
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <input name="token" type="hidden" value="89c022ca-2e78-4c7c-ba68-8a0a34e4e51e" /><input id="action" name="action" type="hidden" value="" /><input id="inputstring" name="inputstring" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application">
+                        <h1>OPS Admin</h1>
+                        <p class="error"></p>
+                        <div class="content-border">
+                            <div class="cmxform_results">
+                                <fieldset>
+                                    <h2>Queue Summary</h2>
+                                    <hr class="break" />
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                        <tr class="resultsHeader">
+                                            <td align="left" style="width: 15%;">MLP</td>
+                                            <td align="left" style="width: 15%;">COUNT</td>
+                                            <td align="left" style="width: 15%;">DAYS</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Business</td>
+                                            <td>@Model.MLP.ordercount</td>
+                                            <td>@Model.MLP.MinimumDays</td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                        <tr class="resultsHeader">
+                                            <td align="left" style="width: 15%;">INCOMPLETE</td>
+                                            <td align="left" style="width: 15%;">COUNT</td>
+                                            <td align="left" style="width: 15%;">DAYS</td>
+                                        </tr>
+                                        @*<tr>
+                                            <td>Residential</td>
+                                            <td>1</td>
+                                            <td>25 days 6 hours 36 minutes</td>
+                                        </tr>*@
+                                        <tr>
+                                            <td>Business</td>
+                                            <td>@Model.Incomplete.ordercount</td>
+                                            <td>@Model.Incomplete.MinimumDays</td>
+                                        </tr>
+                                    </table>
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                        <tr class="resultsHeader">
+                                            <td align="left" style="width: 15%;">CHECK INSTALL</td>
+                                            <td align="left" style="width: 15%;">COUNT</td>
+                                            <td align="left" style="width: 15%;">DAYS</td>
+                                        </tr>
+                                        @*<tr>
+            <td>Residential</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="center">Check Install I</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td align="center">Check Install II</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td align="center">Check Install III</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>*@
+                                        <tr>
+                                            <td>Business</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">Check Install III</td>
+                                            <td>@Model.check_Install_3_Day.ordercount</td>
+                                            <td>@Model.check_Install_3_Day.MinimumDays</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">Check Install II</td>
+                                            <td>@Model.check_Install_2_Day.ordercount</td>
+                                            <td>@Model.check_Install_2_Day.MinimumDays</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">Check Install I</td>
+                                            <td>@Model.check_Install_1_Day.ordercount</td>
+                                            <td>@Model.check_Install_1_Day.MinimumDays</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">Check Install Day</td>
+                                            <td>@Model.check_Install_Day.ordercount</td>
+                                            <td>@Model.check_Install_Day.MinimumDays</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">Post Install Day</td>
+                                            <td>@Model.post_Install_Day.ordercount</td>
+                                            <td>@Model.post_Install_Day.MinimumDays</td>
+                                        </tr>
+                                    </table>
+
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="stroke" height="1" width="1"></td>
+            </tr>
+            <tr>
+                <td class="stroke" colspan="3" height="1"></td>
+            </tr>
+        </table>
+    </div>
+</body>

@@ -1,0 +1,593 @@
+﻿@model smb_om.Model.OrderQuickSearch
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application">
+                        <h1>SEARCH</h1>
+                        <p class="error"></p>
+                        <div class="content-border">
+                            <div class="cmxform_short">
+                                <fieldset></fieldset>
+                            </div>
+                            <div class="cmxform_short">
+                                <fieldset>
+                                    <h2>90 Day Quick Search</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <form asp-controller="Search" asp-action="SearchDetails" method="post" id="quickSearchForm" name="quickSearchForm">
+                                            <input name="token" type="hidden" value="e914c3d4-514f-4dc2-aafe-19fdb200584f" />
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                                <tr>
+                                                    <td colspan="4"><i>Please pick one of the following:</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="quickCBRNumberF">CBR Phone Number:</label></td>
+                                                    <td><label for="ban">Billing Account Number:</label></td>
+                                                    <td><label for="orderNumber">Order Number:</label></td>
+                                                    <td><label for="commonOrderNumber">Common Order Number:</label></td>
+                                                    <td><label for="quickBusinessName">Business Name:</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="quickCBRNumber" name="quickCBRNumber" type="hidden" value="" /><input asp-for="CBRPhoneNumber" class="textbox" id="quickCBRNumberF" maxlength="18" name="CBRPhoneNumber"
+                                                                                                                                         size="20"
+                                                                                                                                         type="text"
+                                                                                                                                         value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input asp-for="BillingAccountNumber" class="textbox" id="ban" maxlength="24" name="BillingAccountNumber" size="20" type="text"
+                                                               value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input asp-for="OrderNumber" class="textbox" id="orderNumber" maxlength="254" name="OrderNumber" size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input asp-for="commonOrderNumber" class="textbox" id="commonOrderNumber" name="commonOrderNumber" type="text"
+                                                               value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input asp-for="quickBusinessName" class="textbox" id="quickBusinessName" maxlength="254" name="quickBusinessName"
+                                                               size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <input asp-for="Isordertype" class="checkbox" id="quickSearchOrderOnly" name="Isordertype"
+                                                                           type="checkbox"
+                                                                           value="true"
+                                                                           checked="checked" />
+                                                                </td>
+                                                                <td>Orders Only</td>
+
+                                                            </tr>
+                                                        </table>
+
+
+
+                                                    </td>
+                                                    <td align="right" colspan="4">
+                                                        <input class="button-css" id="quickSearchSubmit" name="searchSubmit"
+                                                               type="submit"
+                                                               value="90 Day Quick Search" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            @*<hr class="break">*@
+                                            @if (Model != null && Model.quickSearchResults != null && Model.quickSearchResults.Count > 0)
+                                            {
+                                                @*<table border="0" cellpadding="0" cellspacing="0" class="" id="tblEmployee">*@
+                                                @*<colgroup>
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 60%;">
+                                                    </colgroup>*@
+                                                @*<tbody>*@
+                                                @*<tr class="resultsHeader">*@
+                                                @*<td>*@
+                                                <hr class="break">
+                                                <table border="0" cellpadding="0" cellspacing="0" class="" id="tblEmployee">
+                                                    <colgroup>
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 60%;">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr class="resultsHeader">
+                                                            <td>Order Number</td>
+                                                            <td>Partner Name</td>
+                                                            <td>Product</td>
+                                                            <td>Status</td>
+                                                            <td>Business_Name</td>
+                                                            <td>RepId</td>
+                                                            <td>LastUpadtedDate</td>
+                                                            <td>ReceivedDate</td>
+                                                        </tr>
+                                                        @foreach (var item in Model.quickSearchResults)
+                                                        {
+                                                    <tr>
+                                                        @*<td>@item.OrderNumber</td>*@
+                                                        <td> <a href="/orderprocess/Index/?orderId=@item.OrderNumber&returnurl=mlp">@item.OrderNumber</a></td>
+                                                        <td>@item.partnerName</td>
+                                                        <td>@item.Product</td>
+                                                        <td>@item.Status</td>
+                                                        <td>@item.Business_Name</td>
+                                                        <td>@item.Repid</td>
+                                                        <td>@item.LastUpadtedDate</td>
+                                                        <td>@item.ReceivedDate</td>
+
+                                                    </tr>
+
+                                                        }
+
+                                                        @*<tr class="resultsOdd">
+                                                                                                                    <td style="word-wrap: break-word;">
+                                                                                                                        WLP RESPONSE<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                                    </td>
+                                                                                                                    <td style="word-wrap: break-word;">2022-09-07 07:18:19:047</td>
+                                                                                                                    <td>
+                                                                                                                        <textarea class="textareaField" cols="50" rows="6" style="height: 100px;">&lt;StreamClosure xmlns="http://www.synchronoss.com/ri/xsd/StreamClosure"&gt;
+                                                              &lt;Header timeStamp="2022-09-07T07:18:19.029-04:00"/&gt;
+                                                              &lt;NACK code="NACK003" message="document does not conform to schema"/&gt;
+                                                            &lt;/StreamClosure&gt;</textarea>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr class="resultsEven">
+                                                                                                                    <td style="word-wrap: break-word;">
+                                                                                                                        WLP REQUEST<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                                    </td>
+                                                                                                                    <td style="word-wrap: break-word;">2022-09-07 07:18:19:003</td>
+                                                                                                                    <td>
+                                                                                                                    </td>
+                                                                                                                </tr>*@
+
+                                                    </tbody>
+                                                </table>
+                                                @*</td>*@
+                                                @*<td>TimeStamp</td>
+                                                    <td>Message</td>*@
+                                                @*</tr>*@
+                                                @*<tr class="resultsOdd">
+                                                                                                            <td style="word-wrap: break-word;">
+                                                                                                                WLP RESPONSE<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                            </td>
+                                                                                                            <td style="word-wrap: break-word;">2022-09-07 07:18:19:047</td>
+                                                                                                            <td>
+                                                                                                                <textarea class="textareaField" cols="50" rows="6" style="height: 100px;">&lt;StreamClosure xmlns="http://www.synchronoss.com/ri/xsd/StreamClosure"&gt;
+                                                      &lt;Header timeStamp="2022-09-07T07:18:19.029-04:00"/&gt;
+                                                      &lt;NACK code="NACK003" message="document does not conform to schema"/&gt;
+                                                    &lt;/StreamClosure&gt;</textarea>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr class="resultsEven">
+                                                                                                            <td style="word-wrap: break-word;">
+                                                                                                                WLP REQUEST<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                            </td>
+                                                                                                            <td style="word-wrap: break-word;">2022-09-07 07:18:19:003</td>
+                                                                                                            <td>
+                                                                                                            </td>
+                                                                                                        </tr>*@
+
+                                                @*</tbody>*@
+                                                @*</table>*@
+                                            }
+                                        </form>
+                                    </div><br /><h2>Detail Search</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <form asp-controller="Search" asp-action="SearchCompleteDetails" method="post" name="searchForm"
+                                              onsubmit="return validate(this)">
+                                            <input name="token" type="hidden" value="e914c3d4-514f-4dc2-aafe-19fdb200584f" /><table border="0" cellpadding="0" cellspacing="0" class="appTable" id="toggle_2">
+
+                                                <tr>
+                                                    <td><label class="" for="fromDate">Order Date:</label></td>
+                                                    <td>
+                                                        <input id="fromDate" asp-for="@Model.detailSearch.startDate" onchange="" size="10"
+                                                               type="date" />
+                                                        to
+                                                        <input id="toDate" asp-for="@Model.detailSearch.enddate" onchange="" size="10" type="date"
+                                                               value="" />
+                                                    </td>
+                                                    <td colspan="2">
+
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <input asp-for="@Model.detailSearch.IsOrderType" class="checkbox" id="detailSearchOrderOnly"
+                                                                           onchange=""
+                                                                           type="checkbox"
+                                                                           value="true"
+                                                                           checked="checked">
+                                                                </td>
+                                                                <td>Orders Only</td>
+
+                                                            </tr>
+                                                        </table>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="detailOrderNumber">Order Number:</label></td>
+                                                    <td>
+                                                        <input onclick="check();" asp-for="@Model.detailSearch.OrderNumber" class="textbox" id="detailOrderNumber" maxlength="254"
+                                                               size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="contactPhoneNumber">Contact Phone Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="@Model.detailSearch.contactNumber" class="textbox" id="contactPhoneNumber" maxlength="20"
+                                                               size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="lastName">Last Name:</label></td>
+                                                    <td>
+                                                        <input asp-for="@Model.detailSearch.LastName" class="textbox" id="lastName" maxlength="254" size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="businessName">Business Name:</label></td>
+                                                    <td>
+                                                        <input asp-for="@Model.detailSearch.BusinesName" class="textbox" id="businessName" maxlength="254" size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="billingAccountNumber">Billing Account Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="@Model.detailSearch.BillingAccountNumber" class="textbox" id="billingAccountNumber" maxlength="24"
+                                                               size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="detailCommonOrderNumber">Common Order Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="@Model.detailSearch.CommonOrderNumber" class="textbox" id="detailCommonOrderNumber"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><label class="" for="type">Order Type:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.OrderType" id="type" name="orderType">
+                                                            <option value="">Select</option>
+                                                            <option value="CREDIT_CHECK">SERVICE QUAL</option>
+                                                            <option value="EXISTING_CUSTOMER">ORDER QUAL</option>
+                                                            <option value="ORDER">ORDER</option>
+                                                            <!--<option value="ORDER_QUAL">ORDER_QUAL</option>
+                    <option value="SERVICE_QUAL">SERVICE_QUAL</option>
+                    <option value="VALIDATE">VALIDATE</option>
+                    <option value="VALIDATE_INFO">VALIDATE_INFO</option>-->
+
+                                                        </select>
+                                                        <input type="hidden" id="ordertype" asp-for="@Model.detailSearch.OrderType" />
+                                                    </td>
+                                                </tr>
+                                                <!--<tr>
+            <td><label class="" for="customerType">Customer Type:</label></td>
+            <td>
+                <select id="customerType" name="customerType">
+                    <option value=""></option>
+                    <option value="MOVE">MOVE</option>
+                    <option value="NEW">NEW</option>
+                    <option value="UPGRADE">UPGRADE</option>
+                </select>
+            </td>
+        </tr>-->
+                                                <tr>
+                                                    <td><label class="" for="partner">Partner:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.Partnerid" id="partner" name="partner">
+                                                            <option value="">Select</option>
+                                                            @if (Model != null && Model.partners != null)
+                                                            {
+                                                                @foreach (var item in Model.partners)
+                                                                {
+                                                                    <option value="@item.value">@item.text</option>
+
+                                                                }
+                                                            }
+
+                                                        </select>
+                                                        <input type="hidden" id="partnerid" asp-for="@Model.detailSearch.Partnerid" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="affiliate">Affiliate:</label></td>
+                                                    <td>
+
+
+                                                        <select asp-for="@Model.detailSearch.Affiliateid">
+                                                            <option value="">Select</option>
+                                                            @if (Model != null && Model.affiliates != null)
+                                                            {
+                                                                @foreach (var item in Model.affiliates)
+                                                                {
+                                                                    <option value="@item.value">@item.text</option>
+
+                                                                }
+                                                            }
+                                                            @*<option value=""></option>
+                        <option value="5I9UOGJF">5I9UOGJF</option>*@
+
+                                                        </select>
+                                                        @*<input type="hidden" id="affiliateid" asp-for="@Model.detailSearch.Affiliateid"  />*@
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="region">Region:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.region">
+                                                            <option value="">Select</option>
+                                                            <option value="EAST">EAST</option>
+                                                            <option value="MIDWEST">MIDWEST</option>
+                                                            <option value="SOUTHEAST">SOUTHEAST</option>
+                                                            <option value="SOUTHWEST">SOUTHWEST</option>
+                                                            <option value="WEST">WEST</option>
+                                                            @*<option value="WIRELESS">WIRELESS</option>*@
+                                                            @*<option value="UNKNOWN">
+                        UNKNOWN*@
+
+                                                            @*</option>*@
+                                                        </select>
+                                                        @*<input type="hidden" id="regionid" asp-for="@Model.detailSearch.region" />*@
+                                                    </td>
+                                                </tr>
+                                                <!--<tr>
+            <td><label class="" for="serviceType">Service Type:</label></td>
+            <td>
+                <select id="serviceType" name="serviceType" onchange="serviceTypeChanged(this.value)">
+                    <option value="RESIDENTIAL">RESIDENTIAL</option>
+                    <option value="BUSINESS">
+                        BUSINESS
+
+                    </option>
+                    <option value="SMBC">
+                        BUSINESS - SMBC
+
+                    </option>
+                </select>
+            </td>
+        </tr>-->
+                                                @*<tr>
+                <td><label class="" for="orderState">Order State:</label></td>
+                <td>
+                    <select id="orderState" name="orderState" style="width:180px;">
+                        @if (Model != null && Model.statereasons != null)
+                        {
+                            @foreach (var item in Model.statereasons)
+                            {
+                                <option value="@item.value">@item.text</option>
+
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>*@
+                                                <tr>
+                                                    <td><label class="" for="productCategory">Product:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.product" style="width:120px;">
+                                                            <option value="">Select</option>
+                                                            <option value="200">AWB</option>
+                                                            <option value="2100">INTERNET</option>
+                                                            <option value="300">POTS</option>
+                                                            <option value="400">VOIP</option>
+                                                            <!--<option value="500">Wireless</option>
+                    <option value="600">IPTV</option>
+                    <option value="700">Internet</option>
+                    <option value="800">VOIP</option>
+                    <option value="900">DigitalLife</option>
+                    <option value="WINBACK">Winback</option>-->
+
+
+                                                        </select>
+                                                        @*<input type="hidden" id="productid" asp-for="@Model.detailSearch.product" />*@
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="productState">Product State:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.productState" onchange="BindCallTypeDropdown()"
+                                                                style="width:180px">
+                                                            <option value="">Select</option>
+                                                            @if (Model != null && Model.statereasons != null)
+                                                            {
+                                                                @foreach (var item in Model.statereasons)
+                                                                {
+                                                                    <option value="@item.value">@item.text</option>
+
+                                                                }
+                                                            }
+                                                            @*<option value=""></option>
+                        <option value="4">Canceled</option>*@
+                                                            <!--<option value="9">Canceled - Email</option>-->
+                                                            <!--<option value="22">Canceled - Email - USCS</option>-->
+                                                            <!--<option value="17">Canceled - NRFC</option>-->
+                                                            <!--<option value="21">Canceled - USCS</option>-->
+                                                            <!--<option value="3">Complete</option>
+                    <option value="8">Complete - Email</option>
+                    <option value="7">Incomplete</option>
+                    <option value="7">Incomplete - Email</option>-->
+                                                            <!--<option value="23">Order Confirmation</option>
+                    <option value="24">Order Confirmation - Email</option>-->
+                                                            <!--<option value="6">Pending</option>
+                    <option value="10">Pending - Email</option>
+                    <option value="1">Received</option>
+                    <option value="19">Submitted</option>
+                    <option value="20">Submitted - Email</option>-->
+                                                            <!--<option value="15">System Received</option>-->
+                                                        </select>
+                                                        @*<input type="hidden"  id="productstateid" asp-for="@Model.detailSearch.productState" />*@
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="" for="productReason">Product State Reason:</label></td>
+                                                    <td>
+                                                        <select asp-for="@Model.detailSearch.productStateReason"
+                                                                style="width:240px">
+                                                            <option value=""></option>
+                                                        </select>
+                                                        @*<input type="hidden"  id="productstatereason" asp-for="@Model.detailSearch.productStateReason" />*@
+                                                    </td>
+                                                </tr>
+                                                <!--<tr>
+            <td><label class="" for="productReasonCodeScenario">Product Reason Code Scenario:</label></td>
+            <td>
+                <select id="productReasonCodeScenario" name="productReasonCodeScenario"
+                        style="width:240px">
+                    <option value=""></option>
+                </select>
+            </td>
+        </tr>-->
+                                                <tr>
+                                                    <td colspan="4" style="padding-left: 20px;">
+                                                        <input class="button-css" id="detailSearchSubmit" name="searchSubmit"
+                                                               type="submit"
+                                                               value="Submit" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            @if (Model.detailSearchResults != null)
+                                            {
+                                                <hr class="break">
+                                                <table border="0" cellpadding="0" cellspacing="0" class="" id="tblEmployee">
+                                                    <colgroup>
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 20%;">
+                                                        <col style="width: 60%;">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr class="resultsHeader">
+                                                            <td>Order Number</td>
+                                                            <td>Partner Name</td>
+                                                            <td>Product</td>
+                                                            <td>Status</td>
+                                                            <td>Business_Name</td>
+                                                            <td>RepId</td>
+                                                            <td>LastUpdatedDate</td>
+                                                            <td>ReceivedDate</td>
+                                                        </tr>
+
+                                                        @foreach (var item in Model.detailSearchResults)
+                                                        {
+                                                            <tr>
+                                                                <td> <a href="/orderprocess/Index/?orderId=@item.OrderNumber&returnurl=mlp">@item.OrderNumber</a></td>
+                                                                @*<td>@item.OrderNumber</td>*@
+                                                                <td>@item.partnerName</td>
+                                                                <td>@item.Product</td>
+                                                                <td>@item.Status</td>
+                                                                <td>@item.Business_Name</td>
+                                                                <td>@item.Repid</td>
+                                                                <td>@item.LastUpadtedDate</td>
+                                                                <td>@item.ReceivedDate</td>
+
+                                                            </tr>
+
+                                                        }
+                                                        
+                                                </table>
+                                            }
+                                            </form>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="stroke" height="1" width="1"></td>
+            </tr>
+            <tr>
+                <td class="stroke" colspan="3" height="1"></td>
+            </tr>
+        </table>
+    </div>
+ 
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+          //  BindCallTypeDropdown();
+            var callTypeId = $("#CallTypeId").val();
+            $('#ReasonCodeId').bind('change', function () {
+                $('#productstatereason').val($(this).val());
+            });
+            $('#productState').bind('change', function () {
+                $('#productstateid').val($(this).val());
+            });
+            $('#productCategory').bind('change', function () {
+                $('#productid').val($(this).val());
+            });
+            $('#region').bind('change', function () {
+                $('#regionid').val($(this).val());
+            });
+            $('#partner').bind('change', function () {
+                $('#partnerid').val($(this).val());
+            });
+            $('#type').bind('change', function () {
+                $('#ordertype').val($(this).val());
+            });
+
+        });
+
+        //function ordertype() {
+        //    var stateid = $("#productState option:selected").val();
+
+        //}
+
+        //function partner() { }
+
+        //function affiliate() { }
+
+        //function state() { }
+        //function prodstate() { }
+        //function prodstatereason() { }
+        //function region() { }
+
+
+
+
+          function BindCallTypeDropdown()
+        {
+             // var callTypeId = $("#productState").val();
+              var stateid = $("#productState option:selected").text();
+           //  var callTypeId = $('#CallTypeId option:selected').val();
+              $.getJSON('@Url.Content("~/")' + "Search/GetReasonById?stateid=" + stateid, function (data) {
+                var items = '';
+                $("#ReasonCodeId").empty();
+
+                $.each(data, function (index, reasonval) {
+                    debugger;
+
+                    if (i == 0) { items += "<option value=''>" + "--Select--" + "</option>"; }
+                    else { items += "<option value='" + reasonval.value + "'>" + reasonval.text + "</option>"; }
+                });
+                $('#ReasonCodeId').html(items);
+
+
+            });
+        }
+    </script>
+</body>

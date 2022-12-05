@@ -1,0 +1,139 @@
+﻿@model smb_om.Model.MlpModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <div style="display: inline-block;width: 80%;">
+                                <h1>
+                                    Business- Main Landing Page
+                                </h1>
+                            </div>
+                            <div style="width: 10%;float: right;display: inline;margin-top: 1.5%;margin-right: 1.5%;">
+
+                            </div>
+                            <p class="error"></p>
+                            <div class="cmxform_short content-border" id="queueDiv">
+                                <fieldset>
+
+                                    <div class="" id="rc1_received">
+                                        <h2 xmlns="http://www.w3.org/1999/xhtml">NEW SMBC Business</h2>
+                                        <hr xmlns="http://www.w3.org/1999/xhtml" class="break" />
+                                        <fieldset xmlns="http://www.w3.org/1999/xhtml">
+                                            <div class="contentBlock">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    @*<colgroup>
+                                                        <col style="width: 20%;" />
+                                                        <col style="width: 2%;" />
+                                                        <col style="width: 58%;" />
+                                                        <col style="width: 20%;" />
+                                                    </colgroup>*@
+                                                    <tbody>
+                                                        @if (Model.product_Types != null && Model.product_Types.Count > 0)
+                                                        {
+                                                            @for (int i = 0; i < Model.product_Types.Count; i++)
+                                                            {
+                                                                @if (!string.IsNullOrEmpty(@Model.product_Types[i].ProductName))
+                                                                {
+                                                                    <tr>
+                                                                        <td style="vertical-align: top; text-align: right;"><span class="subheader">@Model.product_Types[i].ProductName</span></td>
+                                                                        <td colspan="2">
+                                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding: 0px; margin: 0px;">
+                                                                                            Oldest Order in Queue:
+                                                                                            <br /><br />
+                                                                                            Total Number of Orders in Queue:
+
+                                                                                        </td>
+                                                                                        <td style="padding: 0px; margin: 0px; text-align: right;">
+                                                                                            @Model.product_Types[i].OldestOrderQuene<br /><br />@Model.product_Types[i].TotalnoOrders
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                        <td>&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td style="text-align: right;">@Model.product_Types[i].ProductName</td>
+
+                                                                        <td><span style='height: 15px; width: 15px; background-color:@Model.product_Types[i].SLA_Color; border-radius: 50%; display: inline-block;'></span></td>
+                                                                        <td>
+                                                                            <input type="hidden" asp-for="@Model.product_Types[i].ProductName" />
+                                                                            <input name="token" type="hidden" value="0832eaeb-d1ad-441b-804e-f9b694ce769b" form="NEWRC1RECEIVEDFFLFFL" />
+                                                                            <select class="adjPulldown" name="criteria" style="width: 100%;" form="NEWRC1RECEIVEDFFLFFL" id="drpdown_@i.ToString()">
+
+                                                                                @foreach (var item1 in Model.product_Types[i].PartnerDaysOrder)
+                                                                                {
+
+                                                                                    <option value=@item1.PartnerValue>
+                                                                                        @item1.PartnerText
+                                                                                    </option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="button-css" name="defaultNext" type="button" id="btnnext_@i.ToString()" value="Get Next Order" onclick="onbuttonclick('drpdown_@i.ToString()','@Model.product_Types[i].ProductName')" />
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="alert alert-warning" id="no_orders">No orders available</div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        function onbuttonclick(partner_Element,product_name)
+        {
+
+            var order_partner_name = $("#"+partner_Element+"").val();
+
+            $.getJSON('@Url.Content("~/")' + "MLP/GetOrderTransactionId?product_name=" + product_name + "&partner_name=" + order_partner_name, function (OrderId_Data)
+            {
+
+                debugger;
+                window.location.href = "/orderprocess/Index/?orderId=" + OrderId_Data+"&returnurl=mlp";
+
+            });
+
+
+        }
+    </script>
+
+</body>

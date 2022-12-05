@@ -1,0 +1,232 @@
+﻿@model smb_om.Model.PartnerModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        
+                        <div class="application" id="applicationDiv">
+                            <h1>Parner/Affiliate Onboarding</h1>
+
+
+                      
+                        <ul class="nav nav-tabs" style="border-right:0;border-left:0;">
+                            <li class="nav-item active"><a data-toggle="tab" href="#partner_onboard">Partner Onboard</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#affiliate_onboard">Affiliate Onboard</a></li>
+                        </ul>
+                        <div class="tab-content"
+                             style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;border-left:1px solid #ddd;padding:2px;">
+                            <div class="tab-pane fade in active" id="partner_onboard">
+                                <table cellspacing="0" class="compact stripe" id="partnerTable" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Partner</td>
+                                            <td>Auth Token</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.partners)
+                                        {
+                                            <tr>
+                                                <td>@item.Partner_Name</td>
+                                                <td>@item.PartnerId</td>
+                                            </tr>
+                                            @*<tr>
+                                <td>2GH6CTJX</td>
+                                <td>132549ef-c0a8-4c81-70a4-d391c2e8a3e9</td>
+                            </tr>*@
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="tab-pane fade" id="affiliate_onboard">
+                                <table cellspacing="0" class="compact stripe" id="affiliateTable" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Affiliate</td>
+                                            <td>Auth Token</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.affiliates)
+                                        {
+                                            <tr>
+                                                <td>@item.Affiliate_Name </td>
+                                                <td>@item.Affiliate_Name</td>
+                                            </tr>
+                                            @*<tr>
+                                <td>2GH6CTJX</td>
+                                <td>132549ef-c0a8-4c81-70a4-d391c2e8a3e9</td>
+                            </tr>*@
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!--<div class="tab-content">-->
+                            <!--</div>-->
+                        </div>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+        <script type="text/javascript">
+            $("#partnerTable").DataTable({
+                "order": [[0, 'asc']],
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "pageLength": 50,
+                "columnDefs": [{
+                    "targets": [-1],
+                    "sortable": true
+                }]
+            });
+
+            $("#affiliateTable").DataTable({
+                "order": [[0, 'asc']],
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "pageLength": 50,
+                "columnDefs": [{
+                    "targets": [-1],
+                    "sortable": true
+                }]
+            });
+
+            $("#newOnboard").click(function () {
+                $("#onboard_new_partner").show();
+                $("#partner_details").hide();
+            });
+
+            $("#view_partners").click(function () {
+                $("#onboard_new_partner").hide();
+                $("#partner_details").show();
+            });
+
+            $("#generate_auth_token").click(function () {
+                var auth_token = $("#authToken").val();
+                $("#auth_token").val(auth_token);
+            });
+
+            $("#newAffiliateOnboard").click(function () {
+                $("#onboard_new_affiliate").show();
+                $("#affiliate_details").hide();
+            });
+
+            $("#view_affiliates").click(function () {
+                $("#affiliate_details").show();
+                $("#onboard_new_affiliate").hide();
+            });
+
+            $("#affiliate_onboard").removeClass("active");
+
+                            $('#patnerSubmit').click(function () {
+                                var trackValid = 0;
+                                document.getElementById('partner_name-error').innerHTML = "";
+                                document.getElementById('auth_token-error').innerHTML = "";
+                                if ($('#partner_name').val() == null || $('#partner_name').val() == "") {
+                                    trackValid = 1;
+                                    document.getElementById('partner_name-error').innerHTML = "Partner Name is Required";
+                                } else {
+                                    var partnersName = document.getElementById('hidden-PartnerData');
+                                    var partnersArray = partnersName.value.split("|");
+                                    for (i = 0; i != partnersArray.length; i++) {
+                                        if ($('#partner_name').val().toUpperCase() == partnersArray[i]) {
+                                            trackValid = 1;
+                                            document.getElementById('partner_name-error').innerHTML = "Partner Already Exist";
+                                        }
+                                    }
+                                }
+
+                                if (/^[a-zA-Z0-9 ]*$/.test($('#partner_name').val()) == false) {
+                                    trackValid = 1;
+                                    document.getElementById('partner_name-error').innerHTML = "Only alphanumeric/space characters allowed";
+                                }
+
+                                if ($('#auth_token').val() == null || $('#auth_token').val() == "") {
+                                    trackValid = 1;
+                                    document.getElementById('auth_token-error').innerHTML = "Auth Token is Required";
+                                } else {
+                                    var authData = document.getElementById('hidden-AuthData');
+                                    var authArray = authData.value.split("|");
+                                    for (i = 0; i != authArray.length; i++) {
+                                        if ($('#auth_token').val() == authArray[i]) {
+                                            trackValid = 1;
+                                            document.getElementById('auth_token-error').innerHTML = "Auth Already Exist";
+                                        }
+                                    }
+                                }
+
+                                if (trackValid == 1 || trackValidONum == 1) {
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+
+                            });
+
+                            $('#affiliatesubmit').click(function () {
+                                var trackValid = 0;
+                                document.getElementById('affiliateName-error').innerHTML = "";
+                                document.getElementById('affiliatePartner-error').innerHTML = "";
+                                document.getElementById('csiUserName-error').innerHTML = "";
+                                document.getElementById('csiPassword-error').innerHTML = "";
+                                if ($('#affiliateName').val() == null || $('#affiliateName').val() == "") {
+                                    trackValid = 1;
+                                    document.getElementById('affiliateName-error').innerHTML = "Affiliate Name is Required";
+                                } else {
+                                    var affiliatesName = document.getElementById('hidden-AfflilateData');
+                                    var affiliateArray = affiliatesName.value.split("|");
+                                    for (i = 0; i != affiliateArray.length; i++) {
+                                        if ($('#affiliateName').val().toUpperCase() == affiliateArray[i]) {
+                                            trackValid = 1;
+                                            document.getElementById('affiliateName-error').innerHTML = "Affiliate Already Exist";
+                                        }
+                                    }
+                                }
+
+                                if (/^[a-zA-Z0-9 ]*$/.test($('#affiliateName').val()) == false) {
+                                    trackValid = 1;
+                                    document.getElementById('affiliateName-error').innerHTML = "Only alphanumeric/space characters allowed";
+                                }
+
+                                if ($('#affiliate_partner').val() == null || $('#affiliate_partner').val() == "" || $('#affiliate_partner').val() == "--Select--") {
+                                    trackValid = 1;
+                                    document.getElementById('affiliatePartner-error').innerHTML = "Partner Name is Required";
+                                }
+
+                                if ($('#csiUserName').val() == null || $('#csiUserName').val() == "") {
+                                    trackValid = 1;
+                                    document.getElementById('csiUserName-error').innerHTML = "CSI UserName is Required";
+                                }
+                                if ($('#csiPassword').val() == null || $('#csiPassword').val() == "") {
+                                    trackValid = 1;
+                                    document.getElementById('csiPassword-error').innerHTML = "CSI Password is Required";
+                                }
+
+                                if (trackValid == 1 || trackValidONum == 1) {
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+
+                            });
+        </script>
+    </div>
+</body>

@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+@model smb_om.Model.PartnerModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+@*<link rel="stylesheet" href="~/css/site.css" />*@
+
+
+<body>
+    <div align="center" id="content-page">
+        <div id="content-body">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td class="stroke" height="1" width="1"></td>
+                        <td align="center">
+                            <div class="application" id="applicationDiv">
+                                <h1>Parner/Affiliate Onboarding</h1>
+                                <ul class="nav nav-tabs" style="border-right:0;border-left:0;">
+                                    <li class="nav-item active"><a data-toggle="tab" href="#partner_onboard">Partner Onboard</a></li>
+                                    <li class="nav-item"><a data-toggle="tab" href="#affiliate_onboard">Affiliate Onboard</a></li>
+                                </ul>
+                                <div class="tab-content"
+                                     style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;border-left:1px solid #ddd;padding:2px;">
+                                    <div class="tab-pane fade in active" id="partner_onboard">
+                                        <div id="partner_details">
+                                            <br /><!--<div class="newFormDiv"><input class="button-css" id="newOnboard" type="button" value="Onboard new Partner" /></div>-->
+                                            <table cellspacing="0" class="compact stripe" id="partnerTable" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <td style="font-weight:bold">Partner</td>
+                                                        <td style="font-weight:bold">Auth Token</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.partners)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.Partner_Name</td>
+                                                            <td>@item.PartnerId</td>
+                                                        </tr>
+                                                      
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="onboard_new_partner" style="display: none;">
+                                            <div class="cmxform_tabs">
+                                                <fieldset>
+                                                    <h2 class="tabH1">Onboard New Partner</h2>
+                                                    <hr class="break" />
+                                                    <form action="persist_onboard_data" id="parner_onboard" method="post"
+                                                          name="parner_onboard">
+                                                        <input id="authToken" name="authToken" type="hidden"
+                                                               value="231d03a5-0af4-3c81-61c6-27a2ccf2f884" /><div class="container col-md-12" style="padding:5px">
+                                                            <div class="form-group row">
+                                                                <div class="col-md-2">
+                                                                    <input align="left" class="button-css" id="view_partners" name="view_partners"
+                                                                           type="button"
+                                                                           value="View Partners" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 label-required">Enter Partner Name: </label><div class="col-md-4">
+                                                                    <input class="form-control" id="partner_name" name="partner_name" type="text" /><div class="inline-error" id="partner_name-error"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 label-required">Enter Authentication Token: </label><div class="col-md-3">
+                                                                    <input class="form-control" id="auth_token" name="auth_token" type="text" /><div class="inline-error" id="auth_token-error"></div>
+                                                                </div><label class="col-md-1"> -OR- </label><div class="col-md-2">
+                                                                    <input class="button-css" id="generate_auth_token" name="generate_auth_token"
+                                                                           type="button"
+                                                                           value="Generate Auth Token" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-md-6">Override the value that the partner passes in on the XML for the sales code?</label><div class="col-md-1">
+                                                                    <input id="overridePartnerSalesValues" name="overridePartnerSalesValues"
+                                                                           type="checkbox"
+                                                                           value="checked" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div align="right" class="col-md-11"><input align="right" class="button-css" id="patnerSubmit" type="submit" value="Submit" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="tab-content">-->
+
+                                    <div class="tab-pane fade" id="affiliate_onboard">
+                                        <div id="affiliate_details">
+                                            @*<br />*@
+                                            <!--<div class="newFormDiv">
+                                                <input class="button-css" id="newAffiliateOnboard" type="button"
+                                                       value="Onboard New Affiliate" />
+                                            </div>-->
+                                            <table cellspacing="0" class="compact stripe" id="affiliateTable" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <td style="font-weight:bold">Affiliate Name</td>
+                                                        <td style="font-weight:bold">Auth Token</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.affiliates)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.Affiliate_Name </td>
+                                                            <td>@item.AffiliateId</td>
+                                                        </tr>
+                                                        
+                                                    }
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                    <!--</div>-->
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>

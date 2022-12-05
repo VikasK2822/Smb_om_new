@@ -1,0 +1,181 @@
+﻿@model smb_om.Model.LoginModel
+
+@{
+    Layout = null;
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<br />
+
+<html>
+<script language="javascript">
+    function testIFrame() {
+        if (window.top !== window.self) {
+            alert("Security Violation: This page cannot be loaded in an IFrame!");
+            window.history.back();
+        } else {
+            document.forms[0].j_username.focus();
+        }
+    }
+</script>
+<script type="text/javascript">
+    function submitform() {
+        alert("on click");
+        document.forms[0].submit();
+    }
+</script>
+<head>
+    <title>Login Screen</title>
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <meta http-equiv="X-Frame-Options" content="deny">
+    <link rel="Stylesheet" type="text/css" href="styles/referenceimplementation.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+   
+</head>
+<body>
+    <form asp-controller="Login" asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+        <!-- <form action="?action=login" method="post"> -->
+        <div id="content-body" align="center" style="padding-left:200px">
+            @*<div asp-validation-summary="All" class="text-danger"> </div>*@
+            @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+
+            @*@Html.HiddenFor(model => model.Name)
+
+        @Html.EditorFor(m => m.password)*@
+
+            <div id="header" style="width:1020px!important">
+
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img id="cust-logo" src="~/images/logo.png" border="0" alt="Sequential Tech" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+                <div class="nav" width="953px">
+                    <img src="images/nav-background.gif" border="0" alt="" />
+                </div>
+                <div id="content-body">
+                    <!--<form action="" method="post" autocomplete="off">-->
+                    <!--<form action="" >-->
+                    <!-- <form asp-controller="Loginjfjh" asp-action="Loginhfhgf" method="post">-->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="stroke" height="1" width="1" />
+                            <td class="login">
+                                <div class="application">
+                                    <h1>Order Management System</h1>
+
+                                    <p class="error">
+                                        <br />
+                                    </p>
+
+                                    <p>If you are a registered user, please enter your information below.</p>
+
+                                    <table width="690" cellpadding="6" cellspacing="0" border="0">
+                                        <tr>
+                                            <td width="14%">
+                                                <label asp-for="UserId" class="label-required">User Name</label>
+                                            </td>
+                                            <td width="86%">
+                                                <input type="Text" value="" name="UserId" asp-for="UserId" size="20" class="textbox" />
+                                                <span asp-validation-for="UserId" class="text-danger"></span>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <label asp-for="Password" class="label-required">Password</label>
+                                            </td>
+                                            <td>
+                                                <input type="password" value="" name="password" asp-for="Password" size="20" class="textbox" autocomplete="off" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                <!--<input type="submit" value="Login" name="login" class="button-css" /> &nbsp;-->
+                                                <!----<a href="MLP.html">
+                                            <input type="button" value="Login" name="login" class="button-css" "     />  &nbsp;
+                                        </a>-->
+
+
+                                                <input type="submit" value="Login" name="Login" class="button-css" />  &nbsp;
+
+                                                <!--<button type="button" value="Login" name="Login" formmethod="post" class="button-css"  />  -->
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                <span class="text-danger">
+                                                    @if (@ViewData["MSG"] != null)
+                                                    {
+
+                                                        @ViewData["MSG"].ToString()
+
+                                                    }
+                                                </span>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                                <img src="images/transparent.gif" width="1" height="100" alt="" />
+                            </td>
+                            <td class="stroke" height="1" width="1" />
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="stroke" height="1" />
+                        </tr>
+                    </table>
+                    <!--</form>-->
+
+                </div>
+                <div id="footer">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td colspan="3">
+                                <img src="images/footer.gif" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="appFooter" valign="top">
+                                &copy; <!--Copyright 2001--->
+                                <script src="javascript/date.js" type="text/javascript"></script>
+                                Sequential Tech
+                            </td>
+                            <!--<td class="appFooter" valign="top">
+                        Build Version:
+                        22.8.0.15</p>
+                    </td>-->
+                            <!--<td align="right">
+                        <img src="images/synchronoss_logo.gif" alt="Sequential Tech" border="0" />
+                    </td>-->
+                        </tr>
+                    </table>
+                </div>
+            
+
+        </div>
+    </form>
+</body>
+</html>

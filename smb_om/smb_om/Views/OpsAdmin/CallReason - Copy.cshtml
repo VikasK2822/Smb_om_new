@@ -1,0 +1,513 @@
+﻿
+@model smb_om.Model.CallTypeModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+<body>
+
+    <div id="content-body">
+        <form action="ctReasonConfig" id="callReasonForm" method="POST" name="callReasonForm">
+            <input name="token" type="hidden" value="3449d85f-e823-470a-854a-7475449e6c38" /><input id="action" name="action" type="hidden" value="" /><input id="reasonId" name="reasonId" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>Admin</h1>
+                            <p class="error"></p>
+                            <ul class="shadetabs" id="tabs-section1">
+                                <li class="nav-item active"><a data-toggle="tab" href="#Call_Reason">Call Reasons</a></li>
+                                <li class="nav-item"><a data-toggle="tab" href="#Call_Dispositions">Call Dispositions</a></li>
+                                <li class="nav-item"><a data-toggle="tab" href="#Manage_Relationship">Manage Relationships</a></li>
+                                <li class="nav-item"><a data-toggle="tab" href="#Call_received">Call Received TN</a></li>
+                            </ul>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Call Reasons Configuration</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <label class="label" style="color:black">Call Type</label>
+                                            <select id="callType" name="callType" onchange="changeCallType()">
+                                                <option value="">
+                                                    --Select--
+                                                </option>
+                                                @if (Model.callTypeReasons != null)
+                                                {
+                                                @foreach (var item in Model.callTypeReasons)
+                                                    {
+                                                <option value="@item.CallType">
+
+                                                    @item.CallTypeName
+                                                </option>
+                                                    }
+
+                                                }
+                                            </select><br /><br />
+
+                                            <table border="0" id="tblEmployee" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                                @*<col style="width: 65%;" />
+                                                <col style="width: 10%;" />
+                                                <col style="width: 8%;" />
+                                                <col style="width: 12%;" />*@
+
+                                                <tr class="resultsHeader">
+                                                    <td>Call Reason</td>
+                                                    <td align="center">Sequence</td>
+                                                    <td align="center">Enabled</td>
+                                                    <td>Action</td>
+
+                                                </tr>
+                                                @*<tr class="resultsEven">
+                                                        <td>
+                                                            <input id="orig_reason_53" name="orig_reason_53" type="hidden"
+                                                                   value="Order In Submitted State" /><input disabled="disabled" id="reason_53" name="reason_53" style="width:100%" type="text"
+                                                                                                             value="Order In Submitted State" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input id="orig_sequence_53" name="orig_sequence_53" size="5" type="hidden" value="2" /><input disabled="disabled" id="sequence_53" name="sequence_53"
+                                                                                                                                                           onblur="formatMaskNumeric(this) "
+                                                                                                                                                           size="5"
+                                                                                                                                                           type="text"
+                                                                                                                                                           value="2" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input id="orig_reasonEnabled_53" name="orig_reasonEnabled_53" type="hidden" value="Y" /><input class="checkbox" disabled="disabled" id="reasonEnabled_53" name="reasonEnabled_53"
+                                                                                                                                                            type="checkbox"
+                                                                                                                                                            value="Y"
+                                                                                                                                                            checked="checked" />
+                                                        </td>
+                                                        <td style="word-wrap:normal;">
+                                                            <input class="button-css" id="editButton_53" name="editButton_53"
+                                                                   onclick="editReason('53')"
+                                                                   type="button"
+                                                                   value="Edit" /><input class="button-css" id="saveButton_53" name="saveButton_53"
+                                                                                         onclick="saveChanges('53')"
+                                                                                         style="display:none"
+                                                                                         type="button"
+                                                                                         value="Save" /><input class="button-css" id="cancelButton_53" name="cancelButton_53"
+                                                                                                               onclick="cancelChanges('53')"
+                                                                                                               style="display:none"
+                                                                                                               type="button"
+                                                                                                               value="Cancel" />
+                                                        </td>
+                                                    </tr>*@
+                                                @if (Model.callTypeReasonNAmes != null && Model.callTypeReasonNAmes.Count > 0)
+                                                               {
+
+                                                @foreach (var item in Model.callTypeReasonNAmes)
+                                                                   {
+                                                <tr class="resultsOdd">
+                                                    <td>
+                                                        <input id="orig_reason_267" name="orig_reason_267" type="hidden"
+                                                               value="Order In Received State" /><input disabled="disabled" id="State_@item.CallReasonId" name="reason_267" style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="@item.CallReasonName" />
+                                                    </td>
+                                                    <td align="center">
+                                                        <input id="orig_sequence_267" name="orig_sequence_267" size="5" type="hidden"
+                                                               value="1" /><input disabled="disabled" id="Sequence_@item.CallReasonId" name="sequence_267"
+                                                                                  onblur=""
+                                                                                  size="5"
+                                                                                  type="text"
+                                                                                  value="@item.CallReasonId" />
+                                                    </td>
+                                                    <td align="center">
+                                                        <input id="orig_reasonEnabled_267" name="orig_reasonEnabled_267" type="hidden"
+                                                               value="Y" /><input class="checkbox" disabled="disabled" id="reasonEnabled_267"
+                                                                                  name="reasonEnabled_267"
+                                                                                  type="checkbox"
+                                                                                  value="Y"
+                                                                                  checked="checked" />
+                                                    </td>
+                                                    <td style="word-wrap:normal;">
+                                                        <input class="button-css" id="btnedit_@item.CallReasonId" name="editButton_267"
+                                                               onclick="show(@item.CallReasonId)"
+                                                               type="button"
+                                                               value="Edit" /><input class="button-css" id="btnupdate_@item.CallReasonId" name="saveButton_267"
+                                                                                     onclick="Edit(@item.CallReasonId)"
+                                                                                     style="display:none"
+                                                                                     type="button"
+                                                                                     value="Save" /><input class="button-css" id="btncancel_@item.CallReasonId" name="cancelButton_267"
+                                                                                                           onclick="cancel(@item.CallReasonId)"
+                                                                                                           style="display:none"
+                                                                                                           type="button"
+                                                                                                           value="Cancel" />
+                                                    </td>
+                                                </tr>
+                                                                   }
+                                                               }
+                                                @*<tr class="resultsEven">
+                                                        <td>
+                                                            <input id="orig_reason_53" name="orig_reason_53" type="hidden"
+                                                                   value="Order In Submitted State" /><input disabled="true" id="reason_53" name="reason_53" style="width:100%" type="text"
+                                                                                                             value="Order In Submitted State" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input id="orig_sequence_53" name="orig_sequence_53" size="5" type="hidden" value="2" /><input disabled="true" id="sequence_53" name="sequence_53"
+                                                                                                                                                           onblur="formatMaskNumeric(this) "
+                                                                                                                                                           size="5"
+                                                                                                                                                           type="text"
+                                                                                                                                                           value="2" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input id="orig_reasonEnabled_53" name="orig_reasonEnabled_53" type="hidden" value="Y" /><input class="checkbox" disabled="true" id="reasonEnabled_53" name="reasonEnabled_53"
+                                                                                                                                                            type="checkbox"
+                                                                                                                                                            value="Y"
+                                                                                                                                                            checked="checked" />
+                                                        </td>
+                                                        <td style="word-wrap:normal;">
+                                                            <input class="button-css" id="editButton_53" name="editButton_53"
+                                                                   onclick="editReason('53')"
+                                                                   type="button"
+                                                                   value="Edit" /><input class="button-css" id="saveButton_53" name="saveButton_53"
+                                                                                         onclick="saveChanges('53')"
+                                                                                         style="display:none"
+                                                                                         type="button"
+                                                                                         value="Save" /><input class="button-css" id="cancelButton_53" name="cancelButton_53"
+                                                                                                               onclick="cancelChanges('53')"
+                                                                                                               style="display:none"
+                                                                                                               type="button"
+                                                                                                               value="Cancel" />
+                                                        </td>
+                                                    </tr>*@
+
+
+                                                @*<tr class="resultsOdd">
+                                                    <td><input id="reason" name="reason" style="width:100%" type="text" /></td>
+                                                    <td align="center"><input id="sequence" name="sequence" onblur="formatMaskNumeric(this)" size="5" /></td>
+                                                    <td align="center">
+                                                        <input class="checkbox" id="reasonEnabled" name="reasonEnabled" type="checkbox"
+                                                               value="Y" />
+                                                    </td>
+                                                    <td style="word-wrap:normal;">
+                                                        <input class="button-css" id="addButton" name="addButton" onclick="Insert()"
+                                                               type="button"
+                                                               value="Add" />
+                                                    </td>
+                                                </tr>*@
+                                            </table>
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        @*$(document).ready(function () {
+                var v1 = @Accessor.HttpContext.Session.GetString("Tab1CallReason") ?? "";
+            alert("v1" + v1);
+
+                var v = @Accessor.HttpContext.Session.GetString("Tab1CallReason");
+                if (v == '') {
+                    alert("no value");
+                }
+                else {
+                    alert(v);
+                }
+
+        });*@
+
+        function check(RowID) {
+
+            alert(RowID);
+            if ($('#' + RowID).is(":checked")) {
+                // it is checked
+                alert("checked");
+                $('#' + RowID).val(1);
+            }
+            else {
+
+                alert("unchecked");
+                $('#' + RowID).val(0);
+            }
+
+        }
+
+        function changeCallType() {
+
+            var txt = $('#callType option:selected').val();
+            if (txt == '') {
+
+                alert('Please select valid reason code');
+            }
+
+
+            $.getJSON('@Url.Content("~/")' + "OpsAdmin/GetCallReason?Calltypeid=" + txt, function (v) {
+                var data = v;
+                $("#tblEmployee").empty();
+                if (data != null) {
+
+                    var tblEmployee = $("#tblEmployee");
+                    var td = $("<col style='width: 65%;'/>");
+                    tblEmployee.append(td);
+                    var td1 = $("<col style='width: 10%;'/>");
+                    tblEmployee.append(td1);
+                    var td2 = $("<col style='width: 8%;'/>");
+                    tblEmployee.append(td2);
+                    var td3 = $("<col style='width: 12%;'/>");
+                    tblEmployee.append(td3);
+
+                    var trheader = $("  <tr class='resultsHeader''><td>Call Reason</td><td align='center'>Sequence</td><td align='center'>Enabled</td><td>Action</td> </tr>");
+
+                    tblEmployee.append(trheader);
+
+                    $.each(data, function (index, item) {
+                        console.log(item);
+                        var tr = $("<tr  class=resultsOdd></tr>");
+                        tr.html(("<td><input disabled='disabled' id=State_" + item.callReasonId + "  style='width:100%' type='text' value='" + item.callReasonName + "'  " + "</td>")
+                            + " " + ("<td><input disabled='disabled' id=Sequence_" + item.callReasonId + " style='width:100%' size='5'  type='text' value='" + item.callReasonId + "'  " + "</td>")
+                    
+                            + " " + ("<td><input class='checkbox' disabled='disabled' id=check_" + item.callReasonId + " style='width:100%' size='5' checked='" + item.callReasonIsActive + "'  type='checkbox'   " + "</td>")
+                            + " " + ("<td style='word-wrap:normal;'>")
+                            + " " + (" <input class='button-css' id=btnedit_" + item.callReasonId + "  onclick=show(" + item.callReasonId + ")  type='button'  value='Edit' />")
+                            + " " + (" <input class='button-css' id=btnupdate_" + item.callReasonId + "  onclick=Edit(" + item.callReasonId + ") style='display:none' type='button'  value='Save' />")
+                            + " " + (" <input class='button-css' id=btncancel_" + item.callReasonId + "  onclick=cancel(" + item.callReasonId + ")  style='display:none' type='button'  value='Cancel' />")
+                            + " " + ("</td>")
+                        );
+
+
+                          @*<td style="word-wrap:normal;">
+                                                        <input class="button-css" id="btnedit_@item.CallReasonId" name="editButton_267"
+                                                               onclick="show(@item.CallReasonId)"
+                                                               type="button"
+                                                               value="Edit" /><input class="button-css" id="btnupdate_@item.CallReasonId" name="saveButton_267"
+                                                                                     onclick="Edit(@item.CallReasonId)"
+                                                                                     style="display:none"
+                                                                                     type="button"
+                                                                                     value="Save" /><input class="button-css" id="btncancel_@item.CallReasonId" name="cancelButton_267"
+                                                                                                           onclick="cancel(@item.CallReasonId)"
+                                                                                                           style="display:none"
+                                                                                                           type="button"
+                                                                                                           value="Cancel" />
+                                                    </td>*@
+
+
+                        @*tr.html(("<td> " + item.reasonCode + "</td>")
+                            + " " + ("<td>  <input class='checkbox' onclick=check('" + item.rowId + "')  name='" + item.rowId + "' type = 'checkbox' value = '1' checked = 'checked' /> </td>"));
+
+                        <td>
+                            <input disabled="disabled" id="State_@item.CallReasonId" name="reason_267" style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="@item.CallReasonName" />
+                                                    </td>
+
+                        tr.html(("<td>" + item.reasonCode + "</td>")
+                            + " " + ("<td>  <input class='checkbox' onclick=check('" + item.rowId + "')  name='" + item.rowId + "' type = 'checkbox' value = '1' checked = 'checked' /> </td>"));*@
+
+
+                        tblEmployee.append(tr);
+
+                    });
+
+                    var trAdd = $("<tr  class=resultsOdd></tr>");
+                    trAdd.html(("<td><input id='reason' name='reason' style='width:100%' type='text' /></td>")
+                        + " " + ("<td align='center'><input id='sequence' name='sequence' size='5' /></td>")
+                        + " " + (" <td align='center'>")
+                        + " " + ("  <input class='checkbox' id='reasonEnabled' name='reasonEnabled' type='checkbox'  value = 'Y' /> ")
+                        + " " + (" </td>")
+                        + " " + ("  <td style='word - wrap: normal;'>")
+                        + " " + ("  <input class='button-css' id='addButton' name='addButton' onclick='Insert()'  type='button' value = 'Add' ")
+                        + " " + ("  </td>")
+
+                    );
+                    tblEmployee.append(trAdd);
+                    //tblEmployee.append(<tr class="resultsOdd">
+                    //    <td><input id="reason" name="reason" style="width:100%" type="text" /></td>
+                    //    <td align="center"><input id="sequence" name="sequence" onblur="formatMaskNumeric(this)" size="5" /></td>
+                    //    <td align="center">
+                    //        <input class="checkbox" id="reasonEnabled" name="reasonEnabled" type="checkbox"
+                    //            value="Y" />
+                    //    </td>
+                    //    <td style="word-wrap:normal;">
+                    //        <input class="button-css" id="addButton" name="addButton" onclick="Insert()"
+                    //            type="button"
+                    //            value="Add" />
+                    //    </td>
+                    //</tr>);
+
+                }
+                else {
+                   // alert( "No details found");
+                }
+
+
+            });
+        }
+
+          function Edit(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+              var inputid = $("#State_" + RowID).val();
+                if (inputid == '') {
+                    alert('Please enter  Reason Name');
+                    return;
+              }
+
+              var IsActive = 1;
+              if ($('#check_' + RowID).is(":checked")) {
+                  // it is checked
+                //  $('#check_' + RowID).val(1);
+                  IsActive = 1;
+              }
+              else {
+                 // $('#check_' + RowID).val(0);
+                  IsActive = 0;
+              }
+
+              var inputid1 = $("#State_" + RowID).val();
+              $.getJSON('@Url.Content("~/")' + "OpsAdmin/CallReasonUpdate?CallReasonID=" + txt + "&CallReasonName=" + inputid + "&Isactive=" + IsActive, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Call Reason : Updated Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Call Reason : Not able to  Update currently");
+                    }
+                });
+            }
+
+         function Insert() {
+             //txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+             var reason = $('#reason').val();
+             var sequence = $('#sequence').val();
+
+
+             var inputid = $('#callType option:selected').val();
+             if (inputid == '') {
+                 alert('Please select CallType');
+             }
+
+            // var inputid = $("#holidayAdd").val();
+             var inputid1 = $("#holidaydateAdd").val();
+             $.getJSON('@Url.Content("~/")' + "OpsAdmin/CallReasonInsert?CallTypeID=" + inputid + "&CallReasonName=" + reason, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Call Reason : Inserted Successfully");
+                     //   window.location.reload();
+                        //txtid.style.display = "none";
+                        //lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Call Reason : Not able to  Insert currently");
+                    }
+                });
+            }
+
+          function Delete(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#Holidayname_" + RowID).val();
+                var inputid1 = $("#Holidaydate_" + RowID).val();
+              $.getJSON('@Url.Content("~/")' + "Admin/HolidayScheduleDelete?Rowid=" + txt + "&HolidayName=" + inputid + "&HolidayDate=" + inputid1, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Deleted Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Update currently");
+                    }
+                });
+            }
+
+     function show(RowID) {
+         var txt;
+         txt = RowID;
+      //   alert(RowID);
+         //   var lableid = $("#lbl_" + RowID);
+        // $("#lbl_" + RowID).css('display', 'none');
+       //  $("#Holidayname_" + RowID).css('display', 'block');
+       //  $("#Holidayname_" + RowID).removeAttribute("disabled");
+         $("#State_" + RowID).removeAttr("disabled");
+         $("#Sequence_" + RowID).removeAttr("disabled");
+         $("#check_" + RowID).removeAttr("disabled");
+         
+
+         $("#btnedit_" + RowID).css('display', 'none');
+         $("#btnupdate_" + RowID).css('display', 'block');
+         $("#btncancel_" + RowID).css('display', 'block');
+
+         // alert(lableid);
+         // lableid.style.display = "none";
+        }
+        function cancel(RowID) {
+            var txt;
+            txt = RowID;
+            //   var lableid = $("#lbl_" + RowID);
+            $("#State_" + RowID).attr("disabled","disabled");
+            $("#Sequence_" + RowID).attr("disabled", "disabled");
+            $("#check_" + RowID).removeAttr("disabled");
+            //$("#lbl_" + RowID).css('display', 'block');
+            //$("#txt_" + RowID).css('display', 'none');
+            $("#btnedit_" + RowID).css('display', 'block');
+            $("#btnupdate_" + RowID).css('display', 'none');
+            $("#btncancel_" + RowID).css('display', 'none');
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+        function cancelAdd() {
+            var txt;
+            var salescode_west = $("#salescode_west");
+            var salescode_MIDWEST = $("#salescode_MIDWEST");
+            var salescode_SOUTHWEST = $("#salescode_SOUTHWEST");
+            var salescode_EAST = $("#salescode_EAST");
+            var salescode_SOUTHEAST = $("#salescode_SOUTHEAST");
+            var salescode_WIRELESS = $("#salescode_WIRELESS");
+            salescode_west.val("");
+            salescode_MIDWEST.val("");
+            salescode_SOUTHWEST.val("");
+            salescode_EAST.val("");
+            salescode_SOUTHEAST.val("");
+            salescode_WIRELESS.val("");
+
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+
+    </script>
+</body>

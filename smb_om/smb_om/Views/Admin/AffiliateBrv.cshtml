@@ -1,0 +1,64 @@
+﻿@model smb_om.Model.BrvModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+
+    <div id="content-body">
+        <form asp-controller="Admin" asp-action="AffiliateBrvInsert" method="post" name="brvAdminForm">
+            <input type="hidden" value="89a133e6-a7bf-4d69-87a9-45587409a6a2" /><input id="action" type="hidden" value="" /><input id="inputstring" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>BRVs Admin</h1>
+                            <p class="error"></p>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Affiliate BRVs Control</h2>
+                                        <hr class="break" />
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <tr class="resultsHeader">
+                                                <td align="left" style="width: 30%;">Affiliate</td>
+                                                <td align="left" style="width: 70%;">BRVs To Suppress</td>
+                                            </tr>
+
+                                            @if (Model != null && Model.brvModelResults != null && Model.brvModelResults.Count > 0)
+                                            {
+                                                @foreach (var item in Model.brvModelResults)
+                                                {
+                                                    <tr class="resultsOdd">
+                                                        <td>@item.Affiliate</td>
+                                                        <td><input name="@item.RowID" type="text" value="@item.BrvSuppress" /></td>
+                                                    </tr>
+                                                }
+                                            }
+                                            <tr align="center">
+                                                <td colspan="2">
+                                                    <br /><input class="button-css" type="submit" value="Save"  /><input class="button-css" name="cancelconfig" onclick="cancel();" type="button"
+                                                                                                                        value="Cancel" />
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function cancel() {
+            //$('input[type=text]').each(function () {
+            //    $(this).val('');
+            //});
+            window.location.reload();
+        }
+    </script>
+</body>

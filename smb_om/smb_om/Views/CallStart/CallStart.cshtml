@@ -1,0 +1,599 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application">
+                        <h1>Start Call</h1>
+                        <form action="order_search" method="post" name="searchForm">
+                            <input id="reqGuid" name="reqGuid" type="hidden"
+                                   value="e4ce2785-0872-43ea-943d-0a4eb282f309" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td class="stroke" height="1" width="1"></td>
+                                    <td align="center">
+                                        <div class="application">
+                                            <div class="content-border">
+                                                <div class="cmxform_short">
+                                                    <fieldset>
+                                                        <h2>Search Criteria</h2>
+                                                        <hr class="break" />
+                                                        <div class="contentBlock">
+                                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                                <tr>
+                                                                    <td colspan="2" style="padding-left: 0px;">
+                                                                        <label class="">
+                                                                            <I>Please pick one of the following:</I>
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-left: 0px;"><label class="">CBR Phone Number:</label></td>
+                                                                    <td style="padding-left: 0px;"><label class="">Billing Account Number:</label></td>
+                                                                    <td style="padding-left: 0px;"><label class="">Order Number:</label></td>
+                                                                    <td style="padding-left: 0px;"><label class="">Common Order Number:</label></td>
+                                                                    <td style="padding-left: 0px;"><label class="">Business Name:</label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input id="quickCBRNumber" name="quickCBRNumber" type="hidden" value="" /><input class="textbox" id="quickCBRNumberF" maxlength="18" name="quickCBRNumberF"
+                                                                                                                                                         size="20"
+                                                                                                                                                         type="text" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="textbox" id="ban" maxlength="14" name="ban"
+                                                                               onblur="formatMaskNumeric(this)"
+                                                                               size="20"
+                                                                               type="text" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="textbox" id="ordernumber" maxlength="254" name="orderNumber" size="18"
+                                                                               type="text" />
+                                                                    </td>
+                                                                    <td><input class="textbox" id="commonOrderNumber" name="commonOrderNumber" type="text" /></td>
+                                                                    <td>
+                                                                        <input class="textbox" id="quickbusinessname" maxlength="254" name="quickBusinessName"
+                                                                               size="17"
+                                                                               type="text" />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="6" style="padding-left: 20px;">
+                                                                        <input class="button-css" disabled="true" id="ct_searchsubmit" name="searchsubmit"
+                                                                               onclick="validateSearch();"
+                                                                               type="submit"
+                                                                               value="Submit" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="divider"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="stroke" height="1" width="1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stroke" colspan="3" height="1"></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <form action="start_call_post?redirect=" method="post" name="callDetailsBottom"
+                              onsubmit="return validate(document.callDetailsBottom);">
+                            <input id="FPLESPerms" name="FPLESPerms" type="hidden" value="false" /><div class="content-border">
+                                <div align="right">
+                                    <select id="affiliate" name="affiliate">
+                                        <option class="dropdown" value="">SELECT AFFILIATE</option>
+                                        <option value="5I9UOGJF">5I9UOGJF</option>
+                                        <option value="7TZMXNUK">7TZMXNUK</option>
+                                        <option value="7U38D1JI">7U38D1JI</option>
+                                        <option value="AAFES">AAFES</option>
+                                        <option value="ABCDIND">ABCDIND</option>
+                                        <option value="ACCELLER">ACCELLER</option>
+                                        <option value="ACN">ACN</option>
+                                        <option value="ADCOMM">ADCOMM</option>
+                                        <option value="AGEMNI">AGEMNI</option>
+                                        <option value="ALLCONNECT">ALLCONNECT</option>
+                                        <option value="AWLJSAQD">AWLJSAQD</option>
+                                        <option value="BANDWIDTHBUILDERS">BANDWIDTHBUILDERS</option>
+                                        <option value="BESTBUY">BESTBUY</option>
+                                        <option value="BLUEINGROUP">BLUEINGROUP</option>
+                                        <option value="BRANDSMART">BRANDSMART</option>
+                                        <option value="BRIDGEPOINTE">BRIDGEPOINTE</option>
+                                        <option value="BRIDGEVINE">BRIDGEVINE</option>
+                                        <option value="CENTERFIELD ONLINE">CENTERFIELD ONLINE</option>
+                                        <option value="CENTERFIELD">CENTERFIELD</option>
+                                        <option value="CFONLINE">CFONLINE</option>
+                                        <option value="CLEARHOME">CLEARHOME</option>
+                                        <option value="CLEARHOMENFL">CLEARHOMENFL</option>
+                                        <option value="CLEARHOMETV">CLEARHOMETV</option>
+                                        <option value="CLEARLINK">CLEARLINK</option>
+                                        <option value="COBALT">COBALT</option>
+                                        <option value="COSTCO">COSTCO</option>
+                                        <option value="CYDCOR">CYDCOR</option>
+                                        <option value="CYDCORCE">CYDCORCE</option>
+                                        <option value="CYDCORCENFL">CYDCORCENFL</option>
+                                        <option value="CYDCORCH">CYDCORCH</option>
+                                        <option value="CYDCORD2D">CYDCORD2D</option>
+                                        <option value="CYDCORD2DNFL">CYDCORD2DNFL</option>
+                                        <option value="DGS">DGS</option>
+                                        <option value="DGSNONDAP">DGSNONDAP</option>
+                                        <option value="DGSRETAIL">DGSRETAIL</option>
+                                        <option value="DIGITAL MOJO">DIGITAL MOJO</option>
+                                        <option value="DIRECTV">DIRECTV</option>
+                                        <option value="DJSTO9MQ">DJSTO9MQ</option>
+                                        <option value="DSI">DSI</option>
+                                        <option value="DSICE">DSICE</option>
+                                        <option value="DSICENFL">DSICENFL</option>
+                                        <option value="DSINFL">DSINFL</option>
+                                        <option value="E0D61JBN">E0D61JBN</option>
+                                        <option value="ERWAZSSS">ERWAZSSS</option>
+                                        <option value="EWS9EYJW">EWS9EYJW</option>
+                                        <option value="FPLES">FPLES</option>
+                                        <option value="GROUPO">GROUPO</option>
+                                        <option value="HEIDITESTAFFILIATE">HEIDITESTAFFILIATE</option>
+                                        <option value="HEIDITESTAFFILIATE2">HEIDITESTAFFILIATE2</option>
+                                        <option value="INFINITY">INFINITY</option>
+                                        <option value="ISGPZ7RP">ISGPZ7RP</option>
+                                        <option value="IUL8DCHN">IUL8DCHN</option>
+                                        <option value="KJFO8Q4E">KJFO8Q4E</option>
+                                        <option value="KRAMER">KRAMER</option>
+                                        <option value="LZN7SSNZ">LZN7SSNZ</option>
+                                        <option value="MAH31Q3Z">MAH31Q3Z</option>
+                                        <option value="MOVEAROO">MOVEAROO</option>
+                                        <option value="NEWAFFSMB1">NEWAFFSMB1</option>
+                                        <option value="NEWAFFTEST1">NEWAFFTEST1</option>
+                                        <option value="NGDSVU6R">NGDSVU6R</option>
+                                        <option value="OBTIDBUE">OBTIDBUE</option>
+                                        <option value="OMNIENGINE">OMNIENGINE</option>
+                                        <option value="ONQM45MU">ONQM45MU</option>
+                                        <option value="OWH3GGXW">OWH3GGXW</option>
+                                        <option value="PARAMTEST2">PARAMTEST2</option>
+                                        <option value="PARAMTEST3">PARAMTEST3</option>
+                                        <option value="PARTNERTEST0919">PARTNERTEST0919</option>
+                                        <option value="PERFECT10">PERFECT10</option>
+                                        <option value="PERFECT10CE">PERFECT10CE</option>
+                                        <option value="PERFECT10CENFL">PERFECT10CENFL</option>
+                                        <option value="PERFECT10TEST">PERFECT10TEST</option>
+                                        <option value="PERFECTVISIONCENFL">PERFECTVISIONCENFL</option>
+                                        <option value="QOLOGY">QOLOGY</option>
+                                        <option value="QOLOGYSP">QOLOGYSP</option>
+                                        <option value="REDVEN">REDVEN</option>
+                                        <option value="ROS">ROS</option>
+                                        <option value="ROSAFFLIATE">ROSAFFLIATE</option>
+                                        <option value="ROSAFFLIATE2">ROSAFFLIATE2</option>
+                                        <option value="ROSAFFLIATEWLP">ROSAFFLIATEWLP</option>
+                                        <option value="RROSAFFLIATE3">RROSAFFLIATE3</option>
+                                        <option value="SMB3SANDR">SMB3SANDR</option>
+                                        <option value="SMBACC">SMBACC</option>
+                                        <option value="SMBACCBUS">SMBACCBUS</option>
+                                        <option value="SMBACCIBS">SMBACCIBS</option>
+                                        <option value="SMBAFFINITY">SMBAFFINITY</option>
+                                        <option value="SMBAFFTEST001">SMBAFFTEST001</option>
+                                        <option value="SMBAMI">SMBAMI</option>
+                                        <option value="SMBAMPMRKT">SMBAMPMRKT</option>
+                                        <option value="SMBAPEIRO">SMBAPEIRO</option>
+                                        <option value="SMBAPPSMART">SMBAPPSMART</option>
+                                        <option value="SMBATHGRP">SMBATHGRP</option>
+                                        <option value="SMBATOMIC">SMBATOMIC</option>
+                                        <option value="SMBAVANT">SMBAVANT</option>
+                                        <option value="SMBAVANTMASTER">SMBAVANTMASTER</option>
+                                        <option value="SMBBARKER">SMBBARKER</option>
+                                        <option value="SMBBEST">SMBBEST</option>
+                                        <option value="SMBBIS">SMBBIS</option>
+                                        <option value="SMBBRIDGEVINE">SMBBRIDGEVINE</option>
+                                        <option value="SMBBROADWAY">SMBBROADWAY</option>
+                                        <option value="SMBBRUN">SMBBRUN</option>
+                                        <option value="SMBBV">SMBBV</option>
+                                        <option value="SMBCAFF007">SMBCAFF007</option>
+                                        <option value="SMBCAPRELIFE">SMBCAPRELIFE</option>
+                                        <option value="SMBCARCAP">SMBCARCAP</option>
+                                        <option value="SMBCASNET">SMBCASNET</option>
+                                        <option value="SMBCBSOUTH">SMBCBSOUTH</option>
+                                        <option value="SMBCDYNCON">SMBCDYNCON</option>
+                                        <option value="SMBCL">SMBCL</option>
+                                        <option value="SMBCOBALT">SMBCOBALT</option>
+                                        <option value="SMBCOMP9">SMBCOMP9</option>
+                                        <option value="SMBCRYSTALCAP">SMBCRYSTALCAP</option>
+                                        <option value="SMBCTESTPARTNER">SMBCTESTPARTNER</option>
+                                        <option value="SMBCTESTPARTNER2">SMBCTESTPARTNER2</option>
+                                        <option value="SMBCWATINN">SMBCWATINN</option>
+                                        <option value="SMBCYDKC">SMBCYDKC</option>
+                                        <option value="SMBDAP">SMBDAP</option>
+                                        <option value="SMBDEC">SMBDEC</option>
+                                        <option value="SMBDETMARK">SMBDETMARK</option>
+                                        <option value="SMBDGS">SMBDGS</option>
+                                        <option value="SMBDSI">SMBDSI</option>
+                                        <option value="SMBENVBAY">SMBENVBAY</option>
+                                        <option value="SMBFIBER">SMBFIBER</option>
+                                        <option value="SMBFWDCONT">SMBFWDCONT</option>
+                                        <option value="SMBGLOBAL">SMBGLOBAL</option>
+                                        <option value="SMBGTS">SMBGTS</option>
+                                        <option value="SMBHEADHUNT">SMBHEADHUNT</option>
+                                        <option value="SMBIBS">SMBIBS</option>
+                                        <option value="SMBIBSIBEX">SMBIBSIBEX</option>
+                                        <option value="SMBINNBUSSOL">SMBINNBUSSOL</option>
+                                        <option value="SMBINNOVATIVE">SMBINNOVATIVE</option>
+                                        <option value="SMBINTELAZNVUT">SMBINTELAZNVUT</option>
+                                        <option value="SMBINTELCENTSO">SMBINTELCENTSO</option>
+                                        <option value="SMBINTELCENTSOUTH">SMBINTELCENTSOUTH</option>
+                                        <option value="SMBINTELCOWAOR">SMBINTELCOWAOR</option>
+                                        <option value="SMBINTELFL">SMBINTELFL</option>
+                                        <option value="SMBINTELGAAL">SMBINTELGAAL</option>
+                                        <option value="SMBINTELISYS">SMBINTELISYS</option>
+                                        <option value="SMBINTELISYSCA">SMBINTELISYSCA</option>
+                                        <option value="SMBINTELMIOHIN">SMBINTELMIOHIN</option>
+                                        <option value="SMBINTELMOKSOKAK">SMBINTELMOKSOKAK</option>
+                                        <option value="SMBINTELMSTNKY">SMBINTELMSTNKY</option>
+                                        <option value="SMBINTELMW">SMBINTELMW</option>
+                                        <option value="SMBINTELNE">SMBINTELNE</option>
+                                        <option value="SMBINTELNTX">SMBINTELNTX</option>
+                                        <option value="SMBINTELSTXLA">SMBINTELSTXLA</option>
+                                        <option value="SMBINTERCOASTALGR">SMBINTERCOASTALGR</option>
+                                        <option value="SMBJDE">SMBJDE</option>
+                                        <option value="SMBKORKIS">SMBKORKIS</option>
+                                        <option value="SMBLAECON">SMBLAECON</option>
+                                        <option value="SMBLGE">SMBLGE</option>
+                                        <option value="SMBLJC">SMBLJC</option>
+                                        <option value="SMBLUCKY">SMBLUCKY</option>
+                                        <option value="SMBM3P">SMBM3P</option>
+                                        <option value="SMBMARKVAL">SMBMARKVAL</option>
+                                        <option value="SMBMERAKI">SMBMERAKI</option>
+                                        <option value="SMBMG8">SMBMG8</option>
+                                        <option value="SMBMICHIGANMKT">SMBMICHIGANMKT</option>
+                                        <option value="SMBMICROC">SMBMICROC</option>
+                                        <option value="SMBMODMGMT">SMBMODMGMT</option>
+                                        <option value="SMBMUSICCITY">SMBMUSICCITY</option>
+                                        <option value="SMBNXTSYS">SMBNXTSYS</option>
+                                        <option value="SMBOLN">SMBOLN</option>
+                                        <option value="SMBPDEV">SMBPDEV</option>
+                                        <option value="SMBPEEK">SMBPEEK</option>
+                                        <option value="SMBPOMPANO">SMBPOMPANO</option>
+                                        <option value="SMBPONE">SMBPONE</option>
+                                        <option value="SMBPONE9990">SMBPONE9990</option>
+                                        <option value="SMBPREMIER">SMBPREMIER</option>
+                                        <option value="SMBPROFEDGE">SMBPROFEDGE</option>
+                                        <option value="SMBRAI">SMBRAI</option>
+                                        <option value="SMBRESCOMG">SMBRESCOMG</option>
+                                        <option value="SMBSAMIRAS">SMBSAMIRAS</option>
+                                        <option value="SMBSANDLERVERIFY">SMBSANDLERVERIFY</option>
+                                        <option value="SMBSAVATL">SMBSAVATL</option>
+                                        <option value="SMBSCARMGMT">SMBSCARMGMT</option>
+                                        <option value="SMBSLINGSHOT">SMBSLINGSHOT</option>
+                                        <option value="SMBSOACFIRM">SMBSOACFIRM</option>
+                                        <option value="SMBSOLCOMM">SMBSOLCOMM</option>
+                                        <option value="SMBSRGSLMO">SMBSRGSLMO</option>
+                                        <option value="SMBTBI">SMBTBI</option>
+                                        <option value="SMBTBICA">SMBTBICA</option>
+                                        <option value="SMBTBICDW">SMBTBICDW</option>
+                                        <option value="SMBTBIDESERT">SMBTBIDESERT</option>
+                                        <option value="SMBTBIFL">SMBTBIFL</option>
+                                        <option value="SMBTBIGULF">SMBTBIGULF</option>
+                                        <option value="SMBTBILAKES">SMBTBILAKES</option>
+                                        <option value="SMBTBIMAST">SMBTBIMAST</option>
+                                        <option value="SMBTBIMID">SMBTBIMID</option>
+                                        <option value="SMBTBIMTN">SMBTBIMTN</option>
+                                        <option value="SMBTBIMW">SMBTBIMW</option>
+                                        <option value="SMBTBINE">SMBTBINE</option>
+                                        <option value="SMBTBIRIVER">SMBTBIRIVER</option>
+                                        <option value="SMBTBISE">SMBTBISE</option>
+                                        <option value="SMBTBITNMSKY">SMBTBITNMSKY</option>
+                                        <option value="SMBTBITX">SMBTBITX</option>
+                                        <option value="SMBTBIU">SMBTBIU</option>
+                                        <option value="SMBTCGU">SMBTCGU</option>
+                                        <option value="SMBTCT">SMBTCT</option>
+                                        <option value="SMBTELFL">SMBTELFL</option>
+                                        <option value="SMBTELGULF">SMBTELGULF</option>
+                                        <option value="SMBTELHQ">SMBTELHQ</option>
+                                        <option value="SMBTELLAKES">SMBTELLAKES</option>
+                                        <option value="SMBTELMTN">SMBTELMTN</option>
+                                        <option value="SMBTELMW">SMBTELMW</option>
+                                        <option value="SMBTELNE">SMBTELNE</option>
+                                        <option value="SMBTELNOCA">SMBTELNOCA</option>
+                                        <option value="SMBTELRIVER">SMBTELRIVER</option>
+                                        <option value="SMBTELSE">SMBTELSE</option>
+                                        <option value="SMBTELSOCA">SMBTELSOCA</option>
+                                        <option value="SMBTELSW">SMBTELSW</option>
+                                        <option value="SMBTELTNMSKY">SMBTELTNMSKY</option>
+                                        <option value="SMBTELTX">SMBTELTX</option>
+                                        <option value="SMBTENCHI">SMBTENCHI</option>
+                                        <option value="SMBTSDN">SMBTSDN</option>
+                                        <option value="SMBUSN">SMBUSN</option>
+                                        <option value="SMBV3ADV">SMBV3ADV</option>
+                                        <option value="SMBVISADV">SMBVISADV</option>
+                                        <option value="SMBWARMARK">SMBWARMARK</option>
+                                        <option value="SMBWAV">SMBWAV</option>
+                                        <option value="SMBWAYNEMKT">SMBWAYNEMKT</option>
+                                        <option value="SMBWHTRDG">SMBWHTRDG</option>
+                                        <option value="SNPGFOWQ">SNPGFOWQ</option>
+                                        <option value="STIGENERIC1">STIGENERIC1</option>
+                                        <option value="STIGENERIC2">STIGENERIC2</option>
+                                        <option value="STIGENERIC3">STIGENERIC3</option>
+                                        <option value="STIGENERIC4">STIGENERIC4</option>
+                                        <option value="STIGENERIC5">STIGENERIC5</option>
+                                        <option value="TEST1">TEST1</option>
+                                        <option value="TEST2">TEST2</option>
+                                        <option value="TESTACNAFF">TESTACNAFF</option>
+                                        <option value="TESTAFFILIATE">TESTAFFILIATE</option>
+                                        <option value="TESTAFFILIATE1">TESTAFFILIATE1</option>
+                                        <option value="TESTAFFILIATE2">TESTAFFILIATE2</option>
+                                        <option value="TESTAFFSMBCVIN1">TESTAFFSMBCVIN1</option>
+                                        <option value="TESTAFFSMBCVIN1EX">TESTAFFSMBCVIN1EX</option>
+                                        <option value="TESTAPPCO">TESTAPPCO</option>
+                                        <option value="TESTCREDICO">TESTCREDICO</option>
+                                        <option value="TESTONESOURCE">TESTONESOURCE</option>
+                                        <option value="TESTONPARTNER007">TESTONPARTNER007</option>
+                                        <option value="TESTSMBCAFFVIN_1">TESTSMBCAFFVIN_1</option>
+                                        <option value="TESTWLPVINAFF_1">TESTWLPVINAFF_1</option>
+                                        <option value="TESTWLPVINAFF_EX1">TESTWLPVINAFF_EX1</option>
+                                        <option value="VINAFFILIATE1">VINAFFILIATE1</option>
+                                        <option value="VINAFFILIATE2">VINAFFILIATE2</option>
+                                        <option value="VINAFFILIATESMBC1">VINAFFILIATESMBC1</option>
+                                        <option value="VINAFFILIATESMBC2">VINAFFILIATESMBC2</option>
+                                        <option value="VINAFFILIATESMBC7">VINAFFILIATESMBC7</option>
+                                        <option value="VINAFFSMBC007">VINAFFSMBC007</option>
+                                        <option value="VINAFFWLP007">VINAFFWLP007</option>
+                                        <option value="VINAFFWLP008">VINAFFWLP008</option>
+                                        <option value="VINAFFWLPTEST2">VINAFFWLPTEST2</option>
+                                        <option value="VINAFFWLPTEST3">VINAFFWLPTEST3</option>
+                                        <option value="VINAFFWLPTEST4">VINAFFWLPTEST4</option>
+                                        <option value="VINAFFWLPTEST5">VINAFFWLPTEST5</option>
+                                        <option value="VINAFFWLPTESTEX1">VINAFFWLPTESTEX1</option>
+                                        <option value="VIVINT">VIVINT</option>
+                                        <option value="WAECOMM">WAECOMM</option>
+                                        <option value="WAECOMMILITARY">WAECOMMILITARY</option>
+                                        <option value="WALMART">WALMART</option>
+                                        <option value="WARETAILMILITARY">WARETAILMILITARY</option>
+                                        <option value="WIRELESSADVOCATES">WIRELESSADVOCATES</option>
+                                    </select>
+                                    <!--<input class="button-disabled" disabled="disabled" id="wlp-button" type="button"
+                                           value="WLP" />-->
+                                </div>
+                                <div class="cmxform_short">
+                                    <fieldset>
+                                        <h2>Call Details</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                <col style="width: 25%;" />
+                                                <col style="width: 25%;" />
+                                                <col style="width: 25%;" />
+                                                <col style="width: 25%;" />
+                                                <tr>
+                                                    <td><label class="">Request Number:</label></td>
+                                                    <td>
+                                                        <input id="RequestGuid" name="RequestGuid" type="hidden"
+                                                               value="e4ce2785-0872-43ea-943d-0a4eb282f309" /><input name="RequestNumber" type="hidden" value="SNCR0004755070" />SNCR0004755070
+                                                    </td>
+                                                    <!--<td><label class="">FPLES Agent ID:</label></td>
+                                                    <td><input id="fplesAgentId" maxlength="254" name="fplesAgentId" size="20" type="text" /></td>-->
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="">Start Time:</label></td>
+                                                    <td>
+                                                        <input name="CallStartTime" type="hidden" value="2022-09-07T11:20:33.000-04:00" />2022-09-07 11:20:33
+                                                    </td>
+                                                    <td><label class="">End Time:</label></td>
+                                                    <td><input name="CallEndTime" type="hidden" value="" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Caller First Name:</label></td>
+                                                    <td>
+                                                        <input id="callerFirstName" maxlength="254" name="CallerFirstName" size="20"
+                                                               type="text"
+                                                               value="" />
+                                                    </td>
+                                                    <td><label class="label-required">Caller Last Name:</label></td>
+                                                    <td>
+                                                        <input id="callerLastName" maxlength="254" name="CallerLastName" size="20" type="text"
+                                                               value="" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Caller Contact TN:</label></td>
+                                                    <td>
+                                                        <input id="callerContactTn" maxlength="10" name="CallerContactTn" size="15"
+                                                               type="text"
+                                                               value="" /><span class="ex"> Ex. XXXXXXXXXX</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="">Order Number:</label></td>
+                                                    <td>
+                                                        <input maxlength="256" name="AccountNumber" size="15" type="text" value="1018295091"
+                                                               disabled="true" /><input maxlength="256" name="AccountNumber" size="15" type="hidden" value="1018295091" /></input>
+                                                    </td>
+                                                    <!--<td><label class="">Business Name:</label></td>
+                                                    <td></td>-->
+                                                </tr>
+                                                <!--<tr>
+                                                    <td><label class="label-required">Call Received TN:</label></td>
+                                                    <td>
+                                                        <select id="CallReveivedTN" name="CallReveivedTN">
+                                                            <option value="">-Select-</option>
+                                                            <option value="DTV Outbound Project: 844-430-6283">DTV Outbound Project: 844-430-6283</option>
+                                                            <option value="Spanish: 877-312-4710">Spanish: 877-312-4710</option>
+                                                            <option value="LegacyD: 888-908-2801">LegacyD: 888-908-2801</option>
+                                                            <option value="Small Business: 888-908-2895">Small Business: 888-908-2895</option>
+                                                            <option value="WSOP: 800-610-7823">WSOP: 800-610-7823</option>
+                                                            <option value="testedit">testedit</option>
+                                                            <option value="FPLES: 1-844-255-8934">FPLES: 1-844-255-8934</option>
+                                                            <option value="Retention Desk: 844-591-4867">Retention Desk: 844-591-4867</option>
+                                                            <option value="digital Life: 844-775-0966">digital Life: 844-775-0966</option>
+                                                        </select>
+                                                    </td>-->
+            </tr>
+            <tr>
+                <td><label class="">Call Type:</label></td>
+                <td>
+                    <select id="calltypeid" name="CallType"
+                            onchange="getReasons(this.options[this.selectedIndex].value)">
+                        <option value="">--Select--</option>
+                        <option value="INCOMING">INCOMING</option>
+                        <option value="OUTGOING">OUTGOING</option>
+                        <option value="EMAIL">EMAIL</option>
+                        <option value="Inbound">SMB Inbound</option>
+                        <option value="Outbound">SMB Outbound</option>
+                        <option value="SmartChat">SMB Smart Chat</option>
+                    </select>
+                </td>
+                <!--<td><label class="">Referring Agent ID:</label></td>-->
+                <!--<td>
+                    <input id="referringAgentId" maxlength="200" name="referringAgentId" size="25"
+                           type="text" />
+                </td>-->
+            </tr>
+            <tr>
+                <td><label class="label-required">Call Reason:</label></td>
+                <td colspan="3">
+                    <select name="CallReasonLid"
+                            onchange="getDispositions(this.options[this.selectedIndex].value)"></select>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="label-required">Call Disposition:</label></td>
+                <td colspan="3"><select name="CallDispositionLid"></select></td>
+            </tr>
+            <!--<tr>
+                <td><label class="">Service Type:</label></td>
+                <td>
+                    <select id="serviceType" name="serviceType">
+                        <option value=""></option>
+                        <option value="RESIDENTIAL">RESIDENTIAL</option>
+                        <option value="BUSINESS">BUSINESS</option>
+                    </select>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>-->
+            <input maxlength="36" name="FlexField1" size="15" type="hidden"
+                   value="17982989-0af4-3c81-25b7-5b3469498047" />
+            <input maxlength="254" name="FlexField2" size="15" type="hidden" value="sachin.s" />
+            <input maxlength="40" name="callTrackerKey" size="15" type="hidden"
+                   value="IN354403425" />
+            <tr>
+                <td colspan="4">
+                    <div class="spacer"></div>
+                </td>
+            </tr>
+            <!--<tr>
+                <td><label class="">City:</label></td>
+                <td><input id="city" maxlength="254" name="city" size="20" type="text" /></td>
+                <td><label class="">State:</label></td>
+                <td>
+                    <select id="state" name="state">
+                        <option value="">--Select--</option>
+                        <option value="AK">AK</option>
+                        <option value="AL">AL</option>
+                        <option value="AR">AR</option>
+                        <option value="AZ">AZ</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DC">DC</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="IA">IA</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="MA">MA</option>
+                        <option value="MD">MD</option>
+                        <option value="ME">ME</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MO">MO</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="NC">NC</option>
+                        <option value="ND">ND</option>
+                        <option value="NE">NE</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NV">NV</option>
+                        <option value="NY">NY</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VA">VA</option>
+                        <option value="VT">VT</option>
+                        <option value="WA">WA</option>
+                        <option value="WI">WI</option>
+                        <option value="WV">WV</option>
+                        <option value="WY">WY</option>
+                    </select>
+                </td>
+            </tr>-->
+            <!--<tr>
+                <td><label class="">Customer On Line:</label></td>
+                <td>
+                    <select id="customerOnLine" name="customerOnLine">
+                        <option value="">--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><label class="">ZipCode:</label></td>
+                <td><input id="zipCode" maxlength="254" name="zipCode" size="20" type="text" /></td>
+            </tr>-->
+            <!--<tr>
+                <td><label class="">Green Address:</label></td>
+                <td>
+                    <select id="greenAddress" name="greenAddress">
+                        <option value="">--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><label class="">SQ Completed:</label></td>
+                <td>
+                    <select id="sqCompleted" name="sqCompleted">
+                        <option value="">--Select--</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+            </tr>-->
+            <tr>
+                <td colspan="4">
+                    <div class="spacer"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding-left: 20px;">
+                    <span class="subheader">
+                        Comments
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding-left: 20px;"><textarea class="textareaField" name="comments" style="height: 100px; width: 92%;"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding-left: 20px;"><input class="button-css" name="submitType" type="submit" value="End Call" /></td>
+            </tr>
+        </table>
+    </div>
+</body>

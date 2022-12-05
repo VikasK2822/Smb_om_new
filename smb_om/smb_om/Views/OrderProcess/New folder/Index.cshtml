@@ -1,0 +1,1110 @@
+﻿@model smb_om.Model.OrderInformation
+@{
+//Layout = null;
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application" style="WORD-BREAK: break-all;">
+                        <h1>Order</h1>
+                        <div class="content-border">
+                            <div class="cmxform_short">
+                                <fieldset>
+                                    <h2>Order Information 1223</h2>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td>
+                                                <div style="text-align: left;">
+                                                    <input class="button-css" onClick="editOrder()"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="Allow Edits" /><br /><input id="allowedithidden" name="allowedithidden" type="hidden" value="false" />
+                                                    <input class="button-css"
+                                                           onclick="viewMaskedData('3ba511ab-0af4-3c81-0905-794d766a6a0c', '43393974-0af4-3c81-42d8-983216e6c05b')"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="View Masked Data" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+        <div class="inline-error" id="validateInstalationDates" style="margin-left:10px"></div>
+        <hr class="break" />
+        <form method="post" enctype="multipart/form-data" asp-controller="OrderProcess" asp-action="Index">
+            <div class="cmxform_short">
+                <div class="contentBlock">
+                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                        <tr>
+                            <td><strong>BAN: </strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.BAN" readonly />
+                            <td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Order Number:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Number" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Order Create Date:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Create_Date" readonly />
+                            </td>
+                            <td><strong>UV Sales Code:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.UVSalesCode" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer Name:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.CustomerName" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Service Address:</strong></td>
+                            <td><input asp-for="HearderInfo.ServiceAddress" readonly /></td>
+                            <td><strong>Partner:</strong></td>
+                            <td><input asp-for="HearderInfo.Partner" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Order Type:</strong></td>
+                            <td><input asp-for="HearderInfo.OrderType" readonly /></td>
+                            <td><strong>Affiliate:</strong></td>
+                            <td><input asp-for="HearderInfo.Affiliate" readonly /></td>
+                        </tr>
+                        <tr>
+
+                            <td><strong>Common Order Id:</strong></td>
+                            <td> <input asp-for="HearderInfo.CommonOrderId" readonly /> </td>
+                            <td><strong>Can-be-reached:</strong></td>
+                            <td><input asp-for="HearderInfo.Canbereached" readonly /></td>
+                        </tr>
+                        <tr class="alert-info">
+                            <td colspan="4"><strong><span class="subheader">Seller Information</span></strong></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Name:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Name" readonly /></td>
+                            <td style="color: #656565;"><strong>Phone Number:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_PhoneNumber" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Agent ID:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_AgentID" readonly /></td>
+                            <td style="color: #656565;"><strong>Email Address:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_EmailAddress" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Contact Phone<br />Number:</strong></td>
+                            <td style="color: #656565;">
+                                <label class="displayLabel"></label>
+
+                                <input asp-for="HearderInfo.Seller_Contact_Phone_Number" class="edit-field form-control" readonly />
+                            </td>
+                            <td style="color: #656565;"><strong>Preferred Contact Method:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Preferred_Contact_Method" readonly /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <div id="tab1">
+                            <ul class="shadetabs" id="account-verify-tabs">
+                                <li><a class="selected" href="#account-tab" rel="account-tab">Account</a></li>
+                                <li><a href="#verify-tab" rel="verify-tab">Verify</a></li>
+                                <li><a href="#documents-tab" rel="documents-tab">Documents</a></li>
+                                <li><a href="#payment-tab" rel="payment-tab">Payment</a></li>
+                            </ul>
+                            <div class="tabcontent" id="account-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Account</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                            <tr>
+                                                <td colspan="4"><span class="subheader">Uverse Installation</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right">
+                                                    <label for="AccountInfo.Requested_Installation_Date">Requested Installation Date:</label>
+                                                </td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Requested_Installation_Date" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" />
+
+                                                </td>
+                                                <td align="right">
+                                                    <label for="AccountInfo.Requested_Installation_Time">Requested Installation Time:</label>
+                                                </td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Requested_Installation_Time" type="time" class="form-control" />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Scheduled_Installation_Date">Scheduled Installation Date:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Scheduled_Installation_Date" type="date" class="form-control" format="dd-MMM-yy" />
+                                                </td>
+                                                <td align="right"> </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Requested_Installation_Time">Scheduled Installation  Begin Time:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Scheduled_Installation_StartTime" type="time" class="form-control" />
+                                                </td>
+                                                <td align="right"><label for="AccountInfo.Scheduled_Installation_EndTime">Scheduled Installation  End Time:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Scheduled_Installation_EndTime" type="time" class="form-control" />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4"><span class="subheader">Billing Information</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Billing_Account_Number">Billing Account Number:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Billing_Account_Number" class="form-control" />
+                                                </td>
+
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Common_OrderID">Common Order ID:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Common_OrderID" class="form-control" />
+                                                </td>
+
+                                                <td></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Fiber_OMS_OrderID">Fiber OMS Order ID:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Fiber_OMS_OrderID" class="form-control" readonly />
+                                                </td>
+                                                <td align="right">
+                                                    <label for="AccountInfo.Unified_Credit_TransactionID">Unified Credit Transaction ID:</label>
+                                                </td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Unified_Credit_TransactionID" class="form-control" readonly />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Payment_Confirmation_Number">Payment Confirmation Number:</label></td>
+                                                <td valign="top">
+                                                    <input asp-for="AccountInfo.Payment_Confirmation_Number" class="form-control" />
+                                                </td>
+                                                <td align="right"><label>Credit Class:</label></td>
+                                                <td> <input asp-for="AccountInfo.Credit_Class" class="form-control" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Ticket_Number">Ticket Number:</label></td>
+                                                <td><input asp-for="AccountInfo.Ticket_Number" class="form-control" /></td>
+                                                <td align="right"><label>Bureau Name Abbreviation:</label></td>
+                                                <td><input asp-for="AccountInfo.Bureau_Name_Abbreviation" class="form-control" readonly /></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="AccountInfo.Bolt_On_OrderNumber">Bolt On Order Number:</label></td>
+                                                <td>
+                                                    <input asp-for="AccountInfo.Bolt_On_OrderNumber" class="form-control" />
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="verify-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Verify</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                            <tr>
+                                                <td valign="top">
+                                                    <table border="0" cellspacing="0" width="100%">
+
+                                                        <tr>
+                                                            <td align="right"><span class="subheader">Billing Information</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Number Prefix:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number_Prefix</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Number Suffix:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number_Suffix</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Direction:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Direction</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Name:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Name</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Trailing Direction:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Trailing_Direction</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Assigned Street Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Assigned_Street_Number</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Structure Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Structure_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Structure Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Structure_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Level Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Level_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Level Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Apartment Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Apartment_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Apartment Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Apartment_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>City:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.City</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>State:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.State</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Zip:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Zip</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Country:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Country</label></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Post Office Box:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Post_Office_Box</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Rural Route Box / Ctr Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Rural_Route_Box_Ctr_Number</label></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td valign="top">
+                                                    <table border="0" cellspacing="0" width="100%">
+
+                                                        <tr>
+                                                            <td align="right"><span class="subheader">Authentication</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>DOB:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_DOB</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_SSN</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Federal Tax ID:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_FederalTaxID</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Driver's License:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_DriversLicense</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>State:</label></td>
+                                                            <td>
+                                                                <input asp-for="VerifyInfo.Authentication_State" class="edit-field form-control" readonly />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Expiration Date:</label></td>
+                                                            <td>
+                                                                <input asp-for="VerifyInfo.Authentication_ExpirationDate" type="date" class="edit-field form-control" readonly asp-format="{0:yyyy-MM-dd}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Officer 1 SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_Officer1SSN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Officer 2 SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_Officer2SSN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><span class="subheader">Security Verification</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>PIN:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_PIN</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Security Question:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_Securit_Question</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Security Answer:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_Security_Answer</label></td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="documents-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Uploaded Document</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="scrollTable"
+                                                           id="documentsTab"
+                                                           width="100%">
+                                                        <tr class="resultsHeader">
+                                                            <td style="white-space: nowrap;width: 160px;">Document Name</td>
+                                                            <td style="white-space: nowrap;width: 100px;">Document Type</td>
+                                                            <td style="white-space: nowrap;width: 60px;">User ID</td>
+                                                            <td style="white-space: nowrap;width: 120px;">Timestamp</td>
+                                                            <td style="white-space: nowrap;width: 50px;">Accepted</td>
+                                                        </tr>
+                                                        <tr valign="top" class="resultsOdd">
+                                                            <td class="hardBreak">
+                                                                <a href="@Model.DocumentInfo.DocumentPath"
+                                                                   target="_blank">@Model.DocumentInfo.DocumentName</a>
+                                                            </td>
+                                                            <td class="hardBreak">@Model.DocumentInfo.DocumentName</td>
+                                                            <td class="hardBreak">@Model.DocumentInfo.UserID</td>
+                                                            <td class="hardBreak">@Model.DocumentInfo.DocumentUpload_TimeStamp</td>
+                                                            <td class="hardBreak">
+                                                                <input type="checkbox" asp-for="@Model.DocumentInfo.DocumentUpload_Accepted" />
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="payment-tab">
+                                <div>
+                                    <ul class="shadetabs" id="tabs-section4">
+                                        <li><a href="#" rel="autoRecurring-payment">@Model.PaymentInfo.Payment_Type</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-border cmxform_tabs" id="autoRecurring-payment">
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                            <tr>
+                                                <td style="text-align: right;"><span class="subheader">@Model.PaymentInfo.Payment_Type</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Amount:</label></td>
+                                                <td>@Model.PaymentInfo.Amount</td>
+                                                <td style="text-align: right;"><label>Disclosure Accepted::</label></td>
+                                                <td>@Model.PaymentInfo.DisclosureAccepted</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><span class="subheader">Credit Card</span></td>
+                                                <td colspan="3">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Credit Card Type:</label></td>
+                                                <td>@Model.PaymentInfo.CreditCardType</td>
+                                                <td style="text-align: right;"><label>Credit Card Name:</label></td>
+                                                <td> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="text-align: right;"><label>Credit Card Number:</label></td>
+                                                <td>@Model.PaymentInfo.CreditCardNumber</td>
+                                                <td style="text-align: right;"><label>Authorization Number:</label></td>
+                                                <td><span id="@Model.PaymentInfo.AuthorizationNumber">@Model.PaymentInfo.AuthorizationNumber</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Card Billing Zip:</label></td>
+                                                <td>@Model.PaymentInfo.CardBillingZip"</td>
+                                                <td style="text-align: right;"><label>Expiration Date:</label></td>
+                                                <td>@Model.PaymentInfo.ExpirationDate <br /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div style="height: 20px;"></div>
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <div id="tab2">
+                            <ul class="shadetabs" id="Business-Address-tabs">
+                                <li><a class="selected" href="#Business-tab" rel="Business-tab">Business Info</a></li>
+                                <li><a href="#Address-tab" rel="Address-tab">Address</a></li>
+
+                            </ul>
+                            <div class="tabcontent" id="Business-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Business Information</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                            <tr>
+                                                <td colspan="4"><span class="subheader">Business Information</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Business Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.BusinessName</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Business Type:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.BusinessType</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Federal Tax ID:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.FederalTaxID</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Date Of Incorporation:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.DateOfIncorporation</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right">State Of Incorporation:</td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.StateOfIncorporation</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><span class="subheader">Officer 1</span></td>
+                                                <td> </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>First Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_First_Name</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Last Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Last_Name</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Phone Number:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Phone_Number</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Email Address:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Email_Address</label>
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="Address-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Address</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" style="width:450px">
+                                            <tr>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                        <tr>
+                                                            <td style="text-align: right;"><span class="subheader">Service Address</span></td>
+                                                            <td> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Prefix</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue"> @Model.ServiceAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Address Ticket:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Address_Ticket</label>
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                        <tr>
+                                                            <td style="text-align: right;"><span class="subheader">Billing  Address</span></td>
+                                                            <td> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Prefix</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue">@Model.ServiceAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label> </label></td>
+                                                            <td>
+                                                                <label class="displayLabel"></label>
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+            <div style="height: 20px;"></div>
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <div id="tab3">
+                            <ul class="shadetabs" id="product-package-tabs">
+                                <li><a class="selected" href="#Order-tab" rel="Order-tab">Order</a></li>
+                                <li><a href="#internet-tab" rel="internet-tab">Internet</a></li>
+                                <li><a href="#VOIP-tab" rel="VOIP-tab">VOIP</a></li>
+                                <li><a href="#AWB-tab" rel="AWB-tab">AWB</a></li>
+                            </ul>
+                            <div class="tabcontent" id="Order-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Package Information</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                            <tr>
+                                                <td><span class="subheader1">Package</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="scrollTable">
+                                                        <tr class="resultsHeader">
+                                                            <td style="white-space: nowrap;">Display Name</td>
+                                                            <td style="white-space: nowrap;width: 240px;">USOC</td>
+                                                            <td style="white-space: nowrap;width: 60px;">Price</td>
+                                                            <td style="white-space: nowrap;width: 120px;">Activation Fee</td>
+                                                        </tr>
+                                                        <tr valign="top" class="resultsOdd">
+                                                            <td class="hardBreak">Internet 1000S</td>
+                                                            <td class="hardBreak">LSF06</td>
+                                                            <td class="hardBreak">160.00</td>
+                                                            <td class="hardBreak"></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="internet-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Address</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" style="width:450px">
+                                            <tr>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                        <tr>
+                                                            <td style="text-align: right;"><span class="subheader">Service Address</span></td>
+                                                            <td> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Prefix</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue"> @Model.ServiceAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Address Ticket:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Address_Ticket</label>
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td></td>
+                                                <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                        <tr>
+                                                            <td style="text-align: right;"><span class="subheader">Billing  Address</span></td>
+                                                            <td> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Prefix</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue">@Model.ServiceAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label> </label></td>
+                                                            <td>
+                                                                <label class="displayLabel"></label>
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+            <div style="height: 20px;"></div>
+
+            <div class="cmxform_btn">
+                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                    <tr>
+                        <td style="padding-bottom: 0px;">
+                            <input class="button-css" type="submit" value="Update" name="buttonVal" />
+                            <input class="button-css" type="submit" value="Return to DWQ" name="buttonVal" />
+                            <input class="button-css" type="submit" value="Reset to Landing Page" name="buttonVal" />
+                            <input class="button-css" type="submit" value="Update and Start Call" name="buttonVal" />
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </form>
+        </div>
+    
+<script type="text/javascript">
+
+   
+    $.noConflict();
+    jQuery(document).ready(function ($) {
+       
+        $("#tab1").tabs();
+        $("#tab2").tabs();
+        $("#tab3").tabs();
+    });
+</script>

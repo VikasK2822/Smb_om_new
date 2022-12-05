@@ -1,0 +1,91 @@
+/**
+ * Copyright 2008-2022 Sequential Tech  All Rights Reserved.
+ *
+ * This source code is the confidential and proprietary information of
+ * Sequential Tech
+ *
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Synchronoss Technologies.
+ */
+/* ######### CSS for sub menu container below ######### */
+
+.tabsmenucontentclass{
+    clear: left;
+    background: none;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+	position:relative;
+    }
+
+.collapse {
+  display: none;
+}
+
+.tabsmenucontentclass ul{
+    float: left;
+    list-style: none;
+    background-color: #FFF;
+    width: 95%;
+    margin-left: 24px;
+    padding: 0;
+    }
+
+* html .tabsmenucontentclass ul{
+    float: left;
+    list-style: none;
+    background-color: #FFF;
+    width: 90%;
+    margin-left: 12px;
+    padding: 0;
+    }
+
+.tabsmenucontentclass li{
+	float: left;
+    display: inline;
+    margin-right: 12px;
+    padding: 1px;
+    }
+
+* html .tabsmenucontentclass li {
+    float: left;
+    display: inline;
+    margin-right: 12px;
+    padding: 0;
+    }
+
+.adminListDropDown {
+	text-align:left;
+	left:0px;
+	/* float:left; */
+	clear: both;
+	width: 210px;
+	/* height: 100%; */
+	position: absolute;
+	margin-left:250px;
+	background-color: #FFF;
+	z-index: 2147483647;
+	padding: 20px;
+
+
+}
+.adminListDropDown ul li{width:100%;}
+
+.dwqListDropDown {
+  text-align:left;
+  left:0px;
+  /* float:left; */
+  clear: both;
+  width: 210px;
+  /* height: 100%; */
+  position: absolute;
+  margin-left:10px;
+  background-color: #FFF;
+  z-index: 2147483647;
+  padding: 20px;
+
+
+}
+.dwqListDropDown ul li{width:100%;}

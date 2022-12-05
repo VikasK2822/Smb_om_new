@@ -1,0 +1,1927 @@
+﻿@model smb_om.Model.OrderInformation
+@{
+    //Layout = null;
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div id="content-body">
+   
+  
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td class="stroke" height="1" width="1"></td>
+            <td align="center">
+                <div class="application" style="WORD-BREAK: break-all;">
+                    <h1>Order</h1>
+                    <div class="content-border">
+                        <div class="cmxform_short">
+                            <fieldset>
+                                <h2>Order Information </h2>
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            <div style="text-align: left;">
+                                                <input class="button-css" onClick="orderEditable();"
+                                                       style="min-width: 110px; margin-bottom: 5px;"
+                                                       type="button"
+                                                       value="Allow Edits" /><br /><input id="allowedithidden" name="allowedithidden" type="hidden" value="false" />
+                                                <input class="button-css"
+                                                       onclick="viewMaskedData('3ba511ab-0af4-3c81-0905-794d766a6a0c', '43393974-0af4-3c81-42d8-983216e6c05b')"
+                                                       style="min-width: 110px; margin-bottom: 5px;"
+                                                       type="button"
+                                                       value="View Masked Data" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+    </table>
+    <div class="inline-error" id="validateInstalationDates" style="margin-left:10px"></div>
+    <hr class="break" />
+    <form method="post" enctype="multipart/form-data" asp-controller="OrderProcess" asp-action="Index">
+        <div class="cmxform_short">
+            <div class="contentBlock">
+                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                    <tr>
+                        <td><strong>BAN: </strong></td>
+                        <td>
+                            <input asp-for="HearderInfo.BAN" readonly />
+                            
+                            <input type="hidden" asp-for="previouspageinfo" />
+<td>
+
+                    </tr>
+                    <tr>
+                        <td><strong>Order Number:</strong></td>
+                        <td>
+                            <input type="hidden" asp-for="TransactionId" />
+                            <input asp-for="Order_Number" readonly />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><strong>Order Create Date:</strong></td>
+                        <td>
+                            <input asp-for="HearderInfo.Order_Create_Date" readonly />
+                        </td>
+                        <td><strong>UV Sales Code:</strong></td>
+                        <td>
+                            <input asp-for="HearderInfo.UVSalesCode" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Name:</strong></td>
+                        <td>
+                            <input asp-for="HearderInfo.CustomerName" readonly />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><strong>Service Address:</strong></td>
+                        <td><input asp-for="HearderInfo.ServiceAddress" readonly /></td>
+                        <td><strong>Partner:</strong></td>
+                        <td><input asp-for="HearderInfo.Partner" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Order Type:</strong></td>
+                        <td><input asp-for="HearderInfo.OrderType" readonly /></td>
+                        <td><strong>Affiliate:</strong></td>
+                        <td><input asp-for="HearderInfo.Affiliate" readonly /></td>
+                    </tr>
+                    <tr>
+
+                        <td><strong>Common Order Id:</strong></td>
+                        <td> <input asp-for="HearderInfo.CommonOrderId" readonly /> </td>
+                        <td><strong>Can-be-reached:</strong></td>
+                        <td><input asp-for="HearderInfo.Canbereached" readonly /></td>
+                    </tr>
+                    <tr class="alert-info">
+                        <td colspan="4"><strong><span class="subheader">Seller Information</span></strong></td>
+                    </tr>
+                    <tr class="alert alert-info">
+                        <td style="color: #656565;"><strong>Name:</strong></td>
+                        <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Name" readonly /></td>
+                        <td style="color: #656565;"><strong>Phone Number:</strong></td>
+                        <td style="color: #656565;"><input asp-for="HearderInfo.Seller_PhoneNumber" readonly /></td>
+                    </tr>
+                    <tr class="alert alert-info">
+                        <td style="color: #656565;"><strong>Agent ID:</strong></td>
+                        <td style="color: #656565;"><input asp-for="HearderInfo.Seller_AgentID" readonly /></td>
+                        <td style="color: #656565;"><strong>Email Address:</strong></td>
+                        <td style="color: #656565;"><input asp-for="HearderInfo.Seller_EmailAddress" readonly /></td>
+                    </tr>
+                    <tr class="alert alert-info">
+                        <td style="color: #656565;"><strong>Contact Phone<br />Number:</strong></td>
+                        <td style="color: #656565;">
+                            <label class="displayLabel"></label>
+
+                            <input asp-for="HearderInfo.Seller_Contact_Phone_Number" readonly />
+                        </td>
+                        <td style="color: #656565;"><strong>Preferred Contact Method:</strong></td>
+                        <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Preferred_Contact_Method" readonly /></td>
+                    </tr>
+                    <tr class="alert alert-info">
+                        <td style="color: #656565;"><strong>Partner Agent Notes:</strong></td>
+                        <td style="color: #656565;">
+                            <label class="displayLabel"></label>
+                            <textarea asp-for="HearderInfo.Seller_Partner_Agent_Notes" class="edit-field form-control" readonly></textarea>
+
+                        </td>
+                        <td style="color: #656565;"></td>
+                        <td style="color: #656565;"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="height: 20px;"></div>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+            <tr>
+                <td>
+                    <div id="tab1">
+                        <ul class="shadetabs" id="account-verify-tabs">
+                            <li><a class="selected" href="#account-tab" rel="account-tab">Account</a></li>
+                            <li><a href="#verify-tab" rel="verify-tab">Verify</a></li>
+                            <li><a href="#documents-tab" rel="documents-tab">Documents</a></li>
+                            <li><a href="#payment-tab" rel="payment-tab">Payment</a></li>
+                        </ul>
+                        <div class="tabcontent" id="account-tab">
+                            <div class="cmxform_tabs">
+                                <h2 class="tabH2">Account</h2>
+                                <hr class="break" />
+                                <div class="contentBlock">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+
+                                        @if (Model.ProductInstallationList != null)
+                                        {
+
+                                            @for (int i = 0; i < Model.ProductInstallationList.Count; i++)
+                                            {
+                                                @if (Model.ProductInstallationList[i].Product_Type.ToUpper() == "INTERNET" || Model.ProductInstallationList[i].Product_Type.ToUpper() == "VOIP" || Model.ProductInstallationList[i].Product_Type.ToUpper() == "AWB")
+                                                {
+
+
+                                                    <tr>
+                                                        <td colspan="4">
+
+                                                            @if (Model.ProductInstallationList[i].Product_Type.ToUpper() == "AWB")
+                                                            {
+                                                                <span class="subheader"> AWB Installation </span>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="subheader"> Uverse Installation </span>
+
+                                                            }
+
+                                                            <input type="hidden" asp-for="@Model.ProductInstallationList[i].Product_RowId" />
+
+
+                                                            <input type="hidden" asp-for="@Model.ProductInstallationList[i].Product_Type" />
+
+
+                                                        </td>
+
+
+                                                    </tr>
+
+
+
+                                                    <tr>
+
+
+                                                        <td align="right">
+
+
+                                                            <label for="AccountInfo.Requested_Installation_Date">Requested Installation Date:</label>
+
+
+                                                        </td>
+
+
+                                                        <td>
+
+
+                                                            <input asp-for="ProductInstallationList[i].Requested_Installation_Date" type="date" class="edit-field form-control" asp-format="{0:yyyy-MM-dd}" readonly />
+
+                                                        </td>
+                                                        <td align="right">
+                                                            <label for="AccountInfo.Requested_Installation_Time">Requested Installation Time:</label>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="ProductInstallationList[i].Requested_Installation_Time" type="time" class="edit-field form-control" readonly />
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="right"><label for="AccountInfo.Scheduled_Installation_Date">Scheduled Installation Date:</label></td>
+                                                        <td>
+                                                            <input asp-for="ProductInstallationList[i].Scheduled_Installation_Date" type="date" class="edit-field form-control" asp-format="{0:yyyy-MM-dd}" readonly />
+                                                        </td>
+                                                        <td align="right"> </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="right"><label for="AccountInfo.Requested_Installation_Time">Scheduled Installation  Begin Time:</label></td>
+                                                        <td>
+                                                            <input asp-for="ProductInstallationList[i].Scheduled_Installation_StartTime" type="time" class="edit-field form-control" readonly />
+                                                        </td>
+                                                        <td align="right"><label for="AccountInfo.Scheduled_Installation_EndTime">Scheduled Installation  End Time:</label></td>
+                                                        <td>
+                                                            <input asp-for="ProductInstallationList[i].Scheduled_Installation_EndTime" type="time" class="edit-field form-control" readonly />
+
+                                                        </td>
+                                                    </tr>
+
+                                                }
+
+                                            }
+
+                                        }
+                                        <tr>
+                                            <td colspan="4"><span class="subheader">Billing Information</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Billing_Account_Number">Billing Account Number:</label></td>
+                                            <td>
+                                                <input asp-for="AccountInfo.Billing_Account_Number" class="form-control" />
+                                            </td>
+
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Common_OrderID">Common Order ID:</label></td>
+                                            <td>
+                                                <input asp-for="AccountInfo.Common_OrderID" class="form-control" />
+                                            </td>
+
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Fiber_OMS_OrderID">Fiber OMS Order ID:</label></td>
+                                            <td>
+                                                <input asp-for="AccountInfo.Fiber_OMS_OrderID" class="edit-field form-control" readonly />
+                                            </td>
+                                            <td align="right">
+                                                <label for="AccountInfo.Unified_Credit_TransactionID">Unified Credit Transaction ID:</label>
+                                            </td>
+                                            <td>
+                                                <input asp-for="AccountInfo.Unified_Credit_TransactionID" class="form-control" readonly />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Payment_Confirmation_Number">Payment Confirmation Number:</label></td>
+                                            <td valign="top">
+                                                <input asp-for="AccountInfo.Payment_Confirmation_Number" class="form-control" />
+                                            </td>
+                                            <td align="right"><label>Credit Class:</label></td>
+                                            <td> <input asp-for="AccountInfo.Credit_Class" class="form-control" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Ticket_Number">Ticket Number:</label></td>
+                                            <td><input asp-for="AccountInfo.Ticket_Number" class="form-control" /></td>
+                                            <td align="right"><label>Bureau Name Abbreviation:</label></td>
+                                            <td><input asp-for="AccountInfo.Bureau_Name_Abbreviation" class="form-control" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label for="AccountInfo.Bolt_On_OrderNumber">Bolt On Order Number:</label></td>
+                                            <td>
+                                                <input asp-for="AccountInfo.Bolt_On_OrderNumber" class="form-control" />
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabcontent" id="verify-tab">
+                            <div class="cmxform_tabs">
+                                <h2 class="tabH2">Verify</h2>
+                                <hr class="break" />
+                                <div class="contentBlock">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                        <tr>
+                                            <td valign="top">
+                                                <table border="0" cellspacing="0" width="100%">
+
+                                                    <tr>
+                                                        <td align="right"><span class="subheader">Billing Information</span></td>
+                                                    </tr>
+                                                    @if (Model.VerifyInfo != null && Model.VerifyInfo.BillingAddress != null)
+                                                    {
+                                                        <tr>
+                                                            <td align="right"><label>Street Number Prefix:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number_Prefix</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Number Suffix:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Number_Suffix</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Direction:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Direction</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Name:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Name</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Street Trailing Direction:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Street_Trailing_Direction</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Assigned Street Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Assigned_Street_Number</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Structure Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Structure_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Structure Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Structure_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Level Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Level_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Level Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Apartment Type:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Apartment_Type</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Apartment Value:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Apartment_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>City:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.City</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>State:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.State</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Zip:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Zip</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Country:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Country</label></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Post Office Box:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Post_Office_Box</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Rural Route Box / Ctr Number:</label></td>
+                                                            <td><label>@Model.VerifyInfo.BillingAddress.Rural_Route_Box_Ctr_Number</label></td>
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                            </td>
+                                            <td valign="top">
+                                                <table border="0" cellspacing="0" width="100%">
+
+                                                    <tr>
+                                                        <td align="right"><span class="subheader">Authentication</span></td>
+                                                    </tr>
+                                                    @if (Model.VerifyInfo != null)
+                                                    {
+                                                        <tr>
+                                                            <td align="right"><label>DOB:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_DOB</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_SSN</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Federal Tax ID:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_FederalTaxID</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>Driver's License:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_DriversLicense</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td align="right"><label>State:</label></td>
+                                                            <td>
+                                                                <input asp-for="VerifyInfo.Authentication_State" class="edit-field form-control" readonly />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Expiration Date:</label></td>
+                                                            <td>
+                                                                <input asp-for="VerifyInfo.Authentication_ExpirationDate" type="date" class="edit-field form-control" readonly asp-format="{0:yyyy-MM-dd}" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Officer 1 SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_Officer1SSN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Officer 2 SSN:</label></td>
+                                                            <td>@Model.VerifyInfo.Authentication_Officer2SSN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><span class="subheader">Security Verification</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>PIN:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_PIN</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Security Question:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_Securit_Question</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right"><label>Security Answer:</label></td>
+                                                            <td><label>@Model.VerifyInfo.SecurityVerificationn_Security_Answer</label></td>
+                                                        </tr>
+                                                    }
+
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabcontent" id="documents-tab">
+                            <div class="cmxform_tabs">
+                                <h2 class="tabH2">Uploaded Document</h2>
+                                <hr class="break" />
+                                <div class="contentBlock">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" class="scrollTable"
+                                                       id="documentsTab"
+                                                       width="100%">
+                                                    <thead>
+                                                        <tr class="resultsHeader">
+                                                            <td style="white-space: nowrap;width: 160px;">Document Name</td>
+                                                            <td style="white-space: nowrap;width: 100px;">Document Type</td>
+                                                            <td style="white-space: nowrap;width: 60px;">User ID</td>
+                                                            <td style="white-space: nowrap;width: 120px;">Timestamp</td>
+                                                            <td style="white-space: nowrap;width: 50px;">Accepted</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model.DocumentList != null)
+                                                        {
+
+
+                                                            for (int i = 0; i < Model.DocumentList.Count; i++)
+                                                            {
+
+                                                                <tr valign="top" class="resultsOdd">
+                                                                    <td class="hardBreak">
+
+                                                                        <input asp-for="@Model.DocumentList[i].Document_RowId" style="display:none" />
+                                                                        <a href="@Model.DocumentList[i].DocumentPath"
+                                                                           target="_blank">@Model.DocumentList[i].DocumentName</a>
+                                                                    </td>
+                                                                    <td class="hardBreak">
+                                                                        <label asp-for="@Model.DocumentList[i].DocumentType">@Model.DocumentList[i].DocumentType </label>
+                                                                    </td>
+                                                                    <td class="hardBreak">
+                                                                        <label asp-for="@Model.DocumentList[i].UserID">@Model.DocumentList[i].UserID </label>
+                                                                    </td>
+                                                                    <td class="hardBreak">@Model.DocumentList[i].DocumentUpload_TimeStamp</td>
+
+                                                                    <td class="hardBreak"><input type="checkbox" asp-for="@Model.DocumentList[i].DocumentUpload_Accepted" /> </td>
+                                                                </tr>
+
+                                                            }
+
+                                                        }
+
+                                                    </tbody>
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabcontent" id="payment-tab">
+                            @if (@Model.PaymentInfo != null)
+                            {
+
+                                <div>
+                                    <ul class="shadetabs" id="tabs-section4">
+                                        <li><a href="#" rel="autoRecurring-payment">@Model.PaymentInfo.Payment_Type</a></li>
+                                    </ul>
+                                </div>
+                                <div class="content-border cmxform_tabs" id="autoRecurring-payment">
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                            <tr>
+                                                <td style="text-align: right;"><span class="subheader">@Model.PaymentInfo.Payment_Type</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Amount:</label></td>
+                                                <td>@Model.PaymentInfo.Amount</td>
+                                                <td style="text-align: right;"><label>Disclosure Accepted::</label></td>
+                                                <td>@Model.PaymentInfo.DisclosureAccepted</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><span class="subheader">Credit Card</span></td>
+                                                <td colspan="3">  </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Credit Card Type:</label></td>
+                                                <td>@Model.PaymentInfo.CreditCardType</td>
+                                                <td style="text-align: right;"><label>Credit Card Name:</label></td>
+                                                <td> </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="text-align: right;"><label>Credit Card Number:</label></td>
+                                                <td>@Model.PaymentInfo.CreditCardNumber</td>
+                                                <td style="text-align: right;"><label>Authorization Number:</label></td>
+                                                <td><span id="@Model.PaymentInfo.AuthorizationNumber">@Model.PaymentInfo.AuthorizationNumber</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: right;"><label>Card Billing Zip:</label></td>
+                                                <td>@Model.PaymentInfo.CardBillingZip"</td>
+                                                <td style="text-align: right;"><label>Expiration Date:</label></td>
+                                                <td>@Model.PaymentInfo.ExpirationDate <br /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div style="height: 20px;"></div>
+        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+            <tr>
+                <td>
+                    <div id="tab2">
+                        <ul class="shadetabs" id="Business-Address-tabs">
+                            <li><a class="selected" href="#Business-tab" rel="Business-tab">Business Info</a></li>
+                            <li><a href="#Address-tab" rel="Address-tab">Address</a></li>
+
+                        </ul>
+                        <div class="tabcontent" id="Business-tab">
+                            <div class="cmxform_tabs">
+                                <h2 class="tabH2">Business Information</h2>
+                                <hr class="break" />
+                                <div class="contentBlock">
+                                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                        <tr>
+                                            <td colspan="4"><span class="subheader">Business Information</span></td>
+                                        </tr>
+                                        @if (Model.BusinessInfo != null)
+                                        {
+                                            <tr>
+                                                <td align="right"><label>Business Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.BusinessName</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Business Type:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.BusinessType</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Federal Tax ID:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.FederalTaxID</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Date Of Incorporation:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.DateOfIncorporation</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right">State Of Incorporation:</td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.StateOfIncorporation</label>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><span class="subheader">Officer 1</span></td>
+                                                <td> </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>First Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_First_Name</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Last Name:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Last_Name</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Phone Number:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Phone_Number</label>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label>Email Address:</label></td>
+                                                <td>
+                                                    <label class="displayLabel">@Model.BusinessInfo.Officer1_Email_Address</label>
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabcontent" id="Address-tab">
+                            <div class="cmxform_tabs">
+                                <h2 class="tabH2">Address</h2>
+                                <hr class="break" />
+                                <div class="contentBlock">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="width:450px">
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                    <tr>
+                                                        <td style="text-align: right;"><span class="subheader">Service Address</span></td>
+                                                        <td> </td>
+                                                    </tr>
+                                                    @if (Model.ServiceAddressInfo != null)
+                                                    {
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                @Model.ServiceAddressInfo.Street_Number_Prefix
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                @Model.ServiceAddressInfo.Street_Number
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue"> @Model.ServiceAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Address Ticket:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.ServiceAddressInfo.Address_Ticket</label>
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                    <tr>
+                                                        <td style="text-align: right;"><span class="subheader">Billing  Address</span></td>
+                                                        <td> </td>
+                                                    </tr>
+                                                    @if (Model.BillingAddressInfo != null)
+                                                    {
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Prefix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Number_Prefix</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Number</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Number Suffix:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Number_Suffix</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Name:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Name</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Type:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Type</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Street Trailing Direction:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Street_Trailing_Direction</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Assigned Street Number:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Assigned_Street_Number</label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="structLevelApt">
+                                                            <td style="text-align: right;"><label>Struct/Level/Apt:</label></td>
+                                                            <td><label id="srvicelandlordUnitValue">@Model.BillingAddressInfo.Level_Value</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>City:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.City</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>State:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.State</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Zip:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Zip</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label>Urbanization Code:</label></td>
+                                                            <td>
+                                                                <label class="displayLabel">@Model.BillingAddressInfo.Urbanization_Code</label>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: right;"><label> </label></td>
+                                                            <td>
+                                                                <label class="displayLabel"></label>
+
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+        <div style="height: 20px;"></div>
+        @if (Model.PackageInfo != null)
+        {
+            <input type="hidden" asp-for="@Model.PackageInfo.IsAWBPackageInformation" />
+            <input type="hidden" asp-for="@Model.PackageInfo.IsInternetPackageInformation" />
+            <input type="hidden" asp-for="@Model.PackageInfo.IsVoipPackageInformation" />
+
+            <input type="hidden" asp-for="@Model.PackageInfo.IsPotsPackageInformation" />
+
+            @if (Model.PackageInfo.IsAWBPackageInformation || Model.PackageInfo.IsInternetPackageInformation || Model.PackageInfo.IsVoipPackageInformation || Model.PackageInfo.IsPotsPackageInformation)
+            {
+                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                    <tr>
+                        <td>
+                            <div id="tab3">
+                                <ul class="shadetabs" id="product-package-tabs">
+                                    <li><a class="selected" href="#Order-tab" rel="Order-tab">Order</a></li>
+                                    @if (Model.PackageInfo.IsInternetPackageInformation)
+                                    {
+                                        <li><a href="#internet-tab" rel="internet-tab">Internet</a></li>
+                                    }
+                                    @if (Model.PackageInfo.IsVoipPackageInformation)
+                                    {
+                                        <li><a href="#VOIP-tab" rel="VOIP-tab">VOIP</a></li>
+                                    }
+
+                                    @if (Model.PackageInfo.IsPotsPackageInformation)
+                                    {
+                                        <li><a href="#POTS-tab" rel="POTS-tab">POTS</a></li>
+                                    }
+                                    @if (Model.PackageInfo.IsAWBPackageInformation)
+                                    {
+                                        <li><a href="#AWB-tab" rel="AWB-tab">AWB</a></li>
+                                    }
+
+                                </ul>
+                                <div class="tabcontent" id="Order-tab">
+                                    <div class="cmxform_tabs">
+                                        <h2 class="tabH2">Package Information</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                <tr>
+                                                    <td><span class="subheader1">Package</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable">
+                                                            <tr class="resultsHeader">
+                                                                <td style="white-space: nowrap;">Display Name</td>
+                                                                <td style="white-space: nowrap;width: 240px;">USOC</td>
+                                                                <td style="white-space: nowrap;width: 60px;">Price</td>
+                                                                <td style="white-space: nowrap;width: 120px;">Activation Fee</td>
+                                                            </tr>
+                                                            <tr valign="top" class="resultsOdd">
+                                                                <td class="hardBreak">@Model.PackageInfo.orderPackageinfo.Display_Name</td>
+                                                                <td class="hardBreak">@Model.PackageInfo.orderPackageinfo.USOC</td>
+                                                                <td class="hardBreak">@Model.PackageInfo.orderPackageinfo.Price</td>
+                                                                <td class="hardBreak">@Model.PackageInfo.orderPackageinfo.Activation_Fee</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabcontent" id="internet-tab">
+                                    <div class="cmxform_tabs">
+                                        <h2 class="tabH2"> Packages Information</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <input id="hiddenInternetPackageInfo" type="hidden"
+                                                   value="SERVICE" />
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                                <tr>
+                                                    <td><span class="subheader1">Packages</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable" width="100%">
+                                                            <thead>
+                                                                <tr class="resultsHeader">
+                                                                    <td style="white-space:nowrap; width:240px;">
+                                                                        <label asp-for="PackageInfo.InternetPackageInfo.InternetPackagelist[0].Display_Name">Display Name:</label>
+
+                                                                    </td>
+                                                                    <td style="white-space: nowrap; width:160px;"> Processed </td>
+                                                                    <td style="white-space:nowrap; width:60px;">Price</td>
+                                                                    <td style="white-space:nowrap; width:120px;">Text Answer</td>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model.PackageInfo.IsInternetPackageInformation)
+                                                                {
+                                                                    for (int i = 0; i < Model.PackageInfo.InternetPackageInfo.InternetPackagelist.Count; i++)
+                                                                    {
+
+                                                                        @if (Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Package_RowId % 2 != 0)
+                                                                        {
+                                                                            <tr valign="top" class="resultsOdd">
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Order_Number" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.IsPromoPackageInformation" />
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <tr valign="top" class="resultsEven">
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Order_Number" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.InternetPackageInfo.IsPromoPackageInformation" />
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.InternetPackageInfo.InternetPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                    }
+
+
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="1"></td>
+                                                </tr>
+                                                @if (Model.PackageInfo.InternetPackageInfo.IsPromoPackageInformation)
+                                                {
+                                                    <tr>
+                                                        <td><span class="subheader1">Promo</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table border="0" cellpadding="0" cellspacing="0" class="scrollTable" width="100%">
+                                                                <thead>
+                                                                    <tr class="resultsHeader">
+                                                                        <td style="white-space: nowrap;">Display Name</td>
+                                                                        <td style="white-space: nowrap;width: 240px;">USOC</td>
+                                                                        <td style="white-space: nowrap;width: 60px;">Price</td>
+                                                                        <td style="white-space: nowrap;width: 120px;">Action</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach (var item in Model.PackageInfo.InternetPackageInfo.promoPackageInformation)
+                                                                    {
+                                                                        @if (item.Package_RowId % 2 != 0)
+                                                                        {
+                                                                            <tr valign="top" class="resultsOdd">
+                                                                                <td class="hardBreak">@item.Display_Name</td>
+                                                                                <td class="hardBreak">@item.USOC</td>
+                                                                                <td class="hardBreak">@item.Price</td>
+                                                                                <td class="hardBreak">@item.Action</td>
+                                                                            </tr>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <tr valign="top" class="resultsEven">
+                                                                                <td class="hardBreak">@item.Display_Name</td>
+                                                                                <td class="hardBreak">@item.USOC</td>
+                                                                                <td class="hardBreak">@item.Price</td>
+                                                                                <td class="hardBreak">@item.Action</td>
+                                                                            </tr>
+
+                                                                        }
+
+
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabcontent" id="VOIP-tab">
+                                    <div class="cmxform_tabs">
+                                        <h2 class="tabH2">Package Information</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                                <tr>
+                                                    <td><span class="subheader1">Packages</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable" width="100%">
+                                                            <thead>
+                                                                <tr class="resultsHeader">
+                                                                    <td style="white-space:nowrap; width:240px;">Display Name</td>
+                                                                    <td style="white-space: nowrap; width:160px;"> Processed </td>
+                                                                    <td style="white-space:nowrap; width:60px;">Price</td>
+                                                                    <td style="white-space:nowrap; width:120px;">Text Answer</td>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model.PackageInfo.IsVoipPackageInformation)
+                                                                {
+                                                                    for (int i = 0; i < Model.PackageInfo.VoipPackageInfo.VoipPackagelist.Count; i++)
+                                                                    {
+
+                                                                        @if (Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Package_RowId % 2 != 0)
+                                                                        {
+                                                                            <tr valign="top" class="resultsOdd">
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Order_Number" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.IsPromoPackageInformation" />
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <tr valign="top" class="resultsEven">
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Order_Number" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.VoipPackageInfo.IsPromoPackageInformation" />
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                    }
+
+
+                                                                }
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabcontent" id="POTS-tab">
+                                    <div class="cmxform_tabs">
+                                        <h2 class="tabH2">Package Information</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+
+                                                @if (Model.ProductInstallationList != null)
+                                                {
+
+                                                    @for (int i = 0; i < Model.ProductInstallationList.Count; i++)
+                                                    {
+                                                        @if (Model.ProductInstallationList[i].Product_Type.ToUpper() == "POTS")
+                                                        {
+
+
+                                                            <tr>
+                                                                <td colspan="4">
+                                                                    <span class="subheader">POTS Installation</span>
+                                                                    <input type="hidden" asp-for="@Model.ProductInstallationList[i].Product_RowId" />
+                                                                    <input type="hidden" asp-for="@Model.ProductInstallationList[i].Product_Type" />
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="right">
+                                                                    <label for="AccountInfo.Requested_Installation_Date">Requested Installation Date:</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input asp-for="ProductInstallationList[i].Requested_Installation_Date" type="date" class="edit-field form-control" asp-format="{0:yyyy-MM-dd}" readonly />
+
+                                                                </td>
+                                                                <td align="right">
+                                                                    <label for="AccountInfo.Requested_Installation_Time">Requested Installation Time:</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input asp-for="ProductInstallationList[i].Requested_Installation_Time" type="time" class="edit-field form-control" readonly />
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="right"><label for="AccountInfo.Scheduled_Installation_Date">Scheduled Installation Date:</label></td>
+                                                                <td>
+                                                                    <input asp-for="ProductInstallationList[i].Scheduled_Installation_Date" type="date" class="edit-field form-control" format="dd-MMM-yy" readonly />
+                                                                </td>
+                                                                <td align="right"> </td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="right"><label for="AccountInfo.Requested_Installation_Time">Scheduled Installation  Begin Time:</label></td>
+                                                                <td>
+                                                                    <input asp-for="ProductInstallationList[i].Scheduled_Installation_StartTime" type="time" class="edit-field form-control" readonly />
+                                                                </td>
+                                                                <td align="right"><label for="AccountInfo.Scheduled_Installation_EndTime">Scheduled Installation  End Time:</label></td>
+                                                                <td>
+                                                                    <input asp-for="ProductInstallationList[i].Scheduled_Installation_EndTime" type="time" class="edit-field form-control" readonly />
+
+                                                                </td>
+                                                            </tr>
+
+                                                        }
+
+                                                    }
+
+                                                }
+                                                <tr>
+                                                    <td colspan="4"><span class="subheader">Customer Information</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="right"><label>POTS Order Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="PackageInfo.PotsPackageInfo.POTS_Order_Number" class="form-control" />
+                                                    </td>
+
+                                                    <td align="right"><label for="PackageInfo.PotsPackageInformation.Customer_Billing_Telephone_Number">Billing Telephone Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="PackageInfo.PotsPackageInfo.Customer_Billing_Telephone_Number" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="right"><label for="PackageInfo.PotsPackageInformation.Customer_Billing_Telephone_Number">RDS Ticket Number:</label></td>
+                                                    <td>
+                                                        <input asp-for="PackageInfo.PotsPackageInfo.RDS_Ticket_Number" class="form-control" />
+                                                    </td>
+
+                                                    <td></td>
+                                                </tr>
+
+
+                                            </table>
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                                <tr>
+                                                    <td><span class="subheader1">Packages</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable" width="100%">
+                                                            <thead>
+                                                                <tr class="resultsHeader">
+                                                                    <td style="white-space:nowrap; width:240px;">Display Name</td>
+                                                                    <td style="white-space: nowrap; width:160px;">Processed</td>
+                                                                    <td style="white-space:nowrap; width:60px;">Price</td>
+                                                                    <td style="white-space:nowrap; width:120px;">Text Answer</td>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (Model.PackageInfo.IsPotsPackageInformation)
+                                                                {
+                                                                    for (int i = 0; i < Model.PackageInfo.PotsPackageInfo.PotsPackagelist.Count; i++)
+                                                                    {
+
+                                                                        @if (Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Package_RowId % 2 != 0)
+                                                                        {
+                                                                            <tr valign="top" class="resultsOdd">
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Order_Number" />
+
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <tr valign="top" class="resultsEven">
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Display_Name</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.VoipPackageInfo.VoipPackagelist[i].Display_Name</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Isprocessed" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Package_RowId" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Package_Type" />
+                                                                                    <input type="hidden" asp-for="@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Order_Number" />
+
+                                                                                </td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Price</td>
+                                                                                <td class="hardBreak">@Model.PackageInfo.PotsPackageInfo.PotsPackagelist[i].Text_Answer</td>
+                                                                            </tr>
+                                                                        }
+                                                                    }
+
+
+                                                                }
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabcontent" id="AWB-tab">
+                                    <div class="cmxform_tabs">
+                                        <h2 class="tabH2">Package Information</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                                                <tr>
+                                                    <td><span class="subheader1">Packages</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable" width="100%">
+
+                                                            <tr>
+                                                                <td align="right" width="25%"><strong>AWB Agreement Number: </strong></td>
+                                                                <td width="25%">
+                                                                    <input asp-for="PackageInfo.AwbPackageInformation.AWB_Agreement_Number" class="form-control" />
+                                                                    <input type="hidden" asp-for="@Model.PackageInfo.AwbPackageInformation.Package_RowId" />
+                                                                    <input type="hidden" asp-for="@Model.PackageInfo.AwbPackageInformation.Package_Type" />
+                                                                    <input type="hidden" asp-for="@Model.PackageInfo.AwbPackageInformation.Order_Number" />
+                                                                </td>
+                                                                <td width="50%">   </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="right" width="25%"><strong>AWB CTN: </strong></td>
+                                                                <td width="25%">
+                                                                    <input asp-for="PackageInfo.AwbPackageInformation.AWB_CTN" class="form-control" />
+
+                                                                </td>
+                                                                <td width="50%">   </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            }
+        }
+
+
+
+        <div style="height: 20px;"></div>
+
+        <div class="content-border" style="margin-top:20px">
+            <div style="height: 20px;"></div>
+            <h2>History</h2>
+            <hr class="break" />
+            <div style="text-align:right; margin-bottom: 5px; margin-top: 15px">
+                <input class="button-css" id="loadHistory" onclick="enableHistory()" type="button"
+                       value="Load History" />
+            </div>
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <div id="tab4">
+                            <ul class="shadetabs" id="Business-Address-tabs">
+                                <li><a class="selected" href="#rep-comments-history-tab" rel="rep-comments-history-tab">Rep Comments History</a></li>
+                                <li><a href="#system_notes" rel="system_notes">System Notes</a></li>
+                                <li><a href="#call-history-tab" rel="call-history-tab">Call History </a></li>
+
+                            </ul>
+                            <div class="tabcontent" id="rep-comments-history-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Rep Comments History</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <div class="tableContainer scrollingIE">
+                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                   class="tablesorter resizable editable tableKit"
+                                                   width="100%">
+                                                <thead class="fixedHeader">
+
+                                                    <tr class="resultsHeader">
+                                                        <td style="white-space: nowrap;width:140px;">Time</td>
+                                                        <td style="white-space: nowrap;width:90px;">Rep ID</td>
+                                                        <td style="white-space: nowrap;">Category : State : Reason</td>
+                                                        <td style="white-space: nowrap;">Comments</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="scrollContent" id="rep-comments-content">
+                                                    @if (Model.RepCommentsHistory != null)
+                                                    {
+                                                        @foreach (var item in Model.RepCommentsHistory)
+                                                        {
+                                                            <tr valign="top" class="resultsOdd">
+                                                                <td class="hardBreak">@item.Rep_TimeStamp</td>
+                                                                <td class="hardBreak">@item.Rep_ID </td>
+                                                                <td class="hardBreak">@item.Rep_Display_Response </td>
+                                                                <td class="hardBreak">@item.Comments</td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="subheader" style="padding-top:15px;padding-left:15px;"><label>Add Rep Comments</label></div>
+                                        <div style="padding-left:15px;">
+                                            <textarea asp-for="Rep_text_Comments" class="form-control" style="height: 50px; width: 97%;"></textarea>
+                                        </div>
+                                        <div class="subheader" style="padding-top:15px;padding-left:15px;"><label>Add Message to Seller</label></div>
+                                        <div style="padding-left:15px;">
+
+                                            <textarea asp-for="Message_To_Seller" class="form-control" style="height: 50px; width: 97%;"></textarea>
+                                        </div>
+                                        <div>
+                                            <br />
+                                            <table border="0" class="appTable" id="specialprojectTable" width="100%">
+
+                                                <thead>
+                                                    <tr>
+                                                        <td>Special Project Type</td>
+                                                        <td>Special Project Type</td>
+                                                        <td>
+                                                            <input class="button-css" id="add" name="AddNewSpecialProject"
+                                                                   type="button"
+                                                                   value="Add New Project" />
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+
+
+                                                <tr>
+                                                    <td>
+
+                                                        <select id="SpecialProjectTypeId" name="SpecialProjectTypeId" style="width: 150px;" class="SpecialProjectType"><option value="">Select</option></select>
+
+
+                                                    </td>
+                                                    <td>
+
+                                                        <select id="SpecialProjectActioneId" name="SpecialProjectActioneId" style="width: 150px;">
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="system_notes">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">System Notes</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <div class="tableContainer scrollingIE">
+                                            <table border="0" cellpadding="0" cellspacing="0"
+                                                   class="tablesorter resizable editable tableKit"
+                                                   width="100%">
+                                                <thead class="fixedHeader">
+
+                                                    <tr class="resultsHeader">
+                                                        <td style="white-space: nowrap;width:140px;">Time</td>
+                                                        <td style="white-space: nowrap;width:90px;">Rep ID</td>
+                                                        <td style="white-space: nowrap;">Category : State : Reason</td>
+                                                        <td style="white-space: nowrap;">Comments</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="scrollContent" id="rep-comments-content">
+                                                    @if (Model.SystemNotes != null)
+                                                    {
+                                                        @foreach (var item in Model.SystemNotes)
+                                                        {
+                                                            <tr valign="top" class="resultsOdd">
+                                                                <td class="hardBreak"> @item.Rep_TimeStamp</td>
+                                                                <td class="hardBreak">@item.Rep_ID </td>
+                                                                <td class="hardBreak">@item.Rep_Display_Response </td>
+                                                                <td class="hardBreak"> @item.Comments</td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabcontent" id="call-history-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Call History</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <div class="cmxform_results">
+                                            <div class="contentBlock">
+                                                <div class="tableContainer scrollingIE">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                           class="tablesorter resizable editable tableKit"
+                                                           width="100%">
+                                                        <thead class="fixedHeader">
+
+                                                            <tr class="resultsHeader">
+                                                                <td style="white-space: nowrap; width:140px;">Start Time</td>
+                                                                <td style="white-space: nowrap; width:140px;">End Time</td>
+                                                                <td style="white-space: nowrap; width:160px;">Call Reason</td>
+                                                                <td style="white-space: nowrap; width:160px;">Call Disposition</td>
+                                                                <td style="white-space: nowrap;">Comments</td>
+                                                                <td style="white-space: nowrap; width:90px;">Rep ID</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="scrollContent" id="rep-comments-content">
+                                                            <tr valign="top" class="resultsOdd">
+                                                                <td class="hardBreak"> test</td>
+                                                                <td class="hardBreak">test </td>
+                                                                <td class="hardBreak">test </td>
+                                                                <td class="hardBreak"> test</td>
+                                                                <td class="hardBreak">test </td>
+                                                                <td class="hardBreak">test</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        <div style="height: 20px;"></div>
+        <h2>Status</h2>
+        <hr class="break" />
+        <div class="cmxform_short">
+            <div class="contentBlock">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr id="anticipateDate" style="display: none; width: 210px;">
+                        <td>
+                            <label class="subheader">Anticipated Provisioning Date:</label>
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.anticipatedProvisioningDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @*<input type="date" asp-for="anticipatedProvisioningDate" />*@
+                        </td>
+                    </tr>
+                    <tr valign="top">
+
+                        @if (Model.IsInternetState)
+                        {
+                            <td style="width:210px;">
+                                <div class="subheader">Internet State</div><br />
+
+                                @Html.DropDownListFor(m => m.InternetStateId, Model.InternetState)
+                                <div class="subheader"> </div><br />
+                                <select id="InternetReasonCodeId" name="InternetReasonCodeId" style="width:150px; display:none">
+                                </select>
+                            </td>
+                        }
+
+
+                        @if (Model.IsVoipState)
+                        {
+                            <td style="width:210px;">
+                                <div class="subheader">VOIP State</div><br />
+
+                                @Html.DropDownListFor(m => m.VoipStateId, Model.VoipState)
+                                <div class="subheader"> </div><br />
+                                <select id="VoipReasonCodeId" name="VoipReasonCodeId" style="width: 150px; display: none">
+                                </select>
+                            </td>
+
+                        }
+
+
+                        @if (Model.IsAwsState)
+                        {
+                            <td style="width:210px;">
+                                <div class="subheader">AWB State</div><br />
+
+                                @Html.DropDownListFor(m => m.AwsStateId, Model.AwsState)
+                                <div class="subheader"> </div><br />
+                                <select id="AwsReasonCodeId" name="AwsReasonCodeId" style="width: 150px; display: none">
+                                </select>
+                            </td>
+                        }
+
+
+
+                        @if (Model.IsPotsState)
+                        {
+                            <td style="width:210px;">
+                                <div class="subheader">POTS State</div><br />
+
+                                @Html.DropDownListFor(m => m.PotsStateId, Model.PotsState)
+                                <div class="subheader"> </div><br />
+                                <select id="PotsReasonCodeId" name="PotsReasonCodeId" style="width: 150px; display: none">
+                                </select>
+                            </td>
+                        }
+
+
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div style="height: 20px;"></div>
+        <div class="cmxform_btn">
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td style="padding-bottom: 0px;">
+                        <input class="button-css" type="submit" value="Update" name="buttonVal" />
+                        <input class="button-css" type="submit" value="Return to DWQ" name="buttonVal" />
+                        <input class="button-css" type="submit" value="Reset to Landing Page" name="buttonVal" />
+                        <input class="button-css" type="submit" value="Update and Start Call" name="buttonVal" />
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+
+
+    /*$.noConflict();*/
+        /* jQuery(document).ready(function ($) {*/
+        $(document).ready(function ($) {
+
+        $("#tab1").tabs();
+        $("#tab2").tabs();
+        $("#tab3").tabs();
+        $("#tab4").tabs();
+           BindSpecialProjectDropdown();
+            var internetstateid = $("#InternetStateId").val();
+            var VoipStateId = $("#VoipStateId").val();
+            var AwsStateId = $("#AwsStateId").val();
+            var PotsStateId = $("#PotsStateId").val();
+
+            if (internetstateid != undefined && internetstateid!=1)
+            {
+                ShowAnticipateDateVisibilty($("#InternetStateId option:selected").text());
+                CallReasonCode("#InternetStateId", "#InternetReasonCodeId", '@Model.InternetReasonCodeId');
+            }
+            if (VoipStateId != undefined && VoipStateId!=1)
+            {
+
+                ShowAnticipateDateVisibilty($("#VoipStateId option:selected").text());
+                CallReasonCode("#VoipStateId", "#VoipReasonCodeId",'@Model.VoipReasonCodeId');
+            }
+
+            if (AwsStateId != undefined && AwsStateId!=1)
+            {
+                ShowAnticipateDateVisibilty($("#AwsStateId option:selected").text());
+                CallReasonCode("#AwsStateId", "#AwsReasonCodeId",'@Model.AwsReasonCodeId');
+            }
+            if (PotsStateId != undefined && PotsStateId!=1)
+            {
+                ShowAnticipateDateVisibilty($("#PotsStateId option:selected").text());
+                CallReasonCode("#PotsStateId", "#PotsReasonCodeId",'@Model.PotsReasonCodeId');
+            }
+
+
+        });
+    function orderEditable()
+    {
+        //alert('button clicked');
+
+        $(".edit-field").removeAttr('readonly');
+        //$('.edit-field').each(function (i, obj) {
+        //    obj.removeAttr('readonly');
+
+
+        //});
+    }
+    function ShowAnticipateDateVisibilty(stateText) {
+        if (stateText == "Incomplete") {
+
+            $("#anticipateDate").css("display", "");
+        }
+        else {
+            $("#anticipateDate").css("display", "none");
+        }
+        if ($("#InternetStateId option:selected").text() == "Incomplete" || $("#VoipStateId option:selected").text() == "Incomplete" || $("#AwsStateId option:selected").text() == "Incomplete" || $("#PotsStateId option:selected").text() == "Incomplete")
+        {
+            $("#anticipateDate").css("display", "");
+        }
+
+
+    }
+    function CallReasonCode(InputElement, outputelement,seledcted_value='')
+    {
+        var stateId = $(InputElement).val();
+        $.getJSON('@Url.Content("~/")' + "orderprocess/GetReasonCodeByStateId?stateid=" + stateId, function (data)
+            {
+               var items = '';
+            $(outputelement).empty();
+                if (data.length > 0)
+                {
+                    $.each(data, function (index, reasonval) {
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else {      items += "<option value='" + reasonval.reasonCode + "'>" + reasonval.reasonCodeName + "</option>";   }
+                    });
+                    $(outputelement).html(items);
+                    if (seledcted_value != '')
+                        $(outputelement).val(seledcted_value)
+                    $(outputelement).css("display", "");
+                }
+                else
+                {
+                    $(outputelement).css("display", "none");
+                }
+            });
+
+    }
+    $("#InternetStateId").change(function ()
+    {
+        ShowAnticipateDateVisibilty($("#InternetStateId option:selected").text());
+        CallReasonCode("#InternetStateId", "#InternetReasonCodeId");
+       /* var stateId = $("#InternetStateId").val();*/
+
+            @*$.getJSON('@Url.Content("~/")' + "orderprocess/GetReasonCodeByStateId?stateid=" + stateId, function (data)
+            {
+               var items = '';
+                $("#InternetReasonCodeId").empty();
+                if (data.length > 0)
+                {
+                    $.each(data, function (index, reasonval) {
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else {      items += "<option value='" + reasonval.reasonCode + "'>" + reasonval.reasonCodeName + "</option>";   }
+                    });
+                    $('#InternetReasonCodeId').html(items);
+                    $("#InternetReasonCodeId").css("display", "");
+                }
+                else
+                {
+                    $("#InternetReasonCodeId").css("display", "none");
+                }
+            });*@
+
+
+    });
+
+    $("#VoipStateId").change(function ()
+    {
+        ShowAnticipateDateVisibilty($("#VoipStateId option:selected").text());
+        CallReasonCode("#VoipStateId", "#VoipReasonCodeId");
+    });
+    $("#AwsStateId").change(function ()
+    {
+        ShowAnticipateDateVisibilty($("#AwsStateId option:selected").text());
+        CallReasonCode("#AwsStateId", "#AwsReasonCodeId");
+
+    });
+    $("#PotsStateId").change(function ()
+    {
+        ShowAnticipateDateVisibilty($("#PotsStateId option:selected").text());
+        CallReasonCode("#PotsStateId", "#PotsReasonCodeId");
+
+    });
+
+    $("#SpecialProjectTypeId").change(function () {
+
+        var ProjectTypeId = $("#SpecialProjectTypeId").val();
+
+        $.getJSON('@Url.Content("~/")' + "orderprocess/GetSpecialProjectActionId?projectid=" + ProjectTypeId, function (data)
+            {
+               var items = '';
+            $("#SpecialProjectActioneId").empty();
+
+            $.each(data, function (index, reasonval) {
+                debugger;
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else { items += "<option value='" + reasonval.actionId + "'>" + reasonval.specialProject_Action_Name + "</option>";   }
+                    });
+                    $('#SpecialProjectActioneId').html(items);
+
+
+            });
+    });
+
+    function BindSpecialProjectDropdown()
+    {
+        @*$.getJSON('@Url.Content("~/")' + "orderprocess/GetSpecialProjectType", function (data)
+            {
+               var items = '';
+            $("#SpecialProjectTypeId").empty();
+
+            $.each(data, function (index, reasonval) {
+                debugger;
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else { items += "<option value='" + reasonval.projectId + "'>" + reasonval.specialProjectName + "</option>";   }
+                    });
+            $('#SpecialProjectTypeId').html(items);
+
+
+            });*@
+
+         $.getJSON('@Url.Content("~/")' + "orderprocess/GetSpecialProjectType", function (data)
+            {
+               var items = '';
+            $(".SpecialProjectType").empty();
+
+             $.each(data, function (index, reasonval)
+          {
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else { items += "<option value='" + reasonval.projectId + "'>" + reasonval.specialProjectName + "</option>";   }
+                    });
+            $('.SpecialProjectType').html(items);
+
+
+            });
+    }
+
+
+</script>
+<script type="text/javascript">
+
+
+
+    var counter = 1;
+    $(function () {
+        $('#add').click(function () {
+            $('<tr id="tablerow' + counter + '"> <td> ' +
+                '<select id="SpecialProjectTypeId" name="SpecialProjectTypeId" style="width: 150px;" class="SpecialProjectType"><option value="">Select</option></select>' +
+                '</td>' +
+                '<td>' +
+                '<input type="text" class="text-box single-line" name="OrderInformation.specialprojects[' + counter + '].Project_Action_Id" value="" required="required" />' +
+                '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-primary" onclick="removeTr(' + counter + ');">Delete</button>' +
+                '</td>' +
+                '</tr>').appendTo('#specialprojectTable');
+            counter++;
+            return false;
+
+
+        });
+
+    });
+
+
+    function removeTr(index) {
+        if (counter > 1) {
+            $('#tablerow' + index).remove();
+            counter--;
+        }
+        return false;
+    }
+</script>

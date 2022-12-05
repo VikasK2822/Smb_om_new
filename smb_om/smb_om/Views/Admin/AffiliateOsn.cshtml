@@ -1,0 +1,84 @@
+﻿@model List<smb_om.Model.AffiliateReasonCode>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+
+    <div id="content-body">
+        <form asp-controller="Admin" asp-action="AffiliateOsnUpdate" id="osnAdminForm" method="POST" name="osnAdminForm">
+            <input name="token" type="hidden" value="2dea4b41-a0cf-4ce6-9491-0d28786b049b" /><input id="action" name="action" type="hidden" value="" /><input id="inputstring" name="inputstring" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>OSN Admin</h1>
+                            <p class="error"></p>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Affiliate OSN Control </h2>
+                                        <hr class="break" />
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <tr class="resultsHeader">
+                                                <td align="center" style="width: 15%;">Affiliate</td>
+                                                @*<td align="center">Agent Note Generated OSN</td>*@
+                                            <td align="center">Cancelled</td>
+                                                @*<td align="center">Canceled - NRFC</td>*@
+                                                @*<td align="center">Complete - Email</td>*@
+                                                <td align="center">Incomplete</td>
+                                                <td align="center">Pending</td>
+                                                <td align="center">Submitted</td>
+                                                @*<td align="center">Pending - Email</td>
+                                                    <td align="center">Submitted - Email</td>*@
+                                            </tr>
+                                            @if (Model != null && Model.Count > 0)
+                                            {
+                                                @for (int i = 0; i < Model.Count; i++)
+                                                {
+                                                    <tr class="resultsOdd">
+
+                                                        @*<td>@Model[i].AffiliateName</td>*@
+                                                        <td>@Html.Label(@Model[i].AffiliateName)</td>
+
+                                                        @*<td><label asp-for="@Model[i].AffiliateName" id="@Model[i].AffiliateName"></label>  </td>*@
+                                                        <td style="display:none"><input type="hidden" asp-for="@Model[i].AffiliateName" />  </td>
+                                                        @*<td><input asp-for="@item.AffiliateName" type="hidden" value="@item.AffiliateName"  /></td>*@
+                                                        <td align="center">  <input type="checkbox" asp-for="@Model[i].Canceled" /></td>
+                                                        <td align="center"> <input type="checkbox" asp-for="@Model[i].Incomplete" /></td>
+                                                        <td align="center"> <input type="checkbox" asp-for="@Model[i].Pending" /></td>
+                                                        <td align="center"> <input type="checkbox" asp-for="@Model[i].Submitted" /></td>
+                                                        @*<td align="center"><input asp-for="@item.Canceled" type="checkbox" checked="checked" /></td>*@
+                                                        @*<td align="center"><input type="checkbox"  checked="checked" /></td>
+                                                            <td align="center"><input type="checkbox"  checked="checked" /></td>
+                                                            <td align="center"><input type="checkbox"  checked="checked" /></td>
+                                                            <td align="center"><input type="checkbox"  checked="checked" /></td>*@
+                                                    </tr>
+                                                }
+                                            }
+
+                                            <tr align="center">
+                                                <td colspan="2">
+                                                    <br /><input class="button-css" name="saveconfig" type="submit" value="Save" /><input class="button-css" name="cancelconfig" onclick="cancel();" type="button"
+                                                                                                                                          value="Cancel" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+         
+        function cancel() {
+            window.location.reload();
+        }
+    </script>
+
+</body>

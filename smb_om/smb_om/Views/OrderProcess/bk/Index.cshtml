@@ -1,0 +1,570 @@
+﻿@model smb_om.Model.OrderInformation
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+   
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application" style="WORD-BREAK: break-all;">
+                        <h1>Order</h1>
+                        <div class="content-border">
+                            <div class="cmxform_short">
+                                <fieldset>
+                                    <h2>Order Information 1223</h2>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <script type="text/javascript">
+                                             <!--
+                                                function showWarningForDiffInsDate() {
+                                                    var actInstalDatList = document.getElementsByName('actualInstalationDate');
+                                                    var actInsDat;
+                                                    var InstFlag = 'false';
+                                                    if (actInstalDatList.length != 0) {
+                                                        actInsDat = new Date(actInstalDatList[0].innerText).toString();
+                                                        for (var i = 0; i < actInstalDatList.length; i++) {
+                                                            if (actInsDat !== new Date(actInstalDatList[i].innerText).toString()) {
+                                                                InstFlag = 'true';
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (InstFlag === 'true') {
+                                                        document.getElementById('validateInstalationDates').innerHTML = 'Multiple Installation Dates on Order';
+                                                    }
+                                                }
+
+                                                function showStateReasonCodeInInsDateSec(state, reasoncode) {
+                                                    //directTv for Residential and directv for Business orders
+                                                    var productsList = ["internet", "voip", "directTv", "directv", "iptv", "digitallife", "wireless", "dsl", "access", "attTv"];
+                                                    for (var i = 0; i < productsList.length; i++) {
+                                                        var value = "";
+                                                        var orderState = document.getElementById(productsList[i] + state);
+                                                        var orderReasonCode = document.getElementById(productsList[i] + reasoncode);
+                                                        var setStateReasonCode = document.getElementById(productsList[i].toUpperCase() + 'viewStateReasoncode');
+                                                        if (orderState != null && orderState.options.length != 0) {
+                                                            value = orderState.options[orderState.selectedIndex].text;
+                                                            var setBgColor = document.getElementById(productsList[i].toUpperCase() + 'bgColor');
+                                                            if (value.indexOf('Canceled') !== -1) { setBgColor.style.backgroundColor = "red"; }
+                                                            if (value.indexOf('Pending') !== -1 || value.indexOf('Incomplete') !== -1) { setBgColor.style.backgroundColor = "yellow"; }
+                                                            if (value.indexOf('Submitted') !== -1) { setBgColor.style.backgroundColor = "lightblue"; }
+                                                        }
+                                                        if (orderReasonCode != null && orderReasonCode.options.length != 0) {
+                                                            value = value + '/' + orderReasonCode.options[orderReasonCode.selectedIndex].text;
+                                                        }
+                                                        if (setStateReasonCode != null) {
+                                                            setStateReasonCode.innerHTML = value;
+                                                        }
+                                                    }
+                                                }
+
+
+                                                function scheduleStatusCheck(transId, userId) {
+                                                    $(".popupoverlay").show();
+                                                    $("#status-check-processing").show();
+
+                                                    setTimeout(function () {
+                                                        StatusCheckFacade.scheduleStatusCheck(transId, userId, {
+                                                            callback: function (data) {
+                                                                window.location.reload()
+                                                            }
+                                                        });
+                                                    }, 2000);
+
+                                                }
+
+                                                -->
+                                            </script>
+                                            <td>
+                                                <div style="text-align: left;">
+                                                    <input class="button-css" onClick="editOrder()"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="Allow Edits" /><br /><input id="allowedithidden" name="allowedithidden" type="hidden" value="false" />
+                                                    <input class="button-css"
+                                                           onclick="viewMaskedData('3ba511ab-0af4-3c81-0905-794d766a6a0c', '43393974-0af4-3c81-42d8-983216e6c05b')"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="View Masked Data" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="inline-error" id="validateInstalationDates" style="margin-left:10px"></div>
+        <hr class="break" />
+        <form method="post" enctype="multipart/form-data" asp-controller="OrderProcess" asp-action="Index">
+            <div class="cmxform_short">
+                <div class="contentBlock">
+                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                        <tr>
+                            <td width="130px;"><strong>BAN: </strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.BAN" readonly />
+                            <td>
+
+                        </tr>
+                        <tr>
+                            <td width="130px;"><strong>Order Number:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Number" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Order Create Date:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Create_Date" readonly />
+                            </td>
+                            <td><strong>UV Sales Code:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.UVSalesCode" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer Name:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.CustomerName" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Service Address:</strong></td>
+                            <td><input asp-for="HearderInfo.ServiceAddress" readonly /></td>
+                            <td><strong>Partner:</strong></td>
+                            <td><input asp-for="HearderInfo.Partner" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Order Type:</strong></td>
+                            <td><input asp-for="HearderInfo.OrderType" readonly /></td>
+                            <td><strong>Affiliate:</strong></td>
+                            <td><input asp-for="HearderInfo.Affiliate" readonly /></td>
+                        </tr>
+                        <tr>
+
+                            <td><strong>Common Order Id:</strong></td>
+                            <td> <input asp-for="HearderInfo.CommonOrderId" readonly /> </td>
+                            <td><strong>Can-be-reached:</strong></td>
+                            <td><input asp-for="HearderInfo.Canbereached" readonly /></td>
+                        </tr>
+                        <tr class="alert-info">
+                            <td colspan="4"><strong><span class="subheader">Seller Information</span></strong></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Name:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Name" readonly /></td>
+                            <td style="color: #656565;"><strong>Phone Number:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_PhoneNumber" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Agent ID:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_AgentID" readonly /></td>
+                            <td style="color: #656565;"><strong>Email Address:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_EmailAddress" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Contact Phone<br />Number:</strong></td>
+                            <td style="color: #656565;">
+                                <label class="displayLabel"></label>
+
+                                <input asp-for="HearderInfo.Seller_Contact_Phone_Number" class="edit-field form-control" readonly />
+                            </td>
+                            <td style="color: #656565;"><strong>Preferred Contact Method:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Preferred_Contact_Method" readonly /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="height: 20px;"></div>
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <ul class="shadetabs" id="account-verify-tabs">
+                            @*<li><a class="selected" href="#" rel="account-tab">Account</a></li>*@
+                      
+                            <li><a  class="selected" href="#" rel="verify-tab">Verify</a></li>
+                            <li><a href="#" rel="documents-tab">Documents</a></li>
+                            <li><a href="#" rel="payment-tab">Payment</a></li>
+                        </ul>
+                       
+                     </td>
+                </tr>
+            </table>
+            <div class="tabcontent" id="verify-tab">
+                <div class="cmxform_tabs">
+                    <h2 class="tabH2">Verify</h2>
+                    <hr class="break" />
+                    <div class="contentBlock">
+                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                            <col style="width: 50%;" />
+                            <col style="width: 50%;" />
+                            <tr>
+                                <td valign="top">
+                                    <table border="0" cellspacing="0" width="100%">
+                                        <col style="width: 50%;" />
+                                        <col style="width: 50%;" />
+                                        <tr>
+                                            <td align="right"><span class="subheader">Billing Information</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Number Prefix:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Number:</label></td>
+                                            <td><label>72</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Number Suffix:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Direction:</label></td>
+                                            <td><label>S</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Name:</label></td>
+                                            <td><label>FOREST</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Type:</label></td>
+                                            <td><label>AVE</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Street Trailing Direction:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Assigned Street Number:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Structure Type:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Structure Value:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Level Type:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Level Value:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Apartment Type:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Apartment Value:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>City:</label></td>
+                                            <td><label>LUVERNE</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>State:</label></td>
+                                            <td><label>AL</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Zip:</label></td>
+                                            <td><label>36049</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Country:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>County:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Post Office Box:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Rural Route Box / Ctr Number:</label></td>
+                                            <td><label></label></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td valign="top">
+                                    <table border="0" cellspacing="0" width="100%">
+                                        <col style="width: 50%;" />
+                                        <col style="width: 50%;" />
+                                        <tr>
+                                            <td align="right"><span class="subheader">Authentication</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>DOB:</label></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="showFields" id="dobChangedRow" style="display:none;">
+                                            <td align="right"><label>Enter Customer's Corrected DOB:</label></td>
+                                            <td>
+                                                <input class="form-control" id="newCorrectedDOB" maxlength="15" name="newCorrectedDOB"
+                                                       onblur="formatMaskDateDob(this)"
+                                                       size="15"
+                                                       tabindex="45"
+                                                       type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>SSN:</label></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="showFields" id="ssnChangedRow" style="display:none;">
+                                            <td align="right"><label>Enter Customer's Corrected SSN:</label></td>
+                                            <td>
+                                                <input class="form-control" id="newCorrectedSSN" maxlength="9" name="newCorrectedSSN"
+                                                       size="15"
+                                                       tabindex="45"
+                                                       type="text" /><input id="newCorrectedSSNFormatted" style="display:none;" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Federal Tax ID:</label></td>
+                                            <td>123456789</td>
+                                        </tr>
+                                        <tr class="showFields" id="federalChangedRow" style="display:none;">
+                                            <td align="right"><label>Enter Customer's Corrected Federal Tax ID:</label></td>
+                                            <td>
+                                                <input class="form-control" id="newCorrectedFederalTaxId" maxlength="9"
+                                                       name="newCorrectedFederalTaxId"
+                                                       size="15"
+                                                       tabindex="45"
+                                                       type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Driver's License:</label></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="showFields" id="licenseNumberChangedRow" style="display:none;">
+                                            <td align="right"><label>Enter Customer's Corrected Driver's License:</label></td>
+                                            <td>
+                                                <input class="form-control" id="newCorrectedLicenseNumber" maxlength="50"
+                                                       name="newCorrectedLicenseNumber"
+                                                       size="15"
+                                                       tabindex="45"
+                                                       type="text" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>State:</label></td>
+                                            <td>
+                                                <input class="form-control edit-field" disabled="disabled" id="licenseState"
+                                                       name="licenseState"
+                                                       size="20"
+                                                       type="text"
+                                                       value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Expiration Date:</label></td>
+                                            <td>
+                                                <input class="form-control edit-field" disabled="disabled" id="licenseExpirationDate"
+                                                       name="licenseExpirationDate"
+                                                       onblur="formatMaskDate(this)"
+                                                       size="10"
+                                                       type="text"
+                                                       value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Officer 1 SSN:</label></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Officer 2 SSN:</label></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><span class="subheader">Security Verification</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>PIN:</label></td>
+                                            <td><label>1234</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Security Question:</label></td>
+                                            <td><label>What is your favorite restaurant?</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right"><label>Security Answer:</label></td>
+                                            <td><label>SAGAR</label></td>
+                                        </tr>
+                                        <!--<tr>
+                                    <td align="right"><span class="subheader">Service Terms and Conditions</span></td>
+                                </tr>-->
+                                        <!--<tr>
+                                    <td align="right"><label>Service T &amp; C Accepted:</label></td>
+                                    <td><label></label></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label>T &amp; C Accepted Date / Time:</label></td>
+                                    <td><label></label></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label>T &amp; C Accepted Version:</label></td>
+                                    <td><label></label></td>
+                                </tr>
+                                <tr>
+                                    <td align="right"><label>CPNI:</label></td>
+                                    <td><label class="encrypted-field" for="cpni">!0000000000000100#56017874#2p5DY/uewro=</label><span id="cpni">0000</span></td>
+                                </tr>-->
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent" id="documents-tab">
+                <div class="cmxform_tabs">
+                    <h2 class="tabH2">Uploaded Document</h2>
+                    <hr class="break" />
+                    <div class="contentBlock">
+                        <table border="0" cellpadding="0" cellspacing="0" class="appTable" width="100%">
+                            <tr>
+                                <td>
+                                    <table border="0" cellpadding="0" cellspacing="0" class="scrollTable"
+                                           id="documentsTab"
+                                           width="100%">
+                                        <tr class="resultsHeader">
+                                            <td style="white-space: nowrap;width: 160px;">Document Name</td>
+                                            <td style="white-space: nowrap;width: 100px;">Document Type</td>
+                                            <td style="white-space: nowrap;width: 60px;">User ID</td>
+                                            <td style="white-space: nowrap;width: 120px;">Timestamp</td>
+                                            <td style="white-space: nowrap;width: 50px;">Accepted</td>
+                                        </tr>
+                                        <tr valign="top" class="resultsOdd">
+                                            <td class="hardBreak">
+                                                <a href="/indirect-webclient/smbcDocDownload?documentId=3ba5de37-0af4-3c81-0905-794dbc4bfd70"
+                                                   target="_blank">Letter of Agency</a>
+                                            </td>
+                                            <td class="hardBreak">Letter of Agency</td>
+                                            <td class="hardBreak">vamsikrishnan</td>
+                                            <td class="hardBreak">07-26-2022 1:55:02 PM, EDT</td>
+                                            <td class="hardBreak">
+                                                <input id="3ba5de37-0af4-3c81-0905-794dbc4bfd70"
+                                                       name="3ba5de37-0af4-3c81-0905-794dbc4bfd70"
+                                                       type="checkbox"
+                                                       value="true"
+                                                       checked="checked" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent" id="payment-tab">
+                <div>
+                    <ul class="shadetabs" id="tabs-section4">
+                        <li><a href="#" rel="autoRecurring-payment">Auto Payment</a></li>
+                    </ul>
+                </div>
+                <div class="content-border cmxform_tabs" id="autoRecurring-payment">
+                    <div class="contentBlock">
+                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                            <tr>
+                                <td style="text-align: right;"><span class="subheader">AUTO Payment</span></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label>Amount:</label></td>
+                                <td>0.00</td>
+                                <!--<td style="text-align: right;"><label>BTA:</label></td>-->
+                                <!--<td></td>-->
+                                <!--<td style="text-align: right;"><label>Disclosure Accepted:</label>
+                        <td> Y </td>-->
+                            </tr>
+                            <tr>
+                                <!--<td style="text-align: right;"><label>Estimated Tax:</label></td>
+                        <td></td>-->
+                                <td style="text-align: right;"><label>Disclosure Accepted:</label>
+                                <td> Y </td>
+                                <!--</td>
+                        <td style="text-align: right;">   </td>
+                        <td>   </td>-->
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label>Product Type:</label></td>
+                                <td>ALL</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><span class="subheader">Credit Card</span></td>
+                                <td colspan="3">   </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label>Credit Card Type:</label></td>
+                                <td>Master Card</td>
+                                <td style="text-align: right;"><label>Credit Card Name:</label></td>
+                                <td> </td>
+                            </tr>
+                            <label class="encrypted-field" for="ccNum_3ba511ca-0af4-3c81-0905-794d4718f75e"></label>
+                            <label class="encrypted-field" for="authNo_3ba511ca-0af4-3c81-0905-794d4718f75e"></label>
+                            <tr>
+                                <td style="text-align: right;"><label>Credit Card Number:</label></td>
+                                <td><span id="ccNum_3ba511ca-0af4-3c81-0905-794d4718f75e"></span></td>
+                                <td style="text-align: right;"><label>Authorization Number:</label></td>
+                                <td><span id="authNo_3ba511ca-0af4-3c81-0905-794d4718f75e"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"><label>Card Billing Zip:</label></td>
+                                <td>36049</td>
+                                <td style="text-align: right;"><label>Expiration Date:</label></td>
+                                <td>2030-12<br /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="contentBlock">
+                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                            <col style="width: 25%;" />
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+
+
+
+            <div class="cmxform_btn">
+                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                    <tr>
+                        <td style="padding-bottom: 0px;">
+                            <input class="button-css" type="submit" value="Update" name="buttonVal" />
+                            <input class="button-css" type="submit" value="Return to DWQ" name="buttonVal" />
+                            <input class="button-css" type="submit" value="Reset to Landing Page" name="buttonVal" />
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+   
+</body>

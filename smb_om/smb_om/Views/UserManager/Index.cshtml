@@ -1,0 +1,421 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model smb_om.Model.UserManager
+
+@{
+    ViewData["Title"] = "Sequential-Tech";
+}
+<link rel="stylesheet" href="~/css/jquery.passwordRequirements.css" />
+<div class="main">
+    <div class="main-box">
+        <div class="title">
+            <h2>User Information</h2>
+        </div>
+        <input id="userProgram" type="hidden" value="Y" />
+        <input id="userPartner" type="hidden" value="" />
+        <input id="userAffiliate" type="hidden" value="" />
+        <input id="loginUserId" type="hidden" value="sachin.s" />
+        <div class="customer-form">
+
+            <form asp-action="Create" asp-controller="UserManager" id="user_manager" method="post" name="user_manager">
+                <div class="checkout-block margin-bottom-20">
+                    <div class="checkout-title" style="width: auto;">
+                        <h5>Create User</h5>
+                    </div>
+                    @*@Html.ValidationSummary()*@
+                    @Html.AntiForgeryToken()
+                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                    @if (ViewBag.Message != null)
+                    {
+                        @if (ViewBag.Message.Contains("Error"))
+                        {
+                            <div style="color: #D8000C;background-color: #FFD2D2;margin: 0px 0px 14px 0px; padding:2px;display: inline-block;">
+                                <strong>
+                                    @ViewBag.Message
+                                </strong>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div style="color:#0f24e2;margin: 0px 0px 14px 0px; padding:2px;display: inline-block;">
+                                <strong>
+                                    @ViewBag.Message
+                                </strong>
+                            </div>
+                        }
+                    }
+                    <div class="row">
+                        @*<div class="inner-row" style="padding: 0 4% 0 0;">
+                                <span class="label" style="padding: 0 0 0;">
+                                    <label asp-for="Group_Name" ><span class="marked-red">*</span>Group</label>
+                                </span>
+                                <div class="text-row">
+                                    <span>
+                                        <select class="select avarage-select order_userid_group" asp-for="Group_Name" style="height: 24px;">
+                                            <option value="">- Select -</option>
+                                        </select>
+                                    </span>
+                                    <span class="inline-error"></span>
+                                </div>
+                            </div>*@
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Role_Type" class="control-label"><span class="marked-red">*</span>Role</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <select class="select avarage-select order_userid_group" asp-for="Role_Type" style="height: 20px;">
+                                        <option value="">--Select--</option>
+                                        <option value="50">User</option>
+                                        <option value="40">Affiliate Admin</option>
+                                        <option value="30">Corporate Admin</option>
+                                        <option value="20">SuperUser</option>
+                                        <option value="10">Global Admin</option>
+                                    </select>
+                                </span>
+                                <span class="inline-error" asp-validation-for="Role_Type"></span>
+                                @*<span class="inline-error" id="role_namero-err"></span>*@
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="First_Name" class="control-label"><span class="marked-red">*</span>First Name</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="First_Name" class="home text large" />
+                                </span>
+                                <span class="inline-error" id="first_name-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Last_Name" class="control-label">Last Name</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Last_Name" class="home text large" />
+                                </span>
+                                <span class="inline-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="UserId" class="control-label"><span class="marked-red">*</span>Login Id</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="UserId" class="home text large" />
+                                </span>
+                                @*<span asp-validation-for="UserId" class="text-danger"></span>*@
+                                <span class="inline-error" asp-validation-for="UserId"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Email" class="control-label"><span class="marked-red">*</span>Email Address</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Email" class="home text large" />
+                                </span>
+                                <span class="inline-error" id="email-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Phone_Number" class="control-label"><span class="marked-red">*</span>Phone Number</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Phone_Number" class="home text large" />
+                                </span>
+                                <span class="inline-error" id="phone_number-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Password" class="control-label"><span class="marked-red">*</span>Password</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Password" class="home text large pr-password" type="password" />
+                                </span>
+                                <span class="inline-error" id="password-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Confirm_Password" class="control-label"><span class="marked-red">*</span>Confirm Password</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Confirm_Password" class="home text large" type="password" />
+                                </span>
+                                <span class="inline-error" id="confirm_password-error"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Account_Lock">Account Lock</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input class="radio order_userid_group" type="checkbox" asp-for="Account_Lock" checked="checked">
+                                    @*<input class="radio order_userid_group" asp-for="Account_Lock" type="checkbox" checked="checked">*@
+                                </span>
+                                <span class="inline-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Pass_Never_Expire" class="control-label">Password Never Expires</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input class="radio order_userid_group" type="checkbox" asp-for="Pass_Never_Expire" checked="checked">
+                                    @*<input class="radio order_userid_group" asp-for="Pass_Never_Expire" type="checkbox" checked="checked">*@
+                                </span>
+                                <span class="inline-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;">
+                                <label asp-for="Max_Login"><span class="marked-red">*</span>Max Logins</label>
+                            </span>
+                            <div class="text-row">
+                                <span>
+                                    <input asp-for="Max_Login" class="home text large" type="text" />
+                                </span>
+                                <span class="inline-error"></span>
+                                <span class="inline-error" asp-validation-for="Max_Login"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;"><label asp-for="Program">Program</label></span>
+                            <div class="text-row">
+                                <span>
+                                    <input class="radio order_userid_group" asp-for="Program" asp-type="checkbox" checked="checked">
+                                </span>
+                                <span class="inline-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;"><label asp-for="PartnerId">Partner</label></span>
+                            <div class="text-row">
+                                <span>
+                                    <select class="select avarage-select order_userid_group" asp-for="PartnerId" onchange="populateAffiliate();" style="height: 24px;">
+                                    </select>
+                                </span><span class="inline-error"></span>
+                            </div>
+                        </div>
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <span class="label" style="padding: 0 0 0;"><label asp-for="Affiliate_Name">Affiliate</label></span><div class="text-row">
+                                <span>
+                                    <select class="select avarage-select order_userid_group" asp-for="Affiliate_Name" style="height: 24px;">
+                                        <option selected="selected" value="">--Select--</option>
+                                    </select>
+                                </span><span class="inline-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="inner-row" style="padding: 0 4% 0 0;">
+                            <div class="text-row" style="margin-top: 25%;">
+                                <div class="general-btn">
+                                    <div class="holder">
+                                        <div class="frame">
+                                            <span>
+                                                <span class="btn-blue">
+                                                    <input class="submit form" id="searchbutton" type="submit" value="Submit">Submit
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/jquery.passwordRequirements.js"></script>
+    <script>
+        function isValidPhoneNumber(val) {
+            val = val.replace(/[\s|-]+/g, "");
+            if (val.length == 10) {
+                val = val.substring(0, 3) + '-' + val.substring(3, 6) + '-' + val.substring(6, 10);
+                return val.match(/^\d{10}$|^\d{3}-\d{3}-\d{4}$/) && !val.match(/^0{3}-0{3}-0{4}$/);
+            }
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function populateAffiliate() {
+            var PartnerId = $("#PartnerId").val();
+            $.ajax({
+                type: "GET",
+                url: "../api/values/getAffiliate/" + PartnerId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            }).done(function (data) {
+                var s;
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].affiliateName + '">' + data[i].affiliateName + '</option>';
+                }
+                console.log(s);
+                $("#Affiliate_Name").html(s);
+            });
+        }
+
+        $(document).ready(function () {
+
+            $(".submit.form").on("click", function () {
+                if ($("#user_manager").valid()) {
+                    $('#order-processing').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    setTimeout(
+                        function () {
+                            $("#user_manager").submit();
+                        }, 300
+                    );
+                }
+                return false;
+            });
+
+            //$("#user_manager").validate({
+            //    rules: {
+            //        Phone_Number: {
+            //            Phone_Number: '#Phone_Number'
+            //        }
+            //    },
+            //});
+            //$.validator.addMethod("Phone_Number", function (val, element) {
+            //    return this.optional(element) || isValidPhoneNumber(val);
+            //}, 'Please enter a valid phone number');
+
+            ////$.validator.addMethod("email", function (val, element) {
+            ////    return this.optional(element) || isValidEmailAddress(val);
+            ////}, 'Please enter a valid email address');
+
+
+
+            /*  $('#Password').attr('data-password', '888');*/
+            $('.pr-password').passwordRequirements({
+                numCharacters: 10,
+                useLowercase: true,
+                useUppercase: true,
+                useNumbers: true,
+                useSpecial: true
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "../api/values/GetPartner",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            }).done(function (data) {
+                var s;
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].partnerId + '">' + data[i].partnerName + '</option>';
+                }
+                $("#PartnerId").html(s);
+            });
+            $.ajax({
+                type: "GET",
+                url: "../api/values/getAffiliate",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            }).done(function (data) {
+                var s;
+                for (var i = 0; i < data.length; i++) {
+                    s += '<option value="' + data[i].affilitateId + '">' + data[i].affiliateName + '</option>';
+                }
+                $("#Affiliate_Name").html(s);
+            });
+
+            $('#searchbutton').click(function () {
+
+                var trackValid = 0;
+                document.getElementById('Role_Type-error').innerHTML = "";
+                document.getElementById('first_name-error').innerHTML = "";
+                document.getElementById('UserId-error').innerHTML = "";
+                document.getElementById('email-error').innerHTML = "";
+                document.getElementById('phone_number-error').innerHTML = "";
+                document.getElementById('password-error').innerHTML = "";
+                document.getElementById('confirm_password-error').innerHTML = "";
+
+
+                if ($('#Role_Type').val() == null || $('#Role_Type').val() == "") {
+                    document.getElementById('Role_Type-error').innerHTML = "Role is required";
+                    trackValid = 1;
+
+                }
+                if ($('#First_Name').val() == null || $('#First_Name').val() == "") {
+                    document.getElementById('first_name-error').innerHTML = "First Name is Required";
+                    trackValid = 1;
+                }
+                if ($('#UserId').val() == null || $('#UserId').val() == "") {
+                    document.getElementById('UserId-error').innerHTML = "Login Id is Required";
+                    trackValid = 1;
+                }
+
+                if ($('#Email').val() == null || $('#Email').val() == "") {
+                    document.getElementById('email-error').innerHTML = "Email is Required";
+                    trackValid = 1;
+                }
+                if ($('#Phone_Number').val() == null || $('#Phone_Number').val() == "") {
+                    document.getElementById('phone_number-error').innerHTML = "Phone Number is Required";
+                    trackValid = 1;
+                }
+                if ($('#Password').val() == null || $('#Password').val() == "") {
+                    document.getElementById('password-error').innerHTML = "Password is Required";
+                    trackValid = 1;
+                }
+                if ($('#Confirm_Password').val() == null || $('#Confirm_Password').val() == "") {
+                    document.getElementById('confirm_password-error').innerHTML = "Confirm Password is Required";
+                    trackValid = 1;
+                }
+
+                if ($('#Password').attr('data-password') != '1') {
+                    ///alert("Password does not match complexity requirements");
+                    document.getElementById('password-error').innerHTML = "Password does not match complexity requirements";
+                    $('#Password').focus();
+                    trackValid = 1
+                }
+                if ($('#Password').val() != $('#Confirm_Password').val()) {
+                    ///alert("Password does not match complexity requirements");
+                    document.getElementById('confirm_password-error').innerHTML = "Password & Confirm Password does not match";
+                    $('#Confirm_Password').focus();
+                    trackValid = 1
+                }
+                //alert($('#Role_Type').val())
+                if (trackValid == 1) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+        });
+    </script>
+}

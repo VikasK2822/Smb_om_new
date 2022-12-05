@@ -1,0 +1,166 @@
+﻿@model smb_om.Model.ProductReasonCode
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <form asp-controller="OpsAdmin" asp-action="UpdateReasonCodeforState" method="post" name="brvAdminForm">
+            <div class="application">
+                <h1>Product Reason Code</h1>
+                <ul class="nav nav-tabs" style="border-right:0;border-left:0;">
+
+                    <li class="active"><a data-toggle="tab" href="#business" aria-expanded="true">Business - SMBC</a></li>
+                </ul>
+
+                <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                    @*<tr class="resultsHeader">
+                        <td align="center" colspan="5">Add New</td>
+                    </tr>*@
+                    <tr class="resultsHeader">
+                        <td align="left" style="word-wrap: break-word;">
+                            <select id="drpaffiliate"
+                                    onchange="GetReasonCodeSate()">
+                                <option value="">--Select--</option>
+                                @foreach (var item in Model.stateNames)
+                                {
+                                <option value="@item.statename">@item.statename</option>
+                                @*<option value="7TZMXNUK">7TZMXNUK</option>
+        <option value="7U38D1JI">7U38D1JI</option>
+        <option value="AAFES">AAFES</option>
+        <option value="ABCDIND">ABCDIND</option>
+        <option value="ACCELLER">ACCELLER</option>
+        <option value="ACN">ACN</option>
+        <option value="ADCOMM">ADCOMM</option>
+        <option value="ADCOMMCH">ADCOMMCH</option>*@
+                                }
+                            </select>
+                        </td>
+                        <td align="left" style="word-wrap: break-word;">IsActive </td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable" id="tblEmployee">
+                    @*<tr class="resultsHeader">
+                        <td align="center" colspan="5">Add New</td>
+                    </tr>*@
+
+
+
+                    @*<tr role="row" class="odd">
+                        <td>test</td>
+                        <td>
+                            <input class="checkbox" id="quickSearchOrderOnly" name="Isordertype"
+                                   type="checkbox"
+                                   value="true"
+                                   checked="checked" />
+                        </td>
+                    </tr>*@
+                </table>
+                <div style="display: inline-block; text-align: right; width: 100%;"><input class="button-css" type="submit" value="Submit" /></div>
+            </div>
+            </form>
+    </div>
+    <script type="text/javascript">
+
+        function check(RowID) {
+
+            alert(RowID);
+            if ($('#' + RowID).is(":checked")) {
+                // it is checked
+                alert("checked");
+                $('#' + RowID).val(1);
+            }
+            else {
+
+                alert("unchecked");
+                $('#' + RowID).val(0);
+            }
+          
+        }
+
+        function GetReasonCodeSate() {
+
+            var txt = $('#drpaffiliate option:selected').text();
+            if (txt == '') {
+
+                alert('Please select valid reason code');
+            }
+
+            // var txt = $('#ordernumber').val();
+            //if (txt == '') {
+            //    alert('Please enter ordernumber');
+            //    return;
+            //}
+
+            //     txt = ordernumber;
+
+            //<tr role="row" class="odd">
+            //    <td>test</td>
+            //    <td>
+            //        <input class="checkbox" id="quickSearchOrderOnly" name="Isordertype"
+            //            type="checkbox"
+            //            value="true"
+            //            checked="checked" />
+            //    </td>
+            //</tr>
+
+            $.getJSON('@Url.Content("~/")' + "OpsAdmin/GetReasonCodeforState?StateName=" + txt, function (v) {
+                var data = v;
+                $("#tblEmployee").empty();
+                if (data != null) {
+
+                    var tblEmployee = $("#tblEmployee");
+
+                    $.each(data, function (index, item) {
+                        console.log(item);
+                        var tr = $("<tr  class=resultsOdd></tr>");
+                        tr.html(("<td>" + item.reasonCode + "</td>")
+                            + " " + ("<td>  <input class='checkbox' onclick=check('" + item.rowId + "')  name='" + item.rowId + "' type = 'checkbox' value = '1' checked = 'checked' /> </td>"));
+
+
+                        tblEmployee.append(tr);
+
+                    });
+                }
+                else {
+                   // alert( "No details found");
+                }
+
+
+            });
+                }
+         @*function GetViewLog() {
+
+            var txt = $('#ordernumber').val();
+            if (txt == '') {
+                alert('Please enter ordernumber');
+                return;
+            }
+
+           //     txt = ordernumber;
+            $.getJSON('@Url.Content("~/")' + "Admin/GetLog?ordernumber=" + txt,function (v)
+            {
+                var data = v;
+                var ordernum = $("#spanordernumber");
+                ordernum.html(data[0].ordernumber);
+
+                if (data != null) {
+
+                    var tblEmployee = $("#tblEmployee");
+                    $.each(data, function (index, item) {
+                        console.log(item.category);
+                        var tr = $("<tr  class=resultsOdd></tr>");
+                        tr.html(("<td>" + item.category + "</td>")
+                            + " " + ("<td>" + item.date + "</td>")
+                            + " " + ("<td>  <textarea class='textareaField' cols='50' rows='6' style='height: 100px;'>" + item.message +"</textarea> </td>"));
+
+
+                        tblEmployee.append(tr);
+
+                    });
+                }
+                    else {
+                        alert("OrderNumber :" + txt + "No details found");
+                    }
+
+            });
+        }*@
+    </script>
+</body>

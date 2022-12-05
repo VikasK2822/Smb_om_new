@@ -1,0 +1,146 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<body>
+    <div class="tabsmenucontent">
+        <ul id="mlpLinks" class="collapse">
+            <li>
+                <a href="/indirect-dwq/client/home">English Residential</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=NEW_SP_RES">Spanish Residential</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=NEW_BUS">Business</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=NEW_ENG_TV">TV Residential</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabsmenucontent">
+        <div id="drpDwnDwqList" onmouseover="style.display='block'" onmouseout="hideDropDownDWQDiv()" class="dwqListDropDown collapse">
+            <h4>Incomplete</h4>
+            <ul>
+
+                <li>
+                    <a href="DWQ_Incomplete.html">Incomplete Business</a>
+
+                </li>
+
+            </ul>
+            <h4>Check Install</h4>
+            <ul>
+
+                <li>
+                    <a href="DWQ_CheckInstall.html">Check Install Business</a>
+                </li>
+
+            </ul>
+        </div>
+        <ul id="dwqOldLinks">
+            <li>
+                <a href="/DWQ/Incomplete/">Incomplete</a>
+            </li>
+            <li>
+                <a href="/DWQ/CheckInstall/">Check Install</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabsmenucontent">
+        <ul id="drpDwnObcList" onmouseover="style.display='block'" onmouseout="hideDropDownOBCDiv()" class="dwqListDropDown collapse">
+            <!--<ul id="obcLinks" class="collapse">-->
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=OBC">English Residential</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=SP_OBC_RES">Spanish Residential</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=OBC_BUS">Business</a>
+            </li>
+            <li>
+                <a href="/indirect-dwq/client/home?Lpage_Id=ENG_OBC_TV">Residential - OBC TV</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabsmenucontent">
+        <div id="drpDwnList" onmouseover="style.display='block'" onmouseout="hideDropDownAdminDiv()" class="adminListDropDown">
+            <!--<h4>Automation</h4>-->
+            <ul>
+
+                <li>
+                    <a href="/Admin/PartnerOnboarding/">Partner/Affiliate Onboarding</a>
+                </li>
+                <li>
+                    <a href="/Admin/AffiliateBrv/">Affiliate BRVs Admin</a>
+                </li>
+                <li>
+                    <a href="/Admin/AffiliateOsn/">Affiliate OSN Admin</a>
+                </li>
+                <li>
+                    <a href="/Admin/ViewLog/">View Log</a>
+                </li>
+                <li>
+                    <a href="/Admin/SalesCode/">Sales Code Maintenance</a>
+                </li>
+                <li>
+                    <a href="/Admin/HolidaySchedule/">Holiday Schedule</a>
+                </li>
+
+
+            </ul>
+
+            
+        </div>
+    </div>
+    <div class="tabsmenucontent">
+        <div id="drpDwnListOpsAdmin" onmouseover="style.display='block'" onmouseout="hideDropDownOpsAdminDiv()" class="adminListDropDown">
+            
+
+            <ul>
+                <li>
+                    <a href="/OpsAdmin/CallReason/">Call Reasons/Dispositions</a>
+                </li>
+                <li>
+                    <a href="/OpsAdmin/ReasonCode/">Reason Code Admin</a>
+                </li>
+                <li>
+                    <a href="/OpsAdmin/SpecialProjectTracking/">Special Project Tracking</a>
+                </li>
+                <li>
+                    <a href="/OpsAdmin/ProductReasonCode/">Product Reason Code</a>
+                </li>
+                @*<li>
+                    <a href="/OpsAdmin/SpecialHandleMessaging/">Special Handle Mesaging</a>
+                </li>*@
+                <li>
+                    <a href="/OpsAdmin/QueueSummary/">Queue Summary</a>
+                </li>
+                <li>
+                    <a href="/OpsAdmin/UnAssign/">Unassign</a>
+                </li>
+                @*<li>
+                    <a href="/OpsAdmin/EscalationTracker/">Escalation Tracker Maintenance</a>
+                </li>*@
+
+            </ul>
+        </div>
+    </div>
+    <div class="tabsmenucontent">
+        <ul>
+            <li>
+                <a href="/escalation/client/openEscalation">Open</a>
+            </li>
+            <li>
+                <a href="/escalation/client/searchEscalation">Search</a>
+            </li>
+            <li>
+                <a href="/escalation/client/createEscalation">Create</a>
+            </li>
+        </ul>
+    </div>
+</body>

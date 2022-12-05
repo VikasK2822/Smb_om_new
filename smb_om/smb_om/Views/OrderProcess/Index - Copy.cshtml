@@ -1,0 +1,292 @@
+﻿@model smb_om.Model.OrderInformation
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+   
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application" style="WORD-BREAK: break-all;">
+                        <h1>Order</h1>
+                        <div class="content-border">
+                            <div class="cmxform_short">
+                                <fieldset>
+                                    <h2>Order Information</h2>
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <script type="text/javascript">
+                                             <!--
+                                                function showWarningForDiffInsDate() {
+                                                    var actInstalDatList = document.getElementsByName('actualInstalationDate');
+                                                    var actInsDat;
+                                                    var InstFlag = 'false';
+                                                    if (actInstalDatList.length != 0) {
+                                                        actInsDat = new Date(actInstalDatList[0].innerText).toString();
+                                                        for (var i = 0; i < actInstalDatList.length; i++) {
+                                                            if (actInsDat !== new Date(actInstalDatList[i].innerText).toString()) {
+                                                                InstFlag = 'true';
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    if (InstFlag === 'true') {
+                                                        document.getElementById('validateInstalationDates').innerHTML = 'Multiple Installation Dates on Order';
+                                                    }
+                                                }
+
+                                                function showStateReasonCodeInInsDateSec(state, reasoncode) {
+                                                    //directTv for Residential and directv for Business orders
+                                                    var productsList = ["internet", "voip", "directTv", "directv", "iptv", "digitallife", "wireless", "dsl", "access", "attTv"];
+                                                    for (var i = 0; i < productsList.length; i++) {
+                                                        var value = "";
+                                                        var orderState = document.getElementById(productsList[i] + state);
+                                                        var orderReasonCode = document.getElementById(productsList[i] + reasoncode);
+                                                        var setStateReasonCode = document.getElementById(productsList[i].toUpperCase() + 'viewStateReasoncode');
+                                                        if (orderState != null && orderState.options.length != 0) {
+                                                            value = orderState.options[orderState.selectedIndex].text;
+                                                            var setBgColor = document.getElementById(productsList[i].toUpperCase() + 'bgColor');
+                                                            if (value.indexOf('Canceled') !== -1) { setBgColor.style.backgroundColor = "red"; }
+                                                            if (value.indexOf('Pending') !== -1 || value.indexOf('Incomplete') !== -1) { setBgColor.style.backgroundColor = "yellow"; }
+                                                            if (value.indexOf('Submitted') !== -1) { setBgColor.style.backgroundColor = "lightblue"; }
+                                                        }
+                                                        if (orderReasonCode != null && orderReasonCode.options.length != 0) {
+                                                            value = value + '/' + orderReasonCode.options[orderReasonCode.selectedIndex].text;
+                                                        }
+                                                        if (setStateReasonCode != null) {
+                                                            setStateReasonCode.innerHTML = value;
+                                                        }
+                                                    }
+                                                }
+
+
+                                                function scheduleStatusCheck(transId, userId) {
+                                                    $(".popupoverlay").show();
+                                                    $("#status-check-processing").show();
+
+                                                    setTimeout(function () {
+                                                        StatusCheckFacade.scheduleStatusCheck(transId, userId, {
+                                                            callback: function (data) {
+                                                                window.location.reload()
+                                                            }
+                                                        });
+                                                    }, 2000);
+
+                                                }
+
+                                                -->
+                                            </script>
+                                            <td>
+                                                <div style="text-align: left;">
+                                                    <input class="button-css" onClick="editOrder()"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="Allow Edits" /><br /><input id="allowedithidden" name="allowedithidden" type="hidden" value="false" />
+                                                    <input class="button-css"
+                                                           onclick="viewMaskedData('3ba511ab-0af4-3c81-0905-794d766a6a0c', '43393974-0af4-3c81-42d8-983216e6c05b')"
+                                                           style="min-width: 110px; margin-bottom: 5px;"
+                                                           type="button"
+                                                           value="View Masked Data" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="inline-error" id="validateInstalationDates" style="margin-left:10px"></div>
+        <hr class="break" />
+        <form method="post" enctype="multipart/form-data" asp-controller="OrderProcess" asp-action="Index">
+            <div class="cmxform_short">
+                <div class="contentBlock">
+                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                        <tr>
+                            <td width="130px;"><strong>BAN: </strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.BAN" readonly />
+                            <td>
+
+                        </tr>
+                        <tr>
+                            <td width="130px;"><strong>Order Number:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Number" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Order Create Date:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.Order_Create_Date" readonly />
+                            </td>
+                            <td><strong>UV Sales Code:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.UVSalesCode" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer Name:</strong></td>
+                            <td>
+                                <input asp-for="HearderInfo.CustomerName" readonly />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Service Address:</strong></td>
+                            <td><input asp-for="HearderInfo.ServiceAddress" readonly /></td>
+                            <td><strong>Partner:</strong></td>
+                            <td><input asp-for="HearderInfo.Partner" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Order Type:</strong></td>
+                            <td><input asp-for="HearderInfo.OrderType" readonly /></td>
+                            <td><strong>Affiliate:</strong></td>
+                            <td><input asp-for="HearderInfo.Affiliate" readonly /></td>
+                        </tr>
+                        <tr>
+
+                            <td><strong>Common Order Id:</strong></td>
+                            <td> <input asp-for="HearderInfo.CommonOrderId" readonly /> </td>
+                            <td><strong>Can-be-reached:</strong></td>
+                            <td><input asp-for="HearderInfo.Canbereached" readonly /></td>
+                        </tr>
+                        <tr class="alert-info">
+                            <td colspan="4"><strong><span class="subheader">Seller Information</span></strong></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Name:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Name" readonly /></td>
+                            <td style="color: #656565;"><strong>Phone Number:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_PhoneNumber" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Agent ID:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_AgentID" readonly /></td>
+                            <td style="color: #656565;"><strong>Email Address:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_EmailAddress" readonly /></td>
+                        </tr>
+                        <tr class="alert alert-info">
+                            <td style="color: #656565;"><strong>Contact Phone<br />Number:</strong></td>
+                            <td style="color: #656565;">
+                                <label class="displayLabel"></label>
+
+                                <input asp-for="HearderInfo.Seller_Contact_Phone_Number" class="edit-field form-control" readonly />
+                            </td>
+                            <td style="color: #656565;"><strong>Preferred Contact Method:</strong></td>
+                            <td style="color: #656565;"><input asp-for="HearderInfo.Seller_Preferred_Contact_Method" readonly /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="height: 20px;"></div>
+            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                <tr>
+                    <td>
+                        <ul class="shadetabs" id="account-verify-tabs">
+                            <li><a class="selected" href="#" rel="account-tab">Account</a></li>
+                            <li><a href="#" rel="verify-tab">Verify</a></li>
+                            <li><a href="#" rel="documents-tab">Documents</a></li>
+                            <li><a href="#" rel="payment-tab">Payment</a></li>
+                        </ul>
+                        <div class="content-border">
+                            <div class="tabcontent" id="account-tab">
+                                <div class="cmxform_tabs">
+                                    <h2 class="tabH2">Account</h2>
+                                    <hr class="break" />
+                                    <div class="contentBlock">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                            <col style="width: 25%;" />
+                                            <col style="width: 25%;" />
+                                            <col style="width: 25%;" />
+                                            <col style="width: 25%;" />
+                                            <tr>
+                                                <td colspan="4"><span class="subheader">Uverse Installation</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right">
+                                                    <label for="uverseRequestedActivationDate">Requested Installation Date:</label>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" disabled="disabled" id="uverseRequestedActivationDate"
+                                                           name="uverseRequestedActivationDate"
+                                                           type="text"
+                                                           value="08/08/2022" />
+                                                </td>
+                                                <td align="right">
+                                                    <label for="uverseRequestedActivationTime">Requested Installation Time:</label>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control" disabled="disabled" id="uverseRequestedActivationTime"
+                                                           name="uverseRequestedActivationTime"
+                                                           type="text"
+                                                           value="9:00 AM" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right"><label for="uverseActivationDate">Scheduled Installation Date:</label></td>
+                                                <td>
+                                                    <input class="form-control" disabled="disabled" id="uverseActivationDate"
+                                                           name="uverseActivationDate"
+                                                           type="text" />
+                                                </td>
+                                                <td align="right"><label for="uverseActivationTime">Scheduled Installation Time:</label></td>
+                                                <td>
+                                                    <select class="form-control" disabled="disabled" id="uverseActivationTime"
+                                                            name="uverseActivationTime">
+                                                        <option value="">--Select--</option>
+                                                        <option value="08:00 AM -12:00 PM">08:00 AM -12:00 PM</option>
+                                                        <option value=" 08:00 AM - 04:00 PM"> 08:00 AM - 04:00 PM</option>
+                                                        <option value=" 08:00 AM - 08:00 PM"> 08:00 AM - 08:00 PM</option>
+                                                        <option value=" 09:00 AM – 10:00AM"> 09:00 AM – 10:00AM</option>
+                                                        <option value=" 09:00 AM - 11:00 AM"> 09:00 AM - 11:00 AM</option>
+                                                        <option value=" 11:00 AM - 01:00 PM"> 11:00 AM - 01:00 PM</option>
+                                                        <option value=" 12:00 PM - 04:00 PM"> 12:00 PM - 04:00 PM</option>
+                                                        <option value=" 01:00 PM - 03:00 PM"> 01:00 PM - 03:00 PM</option>
+                                                        <option value=" 02:00 PM - 04:00 PM"> 02:00 PM - 04:00 PM</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+                <div class="cmxform_btn">
+                    <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                        <tr>
+                            <td style="padding-bottom: 0px;">
+                                <input class="button-css" type="submit" value="Update" name="buttonVal" />
+                                <input class="button-css" type="submit" value="Return to DWQ" name="buttonVal" />
+                                <input class="button-css" type="submit" value="Reset to Landing Page" name="buttonVal" />
+                                @*<input onclick="window.location='/indirect-dwq/client/home';" type="button"
+                                   value="Return to DWQ"
+                                   class="button-css" />
+                            <input onclick="window.location='./resetOrderToLpage?transactionId=3ba511ab-0af4-3c81-0905-794d766a6a0c';"
+                                   type="button"
+                                   value="Reset to Landing Page"
+                                   class="button-css" />
+
+                            <input class="button-css" id="updateAndStartCall"
+                                   onclick="updateAndStartCallTracker('3ba511ab-0af4-3c81-0905-794d766a6a0c');"
+                                   type="submit"
+                                   value="Update and Start Call" />*@
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        </form>
+    </div>
+   
+</body>

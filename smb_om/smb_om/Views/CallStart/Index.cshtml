@@ -1,0 +1,419 @@
+﻿@model smb_om.Model.CallTrackerModel
+@{
+
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application">
+                        <h1>Start Call</h1>
+                        <form asp-controller="CallStart" asp-action="SearchDetails" method="post" id="quickSearchForm" name="quickSearchForm">
+
+
+                            <input id="reqGuid" name="reqGuid" type="hidden"
+                                   value="e4ce2785-0872-43ea-943d-0a4eb282f309" />
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td class="stroke" height="1" width="1"></td>
+                                    <td align="center">
+                                        <div class="application">
+                                            <div class="content-border">
+                                                <div class="cmxform_short">
+                                                    <fieldset>
+                                                        <h2>Search Criteria</h2>
+                                                        <hr class="break" />
+                                                        <div class="contentBlock">
+                                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                                                <tr>
+                                                                    <td colspan="4"><i>Please pick one of the following:</i></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label for="quickCBRNumberF">CBR Phone Number:</label></td>
+                                                                    <td><label for="ban">Billing Account Number:</label></td>
+                                                                    <td><label for="orderNumber">Order Number:</label></td>
+                                                                    <td><label for="commonOrderNumber">Common Order Number:</label></td>
+                                                                    <td><label for="quickBusinessName">Business Name:</label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input id="quickCBRNumber" name="quickCBRNumber" type="hidden" value="" /><input asp-for="CBRPhoneNumber" class="textbox" id="quickCBRNumberF" maxlength="18" name="CBRPhoneNumber"
+                                                                                                                                                         size="20"
+                                                                                                                                                         type="text"
+                                                                                                                                                         value="" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input asp-for="BillingAccountNumber" class="textbox" id="ban" maxlength="24" name="BillingAccountNumber" size="20" type="text"
+                                                                               value="" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input asp-for="OrderNumber" class="textbox" id="orderNumber" maxlength="254" name="OrderNumber" size="20"
+                                                                               type="text"
+                                                                               value="" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input asp-for="commonOrderNumber" class="textbox" id="commonOrderNumber" name="commonOrderNumber" type="text"
+                                                                               value="" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input asp-for="quickBusinessName" class="textbox" id="quickBusinessName" maxlength="254" name="quickBusinessName"
+                                                                               size="20"
+                                                                               type="text"
+                                                                               value="" />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <table>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input asp-for="Isordertype" class="checkbox" id="quickSearchOrderOnly" name="Isordertype"
+                                                                                           type="checkbox"
+                                                                                           value="true"
+                                                                                           checked="checked" />
+                                                                                </td>
+                                                                                <td>Orders Only</td>
+
+                                                                            </tr>
+                                                                        </table>
+
+
+
+                                                                    </td>
+                                                                    <td align="right" colspan="4">
+                                                                        <input class="button-css" id="quickSearchSubmit" name="searchSubmit"
+                                                                               type="submit"
+                                                                               value="90 Day Quick Search" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+
+                                                            @if (Model != null && Model.quickSearchResults != null && Model.quickSearchResults.Count > 0)
+                                                            {
+                                                                @*<table border="0" cellpadding="0" cellspacing="0" class="" id="tblEmployee">*@
+                                                                @*<colgroup>
+                                                <col style="width: 20%;">
+                                                <col style="width: 20%;">
+                                                <col style="width: 60%;">
+                                            </colgroup>*@
+                                                                @*<tbody>*@
+                                                                @*<tr class="resultsHeader">*@
+                                                                @*<td>*@
+                                                                <hr class="break">
+                                                                <table border="0" cellpadding="0" cellspacing="0" class="" id="tblEmployee">
+                                                                    <colgroup>
+                                                                        <col style="width: 20%;">
+                                                                        <col style="width: 20%;">
+                                                                        <col style="width: 60%;">
+                                                                    </colgroup>
+                                                                    <tbody>
+                                                                        <tr class="resultsHeader">
+                                                                            <td>Order Number</td>
+                                                                            <td>Partner Name</td>
+                                                                            <td>Product</td>
+                                                                            <td>Status</td>
+                                                                            <td>Business_Name</td>
+                                                                            <td>RepId</td>
+                                                                            <td>LastUpadtedDate</td>
+                                                                            <td>ReceivedDate</td>
+                                                                        </tr>
+                                                                        @foreach (var item in Model.quickSearchResults)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@item.OrderNumber</td>
+                                                                                <td>@item.partnerName</td>
+                                                                                <td>@item.Product</td>
+                                                                                <td>@item.Status</td>
+                                                                                <td>@item.Business_Name</td>
+                                                                                <td>@item.Repid</td>
+                                                                                <td>@item.LastUpadtedDate</td>
+                                                                                <td>@item.ReceivedDate</td>
+
+                                                                            </tr>
+
+                                                                        }
+
+                                                                        @*<tr class="resultsOdd">
+                                                                                                            <td style="word-wrap: break-word;">
+                                                                                                                WLP RESPONSE<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                            </td>
+                                                                                                            <td style="word-wrap: break-word;">2022-09-07 07:18:19:047</td>
+                                                                                                            <td>
+                                                                                                                <textarea class="textareaField" cols="50" rows="6" style="height: 100px;">&lt;StreamClosure xmlns="http://www.synchronoss.com/ri/xsd/StreamClosure"&gt;
+                                                      &lt;Header timeStamp="2022-09-07T07:18:19.029-04:00"/&gt;
+                                                      &lt;NACK code="NACK003" message="document does not conform to schema"/&gt;
+                                                    &lt;/StreamClosure&gt;</textarea>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr class="resultsEven">
+                                                                                                            <td style="word-wrap: break-word;">
+                                                                                                                WLP REQUEST<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                            </td>
+                                                                                                            <td style="word-wrap: break-word;">2022-09-07 07:18:19:003</td>
+                                                                                                            <td>
+                                                                                                            </td>
+                                                                                                        </tr>*@
+
+                                                                    </tbody>
+                                                                </table>
+                                                                @*</td>*@
+                                                                @*<td>TimeStamp</td>
+                                            <td>Message</td>*@
+                                                                @*</tr>*@
+                                                                @*<tr class="resultsOdd">
+                                                                                                    <td style="word-wrap: break-word;">
+                                                                                                        WLP RESPONSE<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                    </td>
+                                                                                                    <td style="word-wrap: break-word;">2022-09-07 07:18:19:047</td>
+                                                                                                    <td>
+                                                                                                        <textarea class="textareaField" cols="50" rows="6" style="height: 100px;">&lt;StreamClosure xmlns="http://www.synchronoss.com/ri/xsd/StreamClosure"&gt;
+                                              &lt;Header timeStamp="2022-09-07T07:18:19.029-04:00"/&gt;
+                                              &lt;NACK code="NACK003" message="document does not conform to schema"/&gt;
+                                            &lt;/StreamClosure&gt;</textarea>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr class="resultsEven">
+                                                                                                    <td style="word-wrap: break-word;">
+                                                                                                        WLP REQUEST<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                                                                    </td>
+                                                                                                    <td style="word-wrap: break-word;">2022-09-07 07:18:19:003</td>
+                                                                                                    <td>
+                                                                                                    </td>
+                                                                                                </tr>*@
+
+                                                                @*</tbody>*@
+                                                                @*</table>*@
+                                                            }
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="divider"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="stroke" height="1" width="1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stroke" colspan="3" height="1"></td>
+                                </tr>
+                            </table>
+                        </form>
+                      
+                        <div class="content-border">
+                            <form method="post" id="callform" enctype="multipart/form-data" asp-controller="CallStart" asp-action="Index">
+                                <div class="cmxform_short">
+                                    <fieldset>
+                                        <h2>Call Details</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+
+                                                <tr>
+                                                    <td><label class="">Request Number:</label></td>
+                                                    <td>
+                                                        <input type="hidden" asp-for="RequestNumber" />
+                                                        @Model.RequestNumber
+
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="">Start Time:</label></td>
+                                                    <td>
+                                                        <input type="hidden" asp-for="CallStartTime" />
+                                                        @Model.CallStartTime
+                                                    </td>
+                                                    <td><label class="">End Time:</label></td>
+                                                    <td>
+                                                        <input type="hidden" asp-for="CallEndTime" />
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Caller First Name:</label></td>
+                                                    <td>
+                                                        <input maxlength="254" size="20" type="text" asp-for="Caller_First_Name" required />
+                                                    </td>
+                                                    <td><label class="label-required">Caller Last Name:</label></td>
+                                                    <td>
+                                                        <input maxlength="254" size="20" type="text" asp-for="Caller_Last_Name" required />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Caller Contact TN:</label></td>
+                                                    <td>
+                                                        <input maxlength="10" size="15" type="text" asp-for="Caller_Contact_TN" required /><span class="ex"> Ex. XXXXXXXXXX</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="">Order Number:</label></td>
+                                                    <td>
+                                                        <input maxlength="256" type="text" asp-for="Order_Number" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="">Call Type:</label></td>
+                                                    <td>
+                                                        <select asp-for="CallTypeId">
+                                                            <option value="">--Select--</option>
+
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Call Reason:</label></td>
+                                                    <td colspan="3">
+                                                        <select asp-for="CallReasonId">
+                                                            @*<option value="">--Select--</option>*@
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label class="label-required">Call Disposition:</label></td>
+                                                    <td colspan="3"><select asp-for="CallDispositionId"></select></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <div class="spacer"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <div class="spacer"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="padding-left: 20px;">
+                                                        <span class="subheader">
+                                                            Comments
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="padding-left: 20px;">
+                                                        <textarea class="textareaField" asp-for="Call_Comments" style="height: 100px; width: 92%;">
+                                                    </textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="padding-left: 20px;">
+                                                        <input class="button-css" name="submitType" type="submit" value="End Call" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </fieldset>
+
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            BindCallTypeDropdown();
+            var callTypeId = $("#CallTypeId").val();
+
+        });
+        //function get_alert() {
+        //    alert("hello");
+        //    return false;
+        //}
+        $("#callform").submit(function (e) {
+            var validationFailed = false;
+            var callTypeid = $("#CallTypeId").val();
+            if (callTypeid == "")
+            {
+                validationFailed = true;
+                alert('Please select Call Type');
+            }
+            var CallReasonId = $("#CallReasonId").val();
+            if (CallReasonId == "") {
+                validationFailed = true;
+                alert('Please select Call Reason');
+            }
+            var CallDispositionId = $("#CallDispositionId").val();
+            if (CallDispositionId == "") {
+                validationFailed = true;
+                alert('Please select Call Disposition');
+            }
+            // do your validation here ...
+            if (validationFailed)
+            {
+                e.preventDefault();
+                return false;
+            }
+        });
+        function BindCallTypeDropdown()
+        {
+            $.getJSON('@Url.Content("~/")' + "CallStart/GetCallTypes", function (data) {
+                var items = '';
+                $("#CallTypeId").empty();
+
+                $.each(data, function (index, reasonval) {
+                    debugger;
+
+                    if (i == 0) { items += "<option value=''>" + "--Select--" + "</option>"; }
+                    else { items += "<option value='" + reasonval.callTypeId + "'>" + reasonval.callTypeName + "</option>"; }
+                });
+                $('#CallTypeId').html(items);
+
+
+            });
+        }
+        $("#CallTypeId").change(function () {
+
+            var callTypeid = $("#CallTypeId").val();
+            $("#CallDispositionId").empty();
+
+            $.getJSON('@Url.Content("~/")' + "CallStart/GetCallReasonByCallTypId?CallTypId=" + callTypeid, function (data)
+            {
+               var items = '';
+                $("#CallReasonId").empty();
+
+            $.each(data, function (index, reasonval) {
+                debugger;
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else { items += "<option value='" + reasonval.callReasonId + "'>" + reasonval.callReasonName + "</option>";   }
+                    });
+                $('#CallReasonId').html(items);
+
+
+            });
+        });
+
+
+        $("#CallReasonId").change(function () {
+
+            var reasonId = $("#CallReasonId").val();
+
+            $.getJSON('@Url.Content("~/")' + "CallStart/GetCallDispositionById?CallReasonId=" + reasonId, function (data)
+            {
+               var items = '';
+                $("#CallDispositionId").empty();
+
+            $.each(data, function (index, reasonval) {
+                debugger;
+
+                        if (i == 0) {   items += "<option value=''>" + "--Select--" + "</option>";  }
+                        else { items += "<option value='" + reasonval.dispositionTypeId + "'>" + reasonval.callDispositionName + "</option>";   }
+                    });
+                $('#CallDispositionId').html(items);
+
+
+            });
+    });
+    </script>
+</body >

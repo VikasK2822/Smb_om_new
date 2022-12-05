@@ -1,0 +1,167 @@
+﻿
+@model List<smb_om.Model.ViewLog>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <form action="" id="searchForm" method="post" name="searchForm" onsubmit="return validate(this)">
+            <input name="token" type="hidden" value="7c96a9dc-f4a1-4313-94c6-c3bb2a9cb860"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td class="stroke" height="1" width="1"></td>
+                        <td align="center">
+                            <div class="application">
+                                <h1>Show Log</h1>
+                                <p class="error"></p>
+                                <div class="content-border">
+                                    <div class="cmxform_short">
+                                        <fieldset>
+                                            <h2>Search Criteria</h2>
+                                            <hr class="break">
+                                            <div class="contentBlock">
+                                                <table border="0" cellpadding="0" cellspacing="0" class="appTable">
+                                                    <colgroup>
+                                                        <col style="width: 15%;">
+                                                        <col style="width: 85%;">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><label class="label" style="color:black">Order Number:</label></td>
+                                                            <td><input class="textbox" id="ordernumber" maxlength="254" name="ordernumber" size="40" type="text"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2"><input class="button-css" name="searchsubmit" type="button" onclick="GetViewLog()" value="Submit"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="cmxform_results">
+                                        <fieldset>
+                                            <h2>
+                                              
+                                                   
+                                                <span>
+                                                    Log Entries :
+                                                    ORDER -
+                                                    <span id="spanordernumber"></span>
+                                                </span>
+                                                      
+
+                                            </h2>
+                                            <hr class="break">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable" id="tblEmployee">
+                                                <colgroup>
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 20%;">
+                                                    <col style="width: 60%;">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr class="resultsHeader">
+                                                        <td>Category</td>
+                                                        <td>TimeStamp</td>
+                                                        <td>Message</td>
+                                                    </tr>
+                                                    @*<tr class="resultsOdd">
+                                                        <td style="word-wrap: break-word;">
+                                                            WLP RESPONSE<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                        </td>
+                                                        <td style="word-wrap: break-word;">2022-09-07 07:18:19:047</td>
+                                                        <td>
+                                                            <textarea class="textareaField" cols="50" rows="6" style="height: 100px;">&lt;StreamClosure xmlns="http://www.synchronoss.com/ri/xsd/StreamClosure"&gt;
+  &lt;Header timeStamp="2022-09-07T07:18:19.029-04:00"/&gt;
+  &lt;NACK code="NACK003" message="document does not conform to schema"/&gt;
+&lt;/StreamClosure&gt;</textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="resultsEven">
+                                                        <td style="word-wrap: break-word;">
+                                                            WLP REQUEST<br>(ain-gw01-uat.ras.sncrcloud.net)
+                                                        </td>
+                                                        <td style="word-wrap: break-word;">2022-09-07 07:18:19:003</td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>*@
+                                                  
+                                                </tbody>
+                                            </table>
+                                        </fieldset>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="stroke" height="1" width="1"></td>
+                    </tr>
+                    <tr>
+                        <td class="stroke" colspan="3" height="1"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function GetViewLog() {
+
+            var txt = $('#ordernumber').val();
+            if (txt == '') {
+                alert('Please enter ordernumber');
+                return;
+            }
+
+           //     txt = ordernumber;
+            $.getJSON('@Url.Content("~/")' + "Admin/GetLog?ordernumber=" + txt,function (v)
+            {
+                var data = v;
+                var ordernum = $("#spanordernumber");
+                ordernum.html(data[0].ordernumber);
+
+                if (data != null) {
+
+                    var tblEmployee = $("#tblEmployee");
+                    $.each(data, function (index, item) {
+                        console.log(item.category);
+                        var tr = $("<tr  class=resultsOdd></tr>");
+                        tr.html(("<td>" + item.category + "</td>")
+                            + " " + ("<td>" + item.date + "</td>")
+                            + " " + ("<td>  <textarea class='textareaField' cols='50' rows='6' style='height: 100px;'>" + item.message +"</textarea> </td>"));
+
+                  
+                        tblEmployee.append(tr);
+
+                    });
+                }
+                    else {
+                        alert("OrderNumber :" + txt + "No details found");
+                    }
+
+            });
+        }
+        @*function GetViewLog() {
+            var txtphoneno = $("#ordernumber").val();
+            alert(txtphoneno);
+            $.ajax({
+                type: "GET",
+                url: '@Url.Content("~/")' + "Admin/GetLog?ordernumber=" + txtphoneno,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+            }).done(function (data) {
+                console.log(data);
+                var s = data;
+                alert(data);
+                var tblEmployee = $("#tblEmployee");
+                for (var i = 0; i < data.length; i++) {
+                    var tr = $("<tr></tr>");
+                    tr.html(("<td>" + item.category + "</td>")
+                        + " " + ("<td>" + item.date + "</td>")
+                        + " " + ("<td>" + item.message + "</td>"));
+                    tblEmployee.append(tr);
+                }
+                $("#AffiliateId").html(s);
+                $('#CheckNumberPort').modal('hide');
+                $('#CheckNumberPortResult').modal('show');
+            });
+        }*@
+    </script>
+</body>

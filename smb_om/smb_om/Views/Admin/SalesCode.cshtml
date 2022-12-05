@@ -1,0 +1,423 @@
+﻿@model smb_om.Model.SalesCodeModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <form action="sales_code_config" id="salescodeconfigFieldForm" method="POST"
+              name="salescodeconfigFieldForm"
+              onsubmit="return validate(this)">
+            <input name="token" type="hidden" value="46615d64-f7fa-4dbd-8e27-01fb7511aa31" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>Admin</h1>
+                            <p class="error"></p>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Sales Code Maintenance</h2>
+                                        <hr class="break" />
+
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <col style="width: 23%;" />
+                                            <col style="width: 20%;" />
+                                            <col style="width: 10%;" />
+                                            <col style="width: 10%;" />
+                                            <col style="width: 10%;" />
+                                            <tr class="resultsHeader">
+                                                <td align="center">Affiliate</td>
+                                                <td align="center">Region</td>
+                                                <td align="center">Sales Code</td>
+                                                <td align="center"></td>
+                                                <td align="center"></td>
+                                            </tr>
+                                            <input id="action" name="action" type="hidden" value="" />
+                                            <input id="inputstring" name="inputstring" type="hidden" value="" />
+
+                                            @if (Model != null && Model.salesCoderesults != null && Model.salesCoderesults.Count > 0)
+                                            {
+                                                @foreach (var item in Model.salesCoderesults)
+                                                {
+
+                                                    <tr class="resultsOdd">
+                                                        <input class="textbox" id="affiliatename_1313" maxlength="254"
+                                                               name="affiliatename_1313"
+                                                               size="25"
+                                                               type="hidden"
+                                                               value="WIRELESSADVOCATES" />
+                                                        <script>
+                                                          /*  addThis('WIRELESSADVOCATES-SOUTHEAST');*/
+                                                        </script>
+                                                        <td align="center" style="word-wrap: break-word;">@item.Affiliate</td>
+                                                        <input class="textbox" id="region_1313" maxlength="254" name="region_1313" size="15"
+                                                               type="hidden"
+                                                               value="SOUTHEAST" />
+                                                        <td align="center" style="word-wrap: break-word;">@item.Service_Type</td>
+                                                        <td align="center" style="word-wrap: break-word;">
+                                                            <input class="textbox" id="Holidayname_@item.Row_Id" maxlength="254" name="salescode_1313"
+                                                                  disabled="disabled"
+                                                                   size="15"
+                                                                   type="text"
+                                                                   value="@item.SalesCode" />
+                                                        </td>
+                                                        <input id="salesconfigid_1313" name="salesconfigid_1313" type="hidden"
+                                                               value="299d10c1-c0a8-4c81-2ba6-ea1e10ad31e2" />
+                                                        <td align="center" style="word-wrap:normal;">
+                                                            <input class="button-css" id="btnedit_@item.Row_Id" name="editButton_1313"
+                                                                   onclick="show(@item.Row_Id)"
+                                                                   type="button"
+                                                                   value="Edit" /><input class="button-css" id="btnupdate_@item.Row_Id" name="saveButton_1313"
+                                                                                         onclick="Edit(@item.Row_Id)"
+                                                                                         style="display:none"
+                                                                                         type="button"
+                                                                                         value="Save" /><input class="button-css" id="btncancel_@item.Row_Id" name="cancelButton_1313"
+                                                                                                               onclick="cancel(@item.Row_Id)"
+                                                                                                               style="display:none"
+                                                                                                               type="button"
+                                                                                                               value="Cancel" />
+                                                        </td>
+                                                        @*<td align="center" style="word-wrap: break-word;">
+                                                            <a href="salescode_history?salesconfigid=299d10c1-c0a8-4c81-2ba6-ea1e10ad31e2"
+                                                               onclick="">History</a>
+                                                        </td>*@
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                        <script type="text/javascript">
+                                            namepassed = '5I9UOGJF';
+                                        </script><table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <tr class="resultsHeader">
+                                                <td align="center" colspan="5">Add New</td>
+                                            </tr>
+                                            <tr class="resultsOdd">
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <select id="drpaffiliate" name="affiliate_new_sel"
+                                                            onchange="">
+                                                    @foreach (var item in Model.salesCodeAffiliates)
+                                                    {
+                                                        <option value="@item.AffiliateName">@item.AffiliateName</option>
+                                                        @*<option value="7TZMXNUK">7TZMXNUK</option>
+                                                        <option value="7U38D1JI">7U38D1JI</option>
+                                                        <option value="AAFES">AAFES</option>
+                                                        <option value="ABCDIND">ABCDIND</option>
+                                                        <option value="ACCELLER">ACCELLER</option>
+                                                        <option value="ACN">ACN</option>
+                                                        <option value="ADCOMM">ADCOMM</option>
+                                                        <option value="ADCOMMCH">ADCOMMCH</option>*@
+                                                    }
+                                                    </select><input id="affiliatename_new1" name="affiliatename_new1" type="hidden" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new1" maxlength="254" name="region_new1"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="WEST" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_west" maxlength="254" name="salescode_new1"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr class="resultsEven">
+                                                <td align="center" style="word-wrap: break-word;"><input id="affiliatename_new2" name="affiliatename_new2" type="hidden" /></td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new2" maxlength="254" name="region_new2"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="MIDWEST" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_MIDWEST" maxlength="254" name="salescode_new2"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr class="resultsOdd">
+                                                <td align="center" style="word-wrap: break-word;"><input id="affiliatename_new3" name="affiliatename_new3" type="hidden" /></td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new3" maxlength="254" name="region_new3"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="SOUTHWEST" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_SOUTHWEST" maxlength="254" name="salescode_new3"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr class="resultsEven">
+                                                <td align="center" style="word-wrap: break-word;"><input id="affiliatename_new4" name="affiliatename_new4" type="hidden" /></td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new4" maxlength="254" name="region_new4"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="EAST" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_EAST" maxlength="254" name="salescode_new4"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr class="resultsOdd">
+                                                <td align="center" style="word-wrap: break-word;"><input id="affiliatename_new5" name="affiliatename_new5" type="hidden" /></td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new5" maxlength="254" name="region_new5"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="SOUTHEAST" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_SOUTHEAST" maxlength="254" name="salescode_new5"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr class="resultsEven">
+                                                <td align="center" style="word-wrap: break-word;"><input id="affiliatename_new6" name="affiliatename_new6" type="hidden" /></td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="region_new6" maxlength="254" name="region_new6"
+                                                           readonly="readonly"
+                                                           size="15"
+                                                           type="text"
+                                                           value="WIRELESS" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;">
+                                                    <input class="textbox" id="salescode_WIRELESS" maxlength="254" name="salescode_new6"
+                                                           size="15"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                                <td align="center" style="word-wrap: break-word;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="button-css" id="Add" name="Add" onclick="Insert();" type="button"
+                                                           value="Add" /><a></a><input class="button-css" id="Cancel" name="Cancel" onclick="cancelAdd();" type="button"
+                                                                                       value="Cancel" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+       
+
+        function Edit(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#Holidayname_" + RowID).val();
+                if (inputid == '') {
+                    alert('Please enter valid sales code');
+                    return;
+                }
+                var inputid1 = $("#Holidaydate_" + RowID).val();
+                $.getJSON('@Url.Content("~/")' + "Admin/SalesCodeUpdate?Rowid=" + txt + "&Salescode=" + inputid , function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Sales code : Updated Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Sales code : Not able to  Update currently");
+                    }
+                });
+            }
+
+         function Insert() {
+             //txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+
+             var salescode_west = $("#salescode_west").val();
+             var salescode_MIDWEST = $("#salescode_MIDWEST").val();
+             var salescode_SOUTHWEST = $("#salescode_SOUTHWEST").val();
+             var salescode_EAST = $("#salescode_EAST").val();
+             var salescode_SOUTHEAST = $("#salescode_SOUTHEAST").val();
+             var salescode_WIRELESS = $("#salescode_WIRELESS").val();
+
+             var salescode = "";
+             var servicetype = "";
+
+             if (salescode_west != '') {
+
+                 salescode = salescode_west;
+                 servicetype = "west";
+             }
+           else  if (salescode_MIDWEST != '') {
+
+                 salescode = salescode_MIDWEST;
+                 servicetype = "MIDWEST";
+             }
+             else  if (salescode_SOUTHWEST != '') {
+
+                 salescode = salescode_SOUTHWEST;
+                 servicetype = "SOUTHWEST";
+             }
+             else   if (salescode_EAST != '') {
+
+                 salescode = salescode_EAST;
+                 servicetype = "EAST";
+             }
+             else   if (salescode_SOUTHEAST != '') {
+
+                 salescode = salescode_SOUTHEAST;
+                 servicetype = "SOUTHEAST";
+             }
+             else     if (salescode_WIRELESS != '') {
+
+                 salescode = salescode_WIRELESS;
+                 servicetype = "WIRELESS";
+             }
+             if (salescode == '' || servicetype == '') {
+
+                 alert("Please enter Sales code");
+                 return;
+             }
+
+             var inputid = $('#drpaffiliate option:selected').text();
+
+            // var inputid = $("#holidayAdd").val();
+             var inputid1 = $("#holidaydateAdd").val();
+             $.getJSON('@Url.Content("~/")' + "Admin/InsertSalesCode?affiliateName=" + inputid + "&Servicetype=" + servicetype + "&salescode=" + salescode, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Inserted Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Insert currently");
+                    }
+                });
+            }
+
+          function Delete(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#Holidayname_" + RowID).val();
+                var inputid1 = $("#Holidaydate_" + RowID).val();
+              $.getJSON('@Url.Content("~/")' + "Admin/HolidayScheduleDelete?Rowid=" + txt + "&HolidayName=" + inputid + "&HolidayDate=" + inputid1, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Deleted Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Update currently");
+                    }
+                });
+            }
+
+     function show(RowID) {
+         var txt;
+         txt = RowID;
+         //   var lableid = $("#lbl_" + RowID);
+        // $("#lbl_" + RowID).css('display', 'none');
+       //  $("#Holidayname_" + RowID).css('display', 'block');
+       //  $("#Holidayname_" + RowID).removeAttribute("disabled");
+         $("#Holidayname_" + RowID).removeAttr("disabled");
+
+         $("#btnedit_" + RowID).css('display', 'none');
+         $("#btnupdate_" + RowID).css('display', 'block');
+         $("#btncancel_" + RowID).css('display', 'block');
+
+         // alert(lableid);
+         // lableid.style.display = "none";
+        }
+        function cancel(RowID) {
+            var txt;
+            txt = RowID;
+            //   var lableid = $("#lbl_" + RowID);
+            $("#lbl_" + RowID).css('display', 'block');
+            $("#txt_" + RowID).css('display', 'none');
+            $("#btnedit_" + RowID).css('display', 'block');
+            $("#btnupdate_" + RowID).css('display', 'none');
+            $("#btncancel_" + RowID).css('display', 'none');
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+        function cancelAdd() {
+            var txt;
+            var salescode_west = $("#salescode_west");
+            var salescode_MIDWEST = $("#salescode_MIDWEST");
+            var salescode_SOUTHWEST = $("#salescode_SOUTHWEST");
+            var salescode_EAST = $("#salescode_EAST");
+            var salescode_SOUTHEAST = $("#salescode_SOUTHEAST");
+            var salescode_WIRELESS = $("#salescode_WIRELESS");
+            salescode_west.val("");
+            salescode_MIDWEST.val("");
+            salescode_SOUTHWEST.val("");
+            salescode_EAST.val("");
+            salescode_SOUTHEAST.val("");
+            salescode_WIRELESS.val("");
+
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+
+    </script>
+</body>

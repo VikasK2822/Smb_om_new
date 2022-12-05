@@ -1,0 +1,609 @@
+﻿@model smb_om.Model.HolidayCalendarModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <form action="holiday_admin" id="holidayAdminForm" method="POST"
+              name="holidayAdminForm">
+            <input name="token" type="hidden" value="0f2d15fd-161d-43b1-ac6a-62a2c79037af" /><input id="action" name="action" type="hidden" value="" /><input id="inputstring" name="inputstring" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>Admin</h1>
+                            <p class="error"></p>
+                            <p>
+                                This page is used to set Holiday Schedule for Indirect. Holidays should be added for every year separately.
+
+                            </p>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Holiday Schedule</h2>
+                                        <hr class="break" />
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <col style="width: 35%;" />
+                                            <col style="width: 25%;" />
+                                            <col style="width: 5%;" />
+                                            <col style="width: 20%;" />
+                                            <col style="width: 20%;" />
+                                            <tr class="resultsHeader">
+                                                <td align="center">Holiday Name</td>
+                                                <td align="center">Date</td>
+                                                <td align="center"> </td>
+                                                <td align="center"> </td>
+                                                <td align="center"> </td>
+
+                                            </tr>
+
+                                            @if (Model != null && Model.holidayCalendarResults != null && Model.holidayCalendarResults.Count > 0)
+                                            {
+                                                @foreach (var item in Model.holidayCalendarResults)
+                                                {
+
+
+                                                    <tr class="resultsOdd">
+                                                        <td>
+                                                            <input class="textbox" id="Holidayname_@item.RowID" maxlength="254" name="holidayname_1"
+                                                                   disabled="disabled"
+                                                                   size="40"
+                                                                   type="text"
+                                                                   value="@item.HolidayName" /><input name="orig_holidayname_1" type="hidden" value=@item.HolidayName />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input class="textbox" id="Holidaydate_@item.RowID" maxlength="254" name="holidaydate_1"
+                                                                   readonly="readonly"
+                                                                   size="10"
+                                                                   type="text"
+                                                                   value=@item.HolidayDate />
+                                                            <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_1)"
+                                                               id="holidaydate_1_anchor"
+                                                               name="holidaydate_1_anchor"
+                                                               tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+                                                        </td>
+                                                        <td align="center">
+                                                        </td>
+                                                        <td align="center">
+                                                            <input class="button-css" id="btnedit_@item.RowID" name="EditButton" onclick="show(@item.RowID)"
+                                                                   type="button"
+                                                                   value="Edit" /><input class="button-css" id="btnupdate_@item.RowID" name="Save"
+                                                                                         onclick="Edit(@item.RowID);"
+                                                                                         style="display:none"
+                                                                                         type="button"
+                                                                                         value="Save" /><input class="button-css" id="btncancel_@item.RowID" name="Cancel" onclick="cancel(@item.RowID);"
+                                                                                                               style="display:none"
+                                                                                                               type="button"
+                                                                                                               value="Cancel" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input class="button-css" id="btndelete_@item.RowID" name="RemoveButton"
+                                                                   onclick="Delete(@item.RowID)"
+                                                                   type="button"
+                                                                   value="Remove" />
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                            <tr>
+                                                <td>
+                                                    <input class="textbox" id="holidayAdd" maxlength="254" name="holidayname" size="40"
+                                                           type="text" />
+                                                </td>
+                                                <td align="center">
+                                                    <input class="textbox" id="holidaydateAdd" maxlength="254" name="holidaydate" size="10"
+                                                           type="text" />
+                                                    <a href="javascript:show_cal(document.holidayAdminForm.holidaydate)"
+                                                       id="holidaydtanchor"
+                                                       tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+                                                </td>
+                                                <td align="center"> </td>
+                                                <td align="center">
+                                                    <input class="button-css" id="AddButton" name="AddButton"
+                                                           onclick="Add();"
+                                                           type="button"
+                                                           value="Add" />
+                                                </td>
+                                                <td align="center"> </td>
+                                            </tr>
+
+                                            @*<tr class="resultsOdd">
+            <td>
+                <input class="textbox" id="holidayname_1" maxlength="254" name="holidayname_1"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="Hi Sync" /><input name="orig_holidayname_1" type="hidden" value="Hi Sync" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_1" maxlength="254" name="holidaydate_1"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="12/12/2015" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_1)"
+                   id="holidaydate_1_anchor"
+                   name="holidaydate_1_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_1" name="EditButton" onclick="editField(1)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_1" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_1" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_1" name="RemoveButton"
+                       onclick="deleteField(1)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsEven">
+            <td>
+                <input class="textbox" id="holidayname_2" maxlength="254" name="holidayname_2"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="EndLADAT" /><input name="orig_holidayname_2" type="hidden" value="EndLADAT" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_2" maxlength="254" name="holidaydate_2"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="05/02/2016" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_2)"
+                   id="holidaydate_2_anchor"
+                   name="holidaydate_2_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_2" name="EditButton" onclick="editField(2)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_2" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_2" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_2" name="RemoveButton"
+                       onclick="deleteField(2)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsOdd">
+            <td>
+                <input class="textbox" id="holidayname_3" maxlength="254" name="holidayname_3"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="Test" /><input name="orig_holidayname_3" type="hidden" value="Test" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_3" maxlength="254" name="holidaydate_3"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="08/15/2015" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_3)"
+                   id="holidaydate_3_anchor"
+                   name="holidaydate_3_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_3" name="EditButton" onclick="editField(3)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_3" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_3" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_3" name="RemoveButton"
+                       onclick="deleteField(3)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsEven">
+            <td>
+                <input class="textbox" id="holidayname_4" maxlength="254" name="holidayname_4"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="Test2 - edited" /><input name="orig_holidayname_4" type="hidden" value="Test2 - edited" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_4" maxlength="254" name="holidaydate_4"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="05/20/2021" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_4)"
+                   id="holidaydate_4_anchor"
+                   name="holidaydate_4_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_4" name="EditButton" onclick="editField(4)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_4" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_4" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_4" name="RemoveButton"
+                       onclick="deleteField(4)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsOdd">
+            <td>
+                <input class="textbox" id="holidayname_5" maxlength="254" name="holidayname_5"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="QA Test" /><input name="orig_holidayname_5" type="hidden" value="QA Test" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_5" maxlength="254" name="holidaydate_5"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="12/13/2015" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_5)"
+                   id="holidaydate_5_anchor"
+                   name="holidaydate_5_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_5" name="EditButton" onclick="editField(5)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_5" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_5" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_5" name="RemoveButton"
+                       onclick="deleteField(5)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsEven">
+            <td>
+                <input class="textbox" id="holidayname_6" maxlength="254" name="holidayname_6"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="thanks giving day1" /><input name="orig_holidayname_6" type="hidden" value="thanks giving day1" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_6" maxlength="254" name="holidaydate_6"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="12/31/2015" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_6)"
+                   id="holidaydate_6_anchor"
+                   name="holidaydate_6_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_6" name="EditButton" onclick="editField(6)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_6" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_6" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_6" name="RemoveButton"
+                       onclick="deleteField(6)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsOdd">
+            <td>
+                <input class="textbox" id="holidayname_7" maxlength="254" name="holidayname_7"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="X-mas1" /><input name="orig_holidayname_7" type="hidden" value="X-mas1" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_7" maxlength="254" name="holidaydate_7"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="11/12/2015" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_7)"
+                   id="holidaydate_7_anchor"
+                   name="holidaydate_7_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_7" name="EditButton" onclick="editField(7)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_7" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_7" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_7" name="RemoveButton"
+                       onclick="deleteField(7)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr class="resultsEven">
+            <td>
+                <input class="textbox" id="holidayname_8" maxlength="254" name="holidayname_8"
+                       readonly="readonly"
+                       size="40"
+                       type="text"
+                       value="LADAT Test33" /><input name="orig_holidayname_8" type="hidden" value="LADAT Test33" />
+            </td>
+            <td align="center">
+                <input class="textbox" id="holidaydate_8" maxlength="254" name="holidaydate_8"
+                       readonly="readonly"
+                       size="10"
+                       type="text"
+                       value="06/15/2016" />
+                <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_8)"
+                   id="holidaydate_8_anchor"
+                   name="holidaydate_8_anchor"
+                   tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a>
+            </td>
+            <td align="center">
+            </td>
+            <td align="center">
+                <input class="button-css" id="EditButton_8" name="EditButton" onclick="editField(8)"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="Save_Edit_8" name="Save"
+                                             onclick="editThisField(); save();"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="Cancel_Edit_8" name="Cancel" onclick="cancel();"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="RemoveButton_8" name="RemoveButton"
+                       onclick="deleteField(8)"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>*@
+                                            <!--<tr class="resultsOdd">
+       <td><input class="textbox" id="holidayname_9" maxlength="254" name="holidayname_9"
+                 readonly="readonly"
+                 size="40"
+                 type="text"
+                 value="test'&amp;quot;&amp;gt;" /><input name="orig_holidayname_9" type="hidden" value="test'&amp;quot;&amp;gt;" /></td>
+       <td align="center"><input class="textbox" id="holidaydate_9" maxlength="254" name="holidaydate_9"
+                 readonly="readonly"
+                 size="10"
+                 type="text"
+                 value="07/04/2017" />
+          <a href="javascript:show_cal(document.holidayAdminForm.holidaydate_9)"
+             id="holidaydate_9_anchor"
+             name="holidaydate_9_anchor"
+             tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a></td>
+       <td align="center">
+
+       </td>
+       <td align="center"><input class="button-css" id="EditButton_9" name="EditButton" onclick="editField(9)"
+                 type="button"
+                 value="Edit" /><input class="button-css" id="Save_Edit_9" name="Save"
+                 onclick="editThisField(); save();"
+                 style="display:none"
+                 type="button"
+                 value="Save" /><input class="button-css" id="Cancel_Edit_9" name="Cancel" onclick="cancel();"
+                 style="display:none"
+                 type="button"
+                 value="Cancel" /></td>
+       <td align="center"><input class="button-css" id="RemoveButton_9" name="RemoveButton"
+                 onclick="deleteField(9)"
+                 type="button"
+                 value="Remove" /></td>
+    </tr>
+    <tr>
+       <td><input class="textbox" id="holidayname" maxlength="254" name="holidayname" size="40"
+                 type="text" /></td>
+       <td align="center"><input class="textbox" id="holidaydate" maxlength="254" name="holidaydate" size="10"
+                 type="text" />
+          <a href="javascript:show_cal(document.holidayAdminForm.holidaydate)"
+             id="holidaydtanchor"
+             tabindex="20"><img alt="calendar" border="0" src="../../images/calendar/calendar_button.gif" /></a></td>
+       <td align="center"> </td>
+       <td align="center"><input class="button-css" id="AddButton" name="AddButton"
+                 onclick="addField(); save();"
+                 type="button"
+                 value="Add" /></td>
+       <td align="center"> </td>
+    </tr>-->
+                                        </table>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script type="text/javascript">
+            function Edit(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#Holidayname_" + RowID).val();
+                var inputid1 = $("#Holidaydate_" + RowID).val();
+                $.getJSON('@Url.Content("~/")' + "Admin/HolidayScheduleUpdate?Rowid=" + txt + "&HolidayName=" + inputid + "&HolidayDate=" + inputid1, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Updated Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Update currently");
+                    }
+                });
+            }
+
+         function Add(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+             var inputid = $("#holidayAdd").val();
+             var inputid1 = $("#holidaydateAdd").val();
+             $.getJSON('@Url.Content("~/")' + "Admin/InsertSchedule?HolidayName=" + inputid + "&HolidayDate=" + inputid1 , function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Inserted Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Insert currently");
+                    }
+                });
+            }
+
+          function Delete(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#Holidayname_" + RowID).val();
+                var inputid1 = $("#Holidaydate_" + RowID).val();
+              $.getJSON('@Url.Content("~/")' + "Admin/HolidayScheduleDelete?Rowid=" + txt + "&HolidayName=" + inputid + "&HolidayDate=" + inputid1, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Holidate Schedule : Deleted Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                     //   $("#lbl_" + RowID).css('readonly', 'block');
+                    //    $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Update currently");
+                    }
+                });
+            }
+
+     function show(RowID) {
+         var txt;
+         txt = RowID;
+         //   var lableid = $("#lbl_" + RowID);
+        // $("#lbl_" + RowID).css('display', 'none');
+       //  $("#Holidayname_" + RowID).css('display', 'block');
+       //  $("#Holidayname_" + RowID).removeAttribute("disabled");
+         $("#Holidayname_" + RowID).removeAttr("disabled");
+
+         $("#btnedit_" + RowID).css('display', 'none');
+         $("#btnupdate_" + RowID).css('display', 'block');
+         $("#btncancel_" + RowID).css('display', 'block');
+
+         // alert(lableid);
+         // lableid.style.display = "none";
+        }
+        function cancel(RowID) {
+            var txt;
+            txt = RowID;
+            //   var lableid = $("#lbl_" + RowID);
+            $("#lbl_" + RowID).css('display', 'block');
+            $("#txt_" + RowID).css('display', 'none');
+            $("#btnedit_" + RowID).css('display', 'block');
+            $("#btnupdate_" + RowID).css('display', 'none');
+            $("#btncancel_" + RowID).css('display', 'none');
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+    </script>
+
+</body>

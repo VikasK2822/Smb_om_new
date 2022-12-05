@@ -1,0 +1,312 @@
+﻿@model smb_om.Model.DqwIncompleteModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <div style="display: inline-block;width: 80%;">
+                                <h1>
+                                    Business Incomplete Orders
+                                </h1>
+                            </div>
+                            <div style="width: 10%;float: right;display: inline;margin-top: 1.5%;margin-right: 1.5%;">
+
+                            </div>
+                            <p class="error"></p>
+                            <div class="cmxform_short content-border" id="queueDiv">
+                                <fieldset>
+
+                                    <div class="" id="rc1_received">
+                                        <h2 xmlns="http://www.w3.org/1999/xhtml">UVERSE</h2>
+                                        <hr xmlns="http://www.w3.org/1999/xhtml" class="break" />
+                                        <fieldset xmlns="http://www.w3.org/1999/xhtml">
+                                            <div class="contentBlock">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                                                    <tbody>
+                                                        @if (Model.UverseQueue != null && Model.UverseQueue.Count > 0)
+                                                        {
+                                                            @for (int i = 0; i < Model.UverseQueue.Count; i++)
+                                                            {
+                                                                @if (!string.IsNullOrEmpty(@Model.UverseQueue[i].ProductName))
+                                                                {
+                                                                    <tr>
+                                                                        <td style="vertical-align: top; text-align: right;"><span class="subheader">@Model.UverseQueue[i].ProductName</span></td>
+                                                                        <td colspan="2">
+                                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding: 0px; margin: 0px;">
+                                                                                            Oldest Order in Queue:
+                                                                                            <br /><br />
+                                                                                            Total Number of Orders in Queue:
+
+                                                                                        </td>
+                                                                                        <td style="padding: 0px; margin: 0px; text-align: right;">
+                                                                                            @Model.UverseQueue[i].OldestOrderQuene<br /><br />@Model.UverseQueue[i].TotalnoOrders
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                        <td>&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td style="text-align: right;">@Model.UverseQueue[i].ProductName</td>
+
+                                                                        <td><span style='height: 15px; width: 15px; background-color:@Model.UverseQueue[i].SLA_Color; border-radius: 50%; display: inline-block;'></span></td>
+                                                                        <td>
+                                                                            <input type="hidden" asp-for="@Model.UverseQueue[i].ProductName" />
+                                                                            <input name="token" type="hidden" value="0832eaeb-d1ad-441b-804e-f9b694ce769b" form="NEWRC1RECEIVEDFFLFFL" />
+                                                                            <select class="adjPulldown" name="criteria" style="width: 100%;" form="NEWRC1RECEIVEDFFLFFL" id="uversedrpdown_@i.ToString()">
+
+                                                                                @foreach (var item1 in Model.UverseQueue[i].PartnerDaysOrder)
+                                                                                {
+
+                                                                                    <option value=@item1.PartnerValue>
+                                                                                        @item1.PartnerText
+                                                                                    </option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="button-css" name="defaultNext" type="button" id="btnnext_@i.ToString()" value="Get Next Order" onclick="onbuttonclick('uversedrpdown_@i.ToString()','@Model.UverseQueue[i].ProductName','UVERSE')" />
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="alert alert-warning" id="no_orders">No orders available</div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="cmxform_short content-border" id="queueDiv2">
+                                <fieldset>
+
+                                    <div class="" id="rc1_received">
+                                        <h2 xmlns="http://www.w3.org/1999/xhtml">AWB</h2>
+                                        <hr xmlns="http://www.w3.org/1999/xhtml" class="break" />
+                                        <fieldset xmlns="http://www.w3.org/1999/xhtml">
+                                            <div class="contentBlock">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                                                    <tbody>
+                                                        @if (Model.AwbQueue != null && Model.AwbQueue.Count > 0)
+                                                        {
+                                                            @for (int i = 0; i < Model.AwbQueue.Count; i++)
+                                                            {
+                                                                @if (!string.IsNullOrEmpty(@Model.AwbQueue[i].ProductName))
+                                                                {
+                                                                    <tr>
+                                                                        <td style="vertical-align: top; text-align: right;"><span class="subheader">@Model.AwbQueue[i].ProductName</span></td>
+                                                                        <td colspan="2">
+                                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding: 0px; margin: 0px;">
+                                                                                            Oldest Order in Queue:
+                                                                                            <br /><br />
+                                                                                            Total Number of Orders in Queue:
+
+                                                                                        </td>
+                                                                                        <td style="padding: 0px; margin: 0px; text-align: right;">
+                                                                                            @Model.AwbQueue[i].OldestOrderQuene<br /><br />@Model.AwbQueue[i].TotalnoOrders
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                        <td>&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td style="text-align: right;">@Model.AwbQueue[i].ProductName</td>
+
+                                                                        <td><span style='height: 15px; width: 15px; background-color:@Model.AwbQueue[i].SLA_Color; border-radius: 50%; display: inline-block;'></span></td>
+                                                                        <td>
+                                                                            <input type="hidden" asp-for="@Model.AwbQueue[i].ProductName" />
+                                                                            <input name="token" type="hidden" value="0832eaeb-d1ad-441b-804e-f9b694ce769b" form="NEWRC1RECEIVEDFFLFFL" />
+                                                                            <select class="adjPulldown" name="criteria" style="width: 100%;" form="NEWRC1RECEIVEDFFLFFL" id="awbdrpdown_@i.ToString()">
+
+                                                                                @foreach (var item1 in Model.AwbQueue[i].PartnerDaysOrder)
+                                                                                {
+
+                                                                                    <option value=@item1.PartnerValue>
+                                                                                        @item1.PartnerText
+                                                                                    </option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="button-css" name="defaultNext" type="button" id="btnnext_@i.ToString()" value="Get Next Order" onclick="onbuttonclick('awbdrpdown_@i.ToString()','@Model.AwbQueue[i].ProductName','AWB')" />
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="alert alert-warning" id="no_orders">No orders available</div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="cmxform_short content-border" id="queueDiv3">
+                                <fieldset>
+
+                                    <div class="" id="rc1_received">
+                                        <h2 xmlns="http://www.w3.org/1999/xhtml">POTS</h2>
+                                        <hr xmlns="http://www.w3.org/1999/xhtml" class="break" />
+                                        <fieldset xmlns="http://www.w3.org/1999/xhtml">
+                                            <div class="contentBlock">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                                                    <tbody>
+                                                        @if (Model.PotsQueue != null && Model.PotsQueue.Count > 0)
+                                                        {
+                                                            @for (int i = 0; i < Model.PotsQueue.Count; i++)
+                                                            {
+                                                                @if (!string.IsNullOrEmpty(@Model.PotsQueue[i].ProductName))
+                                                                {
+                                                                    <tr>
+                                                                        <td style="vertical-align: top; text-align: right;"><span class="subheader">@Model.PotsQueue[i].ProductName</span></td>
+                                                                        <td colspan="2">
+                                                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding: 0px; margin: 0px;">
+                                                                                            Oldest Order in Queue:
+                                                                                            <br /><br />
+                                                                                            Total Number of Orders in Queue:
+
+                                                                                        </td>
+                                                                                        <td style="padding: 0px; margin: 0px; text-align: right;">
+                                                                                            @Model.PotsQueue[i].OldestOrderQuene<br /><br />@Model.PotsQueue[i].TotalnoOrders
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                        <td>&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td style="text-align: right;">@Model.PotsQueue[i].ProductName</td>
+
+                                                                        <td><span style='height: 15px; width: 15px; background-color:@Model.PotsQueue[i].SLA_Color; border-radius: 50%; display: inline-block;'></span></td>
+                                                                        <td>
+                                                                            <input type="hidden" asp-for="@Model.PotsQueue[i].ProductName" />
+                                                                            <input name="token" type="hidden" value="0832eaeb-d1ad-441b-804e-f9b694ce769b" form="NEWRC1RECEIVEDFFLFFL" />
+                                                                            <select class="adjPulldown" name="criteria" style="width: 100%;" form="NEWRC1RECEIVEDFFLFFL" id="potsdrpdown_@i.ToString()">
+
+                                                                                @foreach (var item1 in Model.PotsQueue[i].PartnerDaysOrder)
+                                                                                {
+
+                                                                                    <option value=@item1.PartnerValue>
+                                                                                        @item1.PartnerText
+                                                                                    </option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input class="button-css" name="defaultNext" type="button" id="btnnext_@i.ToString()" value="Get Next Order" onclick="onbuttonclick('potsdrpdown_@i.ToString()','@Model.PotsQueue[i].ProductName','POTS')" />
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="alert alert-warning" id="no_orders">No orders available</div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        function onbuttonclick(partner_Element,product_name,producttype)
+        {
+         /*   alert(producttype);*/
+            var order_partner_name = $("#" + partner_Element + "").val();
+            /*alert(order_partner_name);*/
+
+            $.getJSON('@Url.Content("~/")' + "Dwq/GetInCompleteOrderId?productType=" + producttype+"&reasoncodeName=" + product_name + "&partnerName=" + order_partner_name, function (OrderId_Data)
+            {
+
+                debugger;
+                window.location.href = "/orderprocess/Index/?orderId=" + OrderId_Data+"&returnurl=incomdwq";
+
+            });
+
+
+        }
+    </script>
+
+</body>

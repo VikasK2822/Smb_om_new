@@ -1,0 +1,185 @@
+﻿@model smb_om.Model.ChangePasswordModel
+@*@{
+    Layout = null;
+}*@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>*@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+@*<link rel="stylesheet" type="text/css" href="~/styles/referenceimplementation.css" />*@
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $("#btnVAaided").on("click", function () {
+    //        $("#passwordinstructionspopup").modal('show');
+    //    });
+    //});
+    function showPopupPasswordInstructions() {
+        $("#passwordinstructionspopup").modal('show');
+    }
+    function hidePopupPasswordInstructions() {
+        $("#passwordinstructionspopup").modal('hide');
+    }
+
+</script>
+<body>
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @*<h4 class="modal-title !important" >Change Password</h4>*@
+                </div>
+                <div class="modal-body">
+                    <table border="0" cellpadding="5" cellspacing="0">
+                        <col style="width: 50%;">
+                        <col style="width: 50%;">
+                        <tr>
+                            <td colspan="2"><strong>Password Rules</strong></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <ul>
+                                    <li class="bullet">Must be between 8 and 16 characters in length</li>
+                                    <li class="bullet">Spaces are not permitted</li>
+                                    <li class="bullet">The word 'password' is not permitted</li>
+                                    @*<li class="bullet">Repeating of the password used in the past 1440 days is not permitted</li>*@
+                                    <li class="bullet">Matching the Login ID is not permitted</li>
+                                </ul>
+                            </td>
+                            <td valign="top">
+                                <ul>
+                                    <li class="bullet">Must contain at least three of the following character types<br><span style="padding-left:10px;">- Uppercase (i.e. A, B, C)</span><br><span style="padding-left:10px;">- Lowercase (i.e. a, b, c)</span><br><span style="padding-left:10px;">- Numeric (i.e. 1, 2, 3)</span><br><span style="padding-left:10px;">- Special (i.e. @@ #, $, *, !)</span></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="popup popup-details popup-passwordinstructions" id="passwordinstructionspopup">
+        <div class="block">
+            <div class="header"><a class="" data-toggle="popup" href="#" onclick="hidePopupPasswordInstructions()">Close</a></div>
+            <div class="content">
+                <h3>Change Password</h3>
+                <table border="0" cellpadding="5" cellspacing="0">
+                    <col style="width: 50%;">
+                    <col style="width: 50%;">
+                    <tr>
+                        <td colspan="2"><strong>Password Rules</strong></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <ul>
+                                <li class="bullet">Must be between 8 and 16 characters in length</li>
+                                <li class="bullet">Spaces are not permitted</li>
+                                <li class="bullet">The word 'password' is not permitted</li>
+                                @*<li class="bullet">Repeating of the password used in the past 1440 days is not permitted</li>*@
+                                <li class="bullet">Matching the Login ID is not permitted</li>
+                            </ul>
+                        </td>
+                        <td valign="top">
+                            <ul>
+                                <li class="bullet">Must contain at least three of the following character types<br><span style="padding-left:10px;">- Uppercase (i.e. A, B, C)</span><br><span style="padding-left:10px;">- Lowercase (i.e. a, b, c)</span><br><span style="padding-left:10px;">- Numeric (i.e. 1, 2, 3)</span><br><span style="padding-left:10px;">- Special (i.e. @@ #, $, *, !)</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <form asp-controller="ChangePassword" asp-action="ChangePassword" method="post">
+        @Html.AntiForgeryToken()
+        <div id="content-body">
+            <div class="cmxform_short">
+                <fieldset>
+                    <h2>Change Password</h2>
+                    <hr class="break">
+                    <div class="contentBlock">
+                        <table border="0" cellpadding="0" cellspacing="0" class="">
+                            @*<col style="width: 15%;">
+                                <col style="width: 35%;">
+                                <col style="width: 20%;">
+                                <col style="width: 30%;">*@
+                            <tr>
+                                <td style="text-align: right;"><label class="required" for="uname" width="10%">Login ID</label></td>
+                                <td width="20%">
+                                    <input id="uname" name="UserId" size="20" asp-for="UserId" type="text" value="">
+
+                                <td width="20%">  <span asp-validation-for="UserId" class="text-danger"></span></td>
+
+                                <td width="10%" style="text-align: right;"><label class="required" for="old_pwd" id="old_pwd_label">Old Password</label></td>
+                                <td width="20%">
+                                    <input autocomplete="off" id="old_pwd" name="OldPassword" size="20" asp-for="OldPassword" type="password" value="">
+                                </td>
+                                <td width="20%">   <span asp-validation-for="OldPassword" class="text-danger"></span></td>
+
+                            </tr>
+                            <tr>
+                                <td width="10%" style="text-align: right;"><label class="required" for="new_pwd">New Password</label></td>
+                                <td width="20%">
+                                    <input autocomplete="off" id="new_pwd" name="Password" size="20" asp-for="Password" type="password" value="">
+
+                                </td>
+                                <td width="20%"> <span asp-validation-for="Password" class="text-danger"></span></td>
+                                <td width="10%" style="text-align: right;"><label class="required" for="con_pwd" id="con_pwd_label">Confirm Password</label></td>
+                                <td width="20%">
+                                    <input autocomplete="off" id="con_pwd" name="ConfirmPassword" asp-for="ConfirmPassword" size="20" type="password" value="">
+
+                                </td>
+                                <td width="20%"><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <span class="text-danger">
+                                        @if (@ViewData["MSG"] != null)
+                                        {
+
+                                            @ViewData["MSG"].ToString()
+
+                                        }
+                                    </span>
+                                </td>
+
+                            </tr>
+                        </table>
+                        <table style="height: 50px;" width="100%">
+                            <colgroup>
+                                <col style="width: 50%;">
+                                <col style="width: 50%;">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+
+
+                                    <td id="tr_msg_node" style="width: 100%; display:table-row">
+                                        <div id="id_msg_node"></div>
+                                    </td>
+                                    <td>
+                                        <a style="text-align:left" class="" data-toggle="modal" href="#myModal">Password Rules</a>
+                                    </td>
+                                    <td style="text-align: right;"><input class="button-css" name="change_pwd" type="submit" value="Change Password"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</body>

@@ -1,0 +1,66 @@
+/**
+ * Copyright 2008-2022 Sequential Tech  All Rights Reserved.
+ *
+ * This source code is the confidential and proprietary information of
+ * Sequential Tech
+ *
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Synchronoss Technologies.
+ */
+/* ################################## All Browser Rules ################################## */
+table.dataTable {
+	border-collapse: collapse;
+	table-layout: fixed;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    background: #FFF;
+    }
+
+.dataTableBorder {
+    border: 1px solid #CCC;
+    }
+
+table.dataTable td {
+	padding: 0.5em;
+    background: url(../images/ieborder.gif) right bottom no-repeat;
+	overflow: hidden;
+    }
+
+table.dataTable th {
+	padding: 0.5em;
+    background: #55A6DD url(../images/ieborder.gif) right bottom no-repeat;
+	overflow: hidden;
+    }
+
+.dataTable thead, tfoot {
+    background: #55A6DD;
+    color: #FFF;
+    }
+
+/* define height and width of scrollable area. Add 16px to width for scrollbar          */
+div.tableContainer {
+  clear: both;
+  max-height: 200px;
+  overflow: auto;
+  overflow-x: hidden;
+  width: auto;
+  padding-left: 15px;
+  margin-right: 15px;
+}
+
+/* define width of table. IE browsers only                 */
+div.tableContainer table {
+        width: 100%;
+}
+
+/* ################################## FF Specific Rules ################################## */
+html>body tbody.scrollingFF {
+    height: 200px;
+   	width: 100%;
+    margin: 0;
+	position: relative;
+	overflow: auto;
+    overflow-x: hidden;
+    }

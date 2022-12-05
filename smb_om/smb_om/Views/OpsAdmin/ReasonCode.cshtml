@@ -1,0 +1,161 @@
+﻿
+@model smb_om.Model.MasterReasonCode
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<body>
+    <div id="content-body">
+        <div class="application">
+            <h1>Reason Code Admin</h1>
+            <ul class="nav nav-tabs" style="border-right:0;border-left:0;">
+                <li class="active"><a data-toggle="tab" href="#business">Existing Business - SMBC</a></li>
+
+            </ul>
+            <div class="tab-pane fade active in" id="business" style="padding:10px;">
+                <div id="dataTable-smbc_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="dataTables_scroll">
+
+                        <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 951px; padding-right: 16px;">
+                                <table class="display stripe dataTable no-footer" width="100%" role="grid" style="margin-left: 0px; width: 951px;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 281px;">Reason Code</th>
+                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 281px;">Reason</th>
+                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 281px;"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div><div class="dataTables_scrollBody" style="overflow: auto; height: 400px; width: 100%;">
+                            <table class="display stripe dataTable no-footer" id="dataTable-smbc" width="100%" role="grid" aria-describedby="dataTable-smbc_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row" style="height: 0px;">
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;">Reason Code</div>
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;">Reason</div>
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;"></div>
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 50px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;"></div>
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 50px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;"></div>
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 50px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                            <div class="dataTables_sizing" style="height:0;overflow:hidden;"></div>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*<tr role="row" class="odd"><td>6</td><td>IT Follow-up</td><td><a class="reasonCodeLinks" href="#" onclick="showReasonCodePopup(6,'dataTable-smbc')">Edit</a></td>
+                                        </tr>*@
+                                @if (Model != null && Model.reasonCodeResults != null && Model.reasonCodeResults.Count > 0)
+                                {
+                                    @foreach (var item in Model.reasonCodeResults)
+                                    {
+                                    <tr role="row" class="odd">
+                                        <td>@item.ReasonCode</td>
+                                        <td><label style="display:block" id="lbl_@item.Row_ID">@item.ReasonCodeName</label></td>
+                                        <td><input type="text" id="txt_@item.Row_ID" value="@item.ReasonCodeName" style="display:none;" /> </td>
+                                        @*<td><a class="reasonCodeLinks" href="javascript:Edit(@item.Row_ID)">Edit</a></td>*@
+                                        <td align="center">
+                                            <input class="button-css" id="btnedit_@item.Row_ID" name="removeButton_4"
+                                                   onclick="show(@item.Row_ID)"
+                                                   style="display:block"
+                                                   type="button"
+                                                   value="Edit" />
+                                        </td>
+                                        <td align="center">
+                                            <input class="button-css" id="btnupdate_@item.Row_ID" name="removeButton_4"
+                                                   onclick="Edit(@item.Row_ID)"
+                                                   style="display: none"
+                                                   type="button"
+                                                   value="Update" />
+                                        </td>
+                                        <td align="center">
+                                            <input class="button-css" id="btncancel_@item.Row_ID" name="removeButton_4"
+                                                   onclick="cancel(@item.Row_ID)"
+                                                   style="display: none"
+                                                   type="button"
+                                                   value="Cancel" />
+                                        </td>
+                                        @*<td><a class="reasonCodeLinks" href="#" onclick="Edit(@item.Row_ID)">Update</a></td>*@
+                                    </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @*<div class="dataTables_info" id="dataTable-smbc_info" role="status" aria-live="polite">Showing 1 to 43 of 43 entries</div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+            function Edit(RowID) {
+                txt = RowID;
+             //   var lableid = $("#lbl_" + RowID);
+            //    $("#lbl_" + RowID).css('display', 'none');
+               // alert(lableid);
+               // lableid.style.display = "none";
+             //   var txtid = $("#txt_" + RowID);
+                var inputid = $("#txt_" + RowID).val();
+
+                $.getJSON('@Url.Content("~/")' + "OpsAdmin/ReasonCodeUpdate?Rowid=" + txt + "&reasoncode=" + inputid, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Reason code : Updated Successfully");
+                        window.location.reload();
+                        txtid.style.display = "none";
+                        lableid.style.display = "block";
+
+                        $("#lbl_" + RowID).css('display', 'block');
+                        $("#txt_" + RowID).css('display', 'none');
+                        $("#btnedit_" + RowID).css('display', 'block');
+                        $("#btnupdate_" + RowID).css('display', 'none');
+                        $("#btncancel_" + RowID).css('display', 'none');
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Reason code : Not able to  Update currently");
+                    }
+                });
+            }
+
+     function show(RowID) {
+         var txt;
+         txt = RowID;
+         //   var lableid = $("#lbl_" + RowID);
+         $("#lbl_" + RowID).css('display', 'none');
+         $("#txt_" + RowID).css('display', 'block');
+         $("#btnedit_" + RowID).css('display', 'none');
+         $("#btnupdate_" + RowID).css('display', 'block');
+         $("#btncancel_" + RowID).css('display', 'block');
+         
+         // alert(lableid);
+         // lableid.style.display = "none";
+        }
+        function cancel(RowID) {
+            var txt;
+            txt = RowID;
+            //   var lableid = $("#lbl_" + RowID);
+            $("#lbl_" + RowID).css('display', 'block');
+            $("#txt_" + RowID).css('display', 'none');
+            $("#btnedit_" + RowID).css('display', 'block');
+            $("#btnupdate_" + RowID).css('display', 'none');
+            $("#btncancel_" + RowID).css('display', 'none');
+            // alert(lableid);
+            // lableid.style.display = "none";
+        }
+    </script>
+
+</body>

@@ -1,0 +1,514 @@
+﻿
+@model smb_om.Model.SpecialProjectType
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<body>
+
+
+
+    <div id="content-body">
+        <form action="special_project_tracking_type" id="specialProjectForm" method="POST"
+              name="specialProjectForm">
+            <input name="token" type="hidden" value="bda58d7c-bded-4f31-a2b9-24657962ff0f" /><input id="action" name="action" type="hidden" value="" /><input id="reasonId" name="reasonId" type="hidden" value="" /><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="stroke" height="1" width="1"></td>
+                    <td align="center">
+                        <div class="application">
+                            <h1>Special Project Tracking</h1>
+                            <p class="error"></p>
+                            <ul class="shadetabs" id="tabs-section1">
+                                <li>
+                                    <a class="selected"
+                                       href="/indirect-webclient/client/special_project_tracking_type"
+                                       rel="tab-reasons">
+                                        Special Project
+                                        Type
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="content-border">
+                                <div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Special Project Type</h2>
+                                        <hr class="break" />
+                                        <div class="contentBlock">
+                                            <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                                <col style="width: 65%;" />
+                                                <col style="width: 12%;" />
+                                                <col style="width: 12%;" />
+                                                <tr class="resultsHeader">
+                                                    <td>Project Type</td>
+                                                    <td align="center">Action</td>
+                                                    <td align="center">Delete</td>
+                                                </tr>
+                                                <input id="inputstring" name="inputstring" type="hidden" value="" />
+                                            @if (Model.specialprojectNs != null && Model.specialprojectNs.Count > 0)
+                                            {
+                                                @foreach (var item in Model.specialprojectNs)
+                                                {
+                                                    <tr>
+                                                        <td align="center">
+                                                            <input id="projectid_4" name="projectid_4" type="hidden" value="4" />@*<input id="projectType_4" name="projectType_4" style="width:100%"
+                    type="text"
+                    value=@item.Trim() />*@
+                                                            <input id="projectType_@item.Rowid" name="projectType_4" style="width:100%" asp-for="@item.specialProjectName"
+                                                                   type="text"
+                                                                   value=@item.specialProjectName.Trim() />
+                                                        </td>
+                                                        <td align="center" style="word-wrap:normal;">
+                                                            <input class="button-css" id="editButton_4" name="editButton_4"
+                                                                   onclick="Edit(@item.Rowid)"
+                                                                   type="button"
+                                                                   value="Edit" /><input class="button-css" id="saveButton_4" name="saveButton_4"
+                                                                                         onclick="saveChanges(@item.Rowid)"
+                                                                                         style="display:none"
+                                                                                         type="button"
+                                                                                         value="Save" /><input class="button-css" id="cancelButton_4" name="cancelButton_4"
+                                                                                                               onclick="cancelChanges(@item.Rowid)"
+                                                                                                               style="display:none"
+                                                                                                               type="button"
+                                                                                                               value="Cancel" />
+                                                        </td>
+                                                        <td align="center">
+                                                            <input class="button-css" id="removeButton_4" name="removeButton_4"
+                                                                   onclick="Delete(@item.Rowid)"
+                                                                   style="display:block"
+                                                                   type="button"
+                                                                   value="Remove" />
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                                @*<tr>
+            <td align="center">
+                <input id="projectid_4" name="projectid_4" type="hidden" value="4" /><input disabled="true" id="projectType_4" name="projectType_4" style="width:100%"
+                                                                                            type="text"
+                                                                                            value="A - Submission Install Date Indicator" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_4" name="editButton_4"
+                       onclick="editProjectType('4')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_4" name="saveButton_4"
+                                             onclick="saveChanges('4')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_4" name="cancelButton_4"
+                                                                   onclick="cancelChanges('4')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_4" name="removeButton_4"
+                       onclick="deleteProjType('4')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_15001" name="projectid_15001" type="hidden" value="15001" /><input disabled="true" id="projectType_15001" name="projectType_15001"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="Check Install 1" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_15001" name="editButton_15001"
+                       onclick="editProjectType('15001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_15001" name="saveButton_15001"
+                                             onclick="saveChanges('15001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_15001" name="cancelButton_15001"
+                                                                   onclick="cancelChanges('15001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_15001" name="removeButton_15001"
+                       onclick="deleteProjType('15001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_10001" name="projectid_10001" type="hidden" value="10001" /><input disabled="true" id="projectType_10001" name="projectType_10001"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="Check Install 2" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_10001" name="editButton_10001"
+                       onclick="editProjectType('10001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_10001" name="saveButton_10001"
+                                             onclick="saveChanges('10001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_10001" name="cancelButton_10001"
+                                                                   onclick="cancelChanges('10001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_10001" name="removeButton_10001"
+                       onclick="deleteProjType('10001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_3001" name="projectid_3001" type="hidden" value="3001" /><input disabled="true" id="projectType_3001" name="projectType_3001"
+                                                                                                     style="width:100%"
+                                                                                                     type="text"
+                                                                                                     value="Check Install 3" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_3001" name="editButton_3001"
+                       onclick="editProjectType('3001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_3001" name="saveButton_3001"
+                                             onclick="saveChanges('3001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_3001" name="cancelButton_3001"
+                                                                   onclick="cancelChanges('3001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_3001" name="removeButton_3001"
+                       onclick="deleteProjType('3001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_18001" name="projectid_18001" type="hidden" value="18001" /><input disabled="true" id="projectType_18001" name="projectType_18001"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="Check Install 4" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_18001" name="editButton_18001"
+                       onclick="editProjectType('18001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_18001" name="saveButton_18001"
+                                             onclick="saveChanges('18001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_18001" name="cancelButton_18001"
+                                                                   onclick="cancelChanges('18001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_18001" name="removeButton_18001"
+                       onclick="deleteProjType('18001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_1001" name="projectid_1001" type="hidden" value="1001" /><input disabled="true" id="projectType_1001" name="projectType_1001"
+                                                                                                     style="width:100%"
+                                                                                                     type="text"
+                                                                                                     value="PO - Outbound 1B" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_1001" name="editButton_1001"
+                       onclick="editProjectType('1001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_1001" name="saveButton_1001"
+                                             onclick="saveChanges('1001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_1001" name="cancelButton_1001"
+                                                                   onclick="cancelChanges('1001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_1001" name="removeButton_1001"
+                       onclick="deleteProjType('1001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_6001" name="projectid_6001" type="hidden" value="6001" /><input disabled="true" id="projectType_6001" name="projectType_6001"
+                                                                                                     style="width:100%"
+                                                                                                     type="text"
+                                                                                                     value="PO - Outbound 2" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_6001" name="editButton_6001"
+                       onclick="editProjectType('6001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_6001" name="saveButton_6001"
+                                             onclick="saveChanges('6001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_6001" name="cancelButton_6001"
+                                                                   onclick="cancelChanges('6001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_6001" name="removeButton_6001"
+                       onclick="deleteProjType('6001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_16001" name="projectid_16001" type="hidden" value="16001" /><input disabled="true" id="projectType_16001" name="projectType_16001"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="RID - Outbound 2" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_16001" name="editButton_16001"
+                       onclick="editProjectType('16001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_16001" name="saveButton_16001"
+                                             onclick="saveChanges('16001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_16001" name="cancelButton_16001"
+                                                                   onclick="cancelChanges('16001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_16001" name="removeButton_16001"
+                       onclick="deleteProjType('16001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_14002" name="projectid_14002" type="hidden" value="14002" /><input disabled="true" id="projectType_14002" name="projectType_14002"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="WSOP - Outbound 1" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_14002" name="editButton_14002"
+                       onclick="editProjectType('14002')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_14002" name="saveButton_14002"
+                                             onclick="saveChanges('14002')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_14002" name="cancelButton_14002"
+                                                                   onclick="cancelChanges('14002')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_14002" name="removeButton_14002"
+                       onclick="deleteProjType('14002')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_14003" name="projectid_14003" type="hidden" value="14003" /><input disabled="true" id="projectType_14003" name="projectType_14003"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="WSOP - Outbound 2" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_14003" name="editButton_14003"
+                       onclick="editProjectType('14003')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_14003" name="saveButton_14003"
+                                             onclick="saveChanges('14003')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_14003" name="cancelButton_14003"
+                                                                   onclick="cancelChanges('14003')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_14003" name="removeButton_14003"
+                       onclick="deleteProjType('14003')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_14004" name="projectid_14004" type="hidden" value="14004" /><input disabled="true" id="projectType_14004" name="projectType_14004"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="swtest4" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_14004" name="editButton_14004"
+                       onclick="editProjectType('14004')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_14004" name="saveButton_14004"
+                                             onclick="saveChanges('14004')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_14004" name="cancelButton_14004"
+                                                                   onclick="cancelChanges('14004')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_14004" name="removeButton_14004"
+                       onclick="deleteProjType('14004')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_14005" name="projectid_14005" type="hidden" value="14005" /><input disabled="true" id="projectType_14005" name="projectType_14005"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="swtest5" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_14005" name="editButton_14005"
+                       onclick="editProjectType('14005')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_14005" name="saveButton_14005"
+                                             onclick="saveChanges('14005')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_14005" name="cancelButton_14005"
+                                                                   onclick="cancelChanges('14005')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_14005" name="removeButton_14005"
+                       onclick="deleteProjType('14005')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input id="projectid_13001" name="projectid_13001" type="hidden" value="13001" /><input disabled="true" id="projectType_13001" name="projectType_13001"
+                                                                                                        style="width:100%"
+                                                                                                        type="text"
+                                                                                                        value="testabc" />
+            </td>
+            <td align="center" style="word-wrap:normal;">
+                <input class="button-css" id="editButton_13001" name="editButton_13001"
+                       onclick="editProjectType('13001')"
+                       type="button"
+                       value="Edit" /><input class="button-css" id="saveButton_13001" name="saveButton_13001"
+                                             onclick="saveChanges('13001')"
+                                             style="display:none"
+                                             type="button"
+                                             value="Save" /><input class="button-css" id="cancelButton_13001" name="cancelButton_13001"
+                                                                   onclick="cancelChanges('13001')"
+                                                                   style="display:none"
+                                                                   type="button"
+                                                                   value="Cancel" />
+            </td>
+            <td align="center">
+                <input class="button-css" id="removeButton_13001" name="removeButton_13001"
+                       onclick="deleteProjType('13001')"
+                       style="display:block"
+                       type="button"
+                       value="Remove" />
+            </td>
+        </tr>*@
+                                                <!--<tr class="resultsOdd">
+       <td><input id="projectType" name="projectType" style="width:100%" /></td>
+       <td align="center" style="word-wrap:normal;"><input class="button-css" id="addButton" name="addButton" onclick="addProjectType()"
+                 type="button"
+                 value="Add" /></td>
+    </tr>-->
+                                            </table>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="stroke" height="1" width="1"></td>
+                </tr>
+                <tr>
+                    <td class="stroke" colspan="3" height="1"></td>
+                </tr>
+            </table>
+        </form>
+
+        <script type="text/javascript">
+            function Edit(RowID) {
+                var txt;
+                txt = RowID;
+                var inputid = $("#projectType_" + RowID).val();
+
+                $.getJSON('@Url.Content("~/")' + "OpsAdmin/SpecialProjectTrackingUpdate?Rowid=" + txt + "&SpecialProjectType=" + inputid, function (orderupdate) {
+                    if (orderupdate > 0) {
+                        alert("Project Type :" + txt + " Updated Successfully");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Project Type :" + txt + "Not able to  Update currently");
+                    }
+                });
+            }
+             function Delete(RowID) {
+            var txt;
+                 txt = RowID;
+                 var inputid = $("#projectType_" + RowID).val();
+                 $.getJSON('@Url.Content("~/")' + "OpsAdmin/SpecialProjectTrackingDelete?Rowid=" + txt + "&SpecialProjectType=" + inputid, function (orderupdate)
+            {
+                    if (orderupdate > 0) {
+                        alert("Project Type :" + txt + " Deleted Successfully");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Project Type :" + txt + "Not able to  Delete currently");
+                    }
+            });
+        }
+        </script>
+    </div>
+
+
+</body>

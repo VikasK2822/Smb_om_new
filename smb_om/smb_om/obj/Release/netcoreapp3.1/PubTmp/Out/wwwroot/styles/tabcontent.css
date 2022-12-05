@@ -1,0 +1,103 @@
+/**
+ * Copyright 2008-2022 Sequential Tech  All Rights Reserved.
+ *
+ * This source code is the confidential and proprietary information of
+ * Sequential Tech
+ *
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Synchronoss Technologies.
+ */
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+.shadetabs {
+    padding: 6px 0;
+    margin: 0;
+    color: #ff7200;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    list-style-type: none;
+    text-align: left; /*set to left, center, or right to align the menu as desired*/
+    }
+.shadetabs li {
+    display: inline;
+    margin: 0;
+    }
+.tabcontent {
+    display:none;
+    }
+@media print {
+.tabcontent {
+    display:block !important;
+    }
+    }
+
+
+/* ######### REGULAR TAB ######### */
+.shadetabs li a {
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    padding: 6px 14px;
+    margin-right: 1px;
+    border: none;
+    color: #067ab4;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    }
+.shadetabs li a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    }
+/* ######### ACTIVE TAB ######### */
+.shadetabs li a.selected, .shadetabs li a.selected:link, .shadetabs li a.selected:visited, .shadetabs li a.selected:active { /*selected main tab style */
+    position: relative;
+    color: #ff7200;
+    background: url(../images/tab-background.gif) repeat-x center top;
+    border: 1px solid #d2d2d2;
+    border-bottom: 1px solid #FFF;
+    }
+.shadetabs li a.selected:hover { /*selected main tab style */
+    text-decoration: none;
+    cursor: pointer;
+    }
+/* ######### DISABLED TAB ######### */
+.shadetabs li a.disabled, .shadetabs li a.disabled:link, .shadetabs li a.disabled:visited, .shadetabs li a.disabled:active { /*selected main tab style */
+    position: relative;
+    color: #bdbdbd;
+    text-decoration: none;
+    cursor: not-allowed;
+    }
+/* ######### BLACK SCREEN FOR EMAIL VIEW ######### */
+.popup-content-email {
+    position: relative;
+    left: 37%;
+    top: 25%;
+    z-index: 100;
+    margin-top: -138px;
+    margin-left: -244px;
+    width: 982px;
+    background: #fff;
+}
+.editEmailDiv {
+    display: none;
+    background: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1001;
+}
+
+#emailTemplates{
+    position: fixed;
+    left: 50%;
+    top: 57%;
+    z-index: 100;
+    margin-top: -138px;
+    margin-left: -244px;
+    width: 434px;
+    background: #fff;
+}
+
+    
+    

@@ -1,0 +1,106 @@
+﻿@model List<smb_om.Model.UnassignedOrder>
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<body>
+    <div id="content-body">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="stroke" height="1" width="1"></td>
+                <td align="center">
+                    <div class="application">
+                        <h1>
+                            Unassign Order
+
+                        </h1>
+                        <div class="content-border">
+                            <form action="unassignorder" method="POST" name="unassignForm">
+                                <input name="token" type="hidden" value="6f5c31b0-e9ed-4172-b14e-f702176773ad" /><input name="transactionId" type="hidden" value="empty " /><input name="userResp" type="hidden" value="empty" /><input name="process" type="hidden" value="update" /><div class="cmxform_results">
+                                    <fieldset>
+                                        <h2>Assignment Information</h2>
+                                        <hr class="break" />
+                                        <table border="0" cellpadding="0" cellspacing="0" class="appFixedTable">
+                                            <col style="width: 25%;" />
+                                            <col style="width: 20%;" />
+                                            <col style="width: 35%;" />
+                                            <col style="width: 20%;" />
+                                            <tr class="resultsHeader">
+                                                <td>
+                                                    Order Number
+
+                                                </td>
+                                                <td>
+                                                    User Name
+
+                                                </td>
+                                                <td>
+                                                    Timestamp
+
+                                                </td>
+                                                <td>
+                                                    Unassign?
+
+                                                </td>
+                                            </tr>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.OrderNumber
+
+                                                    </td>
+                                                    <td>
+                                                        @item.UserName
+
+                                                    </td>
+                                                    <td>
+                                                        @item.Createddate
+
+                                                    </td>
+                                                    <td>
+                                                        <input class="button-css" name="defaultNext" type="button" id="btnnext_@item.OrderNumber" value="Unassign Order" onclick="UnassignOrder(@item.OrderNumber.ToString())" />
+
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </fieldset>
+                                </div>
+                                <div class="divider"></div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                <td class="stroke" height="1" width="1"></td>
+            </tr>
+            <tr>
+                <td class="stroke" colspan="3" height="1"></td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        function UnassignOrder(ordernumber) {
+            var txt;
+            if (confirm("Are you sure to unassign OrderNumber: " + ordernumber)) {
+                txt = ordernumber;
+                $.getJSON('@Url.Content("~/")' + "OpsAdmin/UnAssignOrder?ordernumber=" + ordernumber , function (orderupdate)
+            {
+                    if (orderupdate > 0) {
+                        alert("OrderNumber :" + txt + " Unassigned Successfully");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("OrderNumber :" + txt + "Not able to  Unassigned currently");
+                    }
+
+            });
+
+            } else {
+                return;
+            }
+
+        }
+    </script>
+</body >
